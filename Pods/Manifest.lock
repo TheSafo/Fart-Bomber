@@ -1,0 +1,40 @@
+PODS:
+  - BlocksKit (2.2.5):
+    - BlocksKit/All (= 2.2.5)
+  - BlocksKit/All (2.2.5):
+    - BlocksKit/Core
+    - BlocksKit/DynamicDelegate
+    - BlocksKit/MessageUI
+    - BlocksKit/QuickLook
+    - BlocksKit/UIKit
+  - BlocksKit/Core (2.2.5)
+  - BlocksKit/DynamicDelegate (2.2.5)
+  - BlocksKit/MessageUI (2.2.5):
+    - BlocksKit/Core
+    - BlocksKit/DynamicDelegate
+  - BlocksKit/QuickLook (2.2.5):
+    - BlocksKit/Core
+    - BlocksKit/DynamicDelegate
+  - BlocksKit/UIKit (2.2.5):
+    - BlocksKit/Core
+    - BlocksKit/DynamicDelegate
+  - pop (1.0.7)
+
+DEPENDENCIES:
+  - BlocksKit (from `https://github.com/zwaldowski/BlocksKit.git`)
+  - pop (~> 1.0)
+
+EXTERNAL SOURCES:
+  BlocksKit:
+    :git: https://github.com/zwaldowski/BlocksKit.git
+
+CHECKOUT OPTIONS:
+  BlocksKit:
+    :commit: b0146be59d327fe66a22270a0eeea73add7a0d40
+    :git: https://github.com/zwaldowski/BlocksKit.git
+
+SPEC CHECKSUMS:
+  BlocksKit: fce66219cce8030475a04eae720cdde22f8fc30b
+  pop: 2f14a1ea61339767af9e66741b418c831b3844df
+
+COCOAPODS: 0.35.0
