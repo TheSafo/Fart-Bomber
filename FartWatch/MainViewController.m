@@ -8,21 +8,17 @@
 
 #import "MainViewController.h"
 #import <Pop/POP.h>
+#include <math.h>
 
-#warning TODO LIST:
-//Animated Chair background
-//Vibration
-//Custom Image
-//UIImagePicker
 
 #define HEIGHT (self.view.frame.size.height - 54)
 #define WIDTH self.view.frame.size.width
-
+#define TOP_IMAGE_RECT CGRectMake(_blendVw.frame.size.width/8,_blendVw.frame.size.height/16,_blendVw.frame.size.width*3/4,_blendVw.frame.size.height*5/8)
 
 @interface MainViewController ()
 
 
-@property(nonatomic) UIImage* img2; /* Stores image from init for use later*/
+@property(nonatomic) UIImage* cushionImg; /* Stores image from init for use later*/
 
 @property(nonatomic) int dontPlayUntil;
 
@@ -35,15 +31,15 @@
         
         self.title = @"Fart Bomber";
         
-        self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"\u2699" style:UIBarButtonItemStylePlain target:self action:@selector(settingsPressed:)];
+        
+        self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"\u2699" style:UIBarButtonItemStylePlain target:self action:@selector(settingsPressed)];
         self.navigationItem.leftBarButtonItem.tintColor = [UIColor grayColor];
         
-//        _camBtn = [UIButton buttonWithType:UIButtonTypeSystem];
-//        _camBtn.imageView.image = [UIImage imageNamed:@"camera44"];
+        _camBtn = [UIButton buttonWithType:UIButtonTypeSystem];
         
-        _img2 = img;
+        _cushionImg = img;
         
-        NSString* fart1 = [[NSBundle mainBundle] pathForResource:@"fart1" ofType:@"mp3"];
+        NSString* fart1 = [[NSBundle mainBundle] pathForResource:@"fart1" ofType:@"wav"];
         NSURL* fart1URL = [NSURL fileURLWithPath:fart1];
         _plyr1 = [[AVAudioPlayer alloc] initWithContentsOfURL:fart1URL error:nil];
         
@@ -67,7 +63,7 @@
         NSURL* fart6URL = [NSURL fileURLWithPath:fart6];
         _plyr6 = [[AVAudioPlayer alloc] initWithContentsOfURL:fart6URL error:nil];
         
-        NSString* fart7 = [[NSBundle mainBundle] pathForResource:@"fart7" ofType:@"mp3"];
+        NSString* fart7 = [[NSBundle mainBundle] pathForResource:@"fart7" ofType:@"wav"];
         NSURL* fart7URL = [NSURL fileURLWithPath:fart7];
         _plyr7 = [[AVAudioPlayer alloc] initWithContentsOfURL:fart7URL error:nil];
     }
@@ -77,20 +73,141 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
+    UIImageView* bckgd = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"testBackground.jpg"]];
+    
+    bckgd.frame = self.view.bounds;
+    
+    [self.view addSubview:bckgd];
     
     _blendVw = [[UIImageView alloc] initWithFrame:CGRectMake(WIDTH/16, 54 + HEIGHT/16, WIDTH*7/8 ,HEIGHT*3/4)];
-//    _camBtn.frame = CGRectMake(WIDTH*15/16, 54 + HEIGHT*15/16, WIDTH/16, WIDTH/16);
+    _camBtn.frame = CGRectMake(WIDTH*15/16 - HEIGHT/8, 54 + HEIGHT*13/16, HEIGHT/8, HEIGHT/8);
+    [_camBtn setImage:[UIImage imageNamed:@"camera44.png"] forState:UIControlStateNormal];
+    [_camBtn setImage:[UIImage imageNamed:@"camera44.png"] forState:UIControlStateSelected];
+
+
     
-//    [self.view addSubview:_camBtn];
+    [_camBtn addTarget:self action:@selector(camPressed) forControlEvents:UIControlEventTouchUpInside];
     
-    UIImage* temp = [self mergeTwoImages: [UIImage imageNamed:@"testImg.png"]: _img2];
+    UIImage* temp = [self mergeTwoImages: [UIImage imageNamed:@"testImg.png"]: _cushionImg];
     _blendVw.image = temp;
+    
+    [self.view addSubview:_camBtn];
     [self.view addSubview:_blendVw];
+
 }
 
--(void)settingsPressed: (UIButton*) btn
+
+-(void)camPressed
 {
+    _actnSht = [[UIActionSheet alloc] initWithTitle:@"Change Cushion Picture" delegate:self cancelButtonTitle:@"Cancel" destructiveButtonTitle:nil otherButtonTitles:@"Choose a photo", @"Take a photo", nil];
     
+    [_actnSht showInView:self.view];
+
+}
+
+-(void)actionSheet:(UIActionSheet *)actionSheet clickedButtonAtIndex:(NSInteger)buttonIndex
+{
+    _picker = [[UIImagePickerController alloc] init];
+    _picker.delegate = self;
+    
+    if(buttonIndex == 0)
+    {
+        _picker.sourceType = UIImagePickerControllerSourceTypePhotoLibrary;
+    }
+    else if(buttonIndex == 1)
+    {
+        _picker.sourceType = UIImagePickerControllerSourceTypeCamera;
+    }
+    else{
+        [actionSheet dismissWithClickedButtonIndex:2 animated:YES];
+        return;
+    }
+    
+    [self presentViewController:_picker animated:YES completion:^{
+        NSLog(@"Presenting imagePicker");
+    }];
+}
+
+-(void)imagePickerController:(UIImagePickerController *)picker didFinishPickingMediaWithInfo:(NSDictionary *)info
+{
+    UIImage* temp = [info objectForKey:UIImagePickerControllerOriginalImage];
+    
+    [self changeImage:temp];
+    
+    [self dismissViewControllerAnimated:YES completion:^{
+        NSLog(@"Dismissing Image Picker");
+    }];
+}
+
+-(void)imagePickerControllerDidCancel:(UIImagePickerController *)picker
+{
+    [self dismissViewControllerAnimated:YES completion:^{
+        NSLog(@"Dismissing Image Picker");
+    }];
+}
+
+-(void)changeImage: (UIImage *)newImg
+{
+//    UIImageView* test = [[UIImageView alloc] initWithImage:newImg];
+//    test.frame = TOP_IMAGE_RECT;
+//    test.layer.cornerRadius = test.frame.size.width/2;
+//    test.layer.masksToBounds = YES;
+    
+    UIImage* newBlend = [self mergeTwoImages:[self circularScaleAndCropImage:newImg frame:TOP_IMAGE_RECT] :_cushionImg];
+    
+    _blendVw.image = newBlend;
+}
+
+
+- (UIImage*)circularScaleAndCropImage:(UIImage*)image frame:(CGRect)frame {
+    // This function returns a newImage, based on image, that has been:
+    // - scaled to fit in (CGRect) rect
+    // - and cropped within a circle of radius: rectWidth/2
+    
+    //Create the bitmap graphics context
+    UIGraphicsBeginImageContextWithOptions(CGSizeMake(frame.size.width, frame.size.height), NO, 0.0);
+    CGContextRef context = UIGraphicsGetCurrentContext();
+    
+    //Get the width and heights
+    CGFloat imageWidth = image.size.width;
+    CGFloat imageHeight = image.size.height;
+    CGFloat rectWidth = frame.size.width;
+    CGFloat rectHeight = frame.size.height;
+    
+    //Calculate the scale factor
+    CGFloat scaleFactorX = rectWidth/imageWidth;
+    CGFloat scaleFactorY = rectHeight/imageHeight;
+    
+    //Calculate the centre of the circle
+    CGFloat imageCentreX = rectWidth/2;
+    CGFloat imageCentreY = rectHeight/2;
+    
+    // Create and CLIP to a CIRCULAR Path
+    // (This could be replaced with any closed path if you want a different shaped clip)
+    CGFloat radius = rectWidth/2;
+    CGContextBeginPath (context);
+    CGContextAddArc (context, imageCentreX, imageCentreY, radius, 0, 2*M_PI, 0);
+    CGContextClosePath (context);
+    CGContextClip (context);
+    
+    //Set the SCALE factor for the graphics context
+    //All future draw calls will be scaled by this factor
+    CGContextScaleCTM (context, scaleFactorX, scaleFactorY);
+    
+    // Draw the IMAGE
+    CGRect myRect = CGRectMake(0, 0, imageWidth, imageHeight);
+    [image drawInRect:myRect];
+    
+    UIImage *newImage = UIGraphicsGetImageFromCurrentImageContext();
+    UIGraphicsEndImageContext();
+    
+    return newImage;
+}
+
+
+-(void)settingsPressed
+{
+    NSLog(@"Presenting Settings");
 }
 
 -(void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event
@@ -158,7 +275,7 @@
 
 -(void)fartNoise
 {
-    int x = arc4random_uniform(6) + 1;
+    int x = arc4random_uniform(7) + 1;
     
     AVAudioPlayer* temp;
     
@@ -199,36 +316,16 @@
 
 - (UIImage*) mergeTwoImages : (UIImage*) topImage : (UIImage*) bottomImage
 {
-    // URL REF: http://iphoneincubator.com/blog/windows-views/image-processing-tricks
-    // URL REF: http://stackoverflow.com/questions/1309757/blend-two-uiimages?answertab=active#tab-top
-    // URL REF: http://www.waterworld.com.hk/en/blog/uigraphicsbeginimagecontext-and-retina-display
-    
     int width = _blendVw.frame.size.width;//bottomImage.size.width;
     int height = _blendVw.frame.size.height;//bottomImage.size.height;
     
     CGSize newSize = CGSizeMake(width, height);
-    NSLog(@"%i, %i", width, height);
-    static CGFloat scale = -1.0;
-    
-    if (scale<0.0)
-    {
-        UIScreen *screen = [UIScreen mainScreen];
-        
-        if ([[[UIDevice currentDevice] systemVersion] floatValue] >= 4.0)
-        {
-            scale = [screen scale];
-        }
-        else
-        {
-            scale = 0.0;    // Use the standard API
-        }
-    }
+//    NSLog(@"%i, %i", width, height);
     
     UIGraphicsBeginImageContextWithOptions(newSize, NO, 0);
-
     
     [bottomImage drawInRect:CGRectMake(0,0,newSize.width,newSize.height)];
-    [topImage drawInRect:CGRectMake(newSize.width/8,newSize.height/16,newSize.width*3/4,newSize.height*5/8) blendMode:kCGBlendModeNormal alpha:.75];
+    [topImage drawInRect:TOP_IMAGE_RECT blendMode:kCGBlendModeNormal alpha:.65];
     
     UIImage *newImage = UIGraphicsGetImageFromCurrentImageContext();
     UIGraphicsEndImageContext();

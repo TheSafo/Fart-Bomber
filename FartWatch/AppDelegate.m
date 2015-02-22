@@ -23,19 +23,13 @@
     
     /** Ensure everything is loaded properly */
 //    if(![[NSUserDefaults standardUserDefaults] objectForKey:@"img"])
-    {
-        UIImage* def = [UIImage imageNamed:@"testCushion"];
-        
-        [[NSUserDefaults standardUserDefaults] setObject:UIImagePNGRepresentation(def) forKey:@"img"];
-        
-        [[NSUserDefaults standardUserDefaults] synchronize];
-    }
+
     
     _navCtrlr = [[UINavigationController alloc]  init];
     _navCtrlr.navigationBar.barTintColor = [UIColor redColor];
     
 
-    MainViewController* temp = [[MainViewController alloc] initWithImg:[UIImage imageWithData:([[NSUserDefaults standardUserDefaults] objectForKey:@"img"])]];
+    MainViewController* temp = [[MainViewController alloc] initWithImg:[UIImage imageNamed:@"cushion3"]];
     [_navCtrlr pushViewController:temp animated:YES];
     [self.window setRootViewController:_navCtrlr];
     

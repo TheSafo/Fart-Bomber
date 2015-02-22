@@ -10,10 +10,12 @@
 #import <UIKit/UIKit.h>
 #import <AVFoundation/AVFoundation.h>
 
-@interface MainViewController : UIViewController
+@interface MainViewController : UIViewController <UIImagePickerControllerDelegate, UIActionSheetDelegate>
 
 @property (nonatomic) UIImageView* blendVw;
-//@property (nonatomic) UIButton* camBtn;
+@property (nonatomic) UIButton* camBtn;
+@property (nonatomic) UIImagePickerController* picker;
+@property (nonatomic) UIActionSheet* actnSht;
 
 
 -(id)initWithImg: (UIImage *) img;
