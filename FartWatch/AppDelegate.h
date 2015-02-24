@@ -13,10 +13,14 @@
 
 @interface AppDelegate : UIResponder <UIApplicationDelegate>
 
+
+@property (nonatomic) BOOL isActive;
+
 @property (strong, nonatomic) UIWindow *window;
 
 @property (nonatomic) UINavigationController* navCtrlr;
 
++(NSURL*)getSharedContainerURLPath;
 
 @end
 

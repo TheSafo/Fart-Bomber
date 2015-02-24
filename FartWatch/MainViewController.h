@@ -18,6 +18,8 @@
 @property (nonatomic) UIActionSheet* actnSht;
 
 
+
+-(void)fartNoise;
 -(id)initWithImg: (UIImage *) img;
 @property (nonatomic,strong) AVAudioPlayer *plyr1;
 @property (nonatomic,strong) AVAudioPlayer *plyr2;

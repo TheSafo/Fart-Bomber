@@ -18,8 +18,17 @@
 
 - (void)awakeWithContext:(id)context {
     [super awakeWithContext:context];
-
-    // Configure interface objects here.
+    
+    
+    /** Get initial image */
+    NSString* imgPath = [[InterfaceController getSharedContainerURLPath] path];
+    imgPath = [imgPath stringByAppendingPathExtension:@"curImg.saf"];
+    NSURL* imgURL = [NSURL URLWithString:imgPath];
+    NSData* imgData = [NSData dataWithContentsOfURL:imgURL];
+    UIImage* initImg = [UIImage imageWithData:imgData];
+    
+    /** Set Initial Image */
+    [_myButton setBackgroundImage:initImg];
 }
 
 - (void)willActivate {
@@ -32,15 +41,48 @@
     [super didDeactivate];
 }
 
-
 - (IBAction) handleButton {
-    NSLog(@"fart");
+    NSLog(@"Fart pressed");
     
+    /** Send a message to the client to get it to fart */
     NSMutableDictionary* msg = [NSMutableDictionary dictionary];
+    msg[@"operation"] = @"fart";
     
     [WKInterfaceController openParentApplication:msg reply:^(NSDictionary *replyInfo, NSError *error) {
-        
+        NSString* temp = replyInfo[@"fartResp"];
+        NSLog(temp);
     }];
+}
+
++(void)createDirAtSharedContainerPath
+{
+    NSString *sharedContainerPathLocation = [[self getSharedContainerURLPath] path];
+    NSString *directoryToCreate = @"currentPicDir";
+    //basically this is <shared_container_file_path>/user_abc
+    NSString *dirPath = [sharedContainerPathLocation stringByAppendingPathComponent:directoryToCreate];
+    
+    BOOL isdir;
+    NSError *error = nil;
+    
+    NSFileManager *mgr = [[NSFileManager alloc]init];
+    
+    if (![mgr fileExistsAtPath:dirPath isDirectory:&isdir]) { //create a dir only that does not exists
+        if (![mgr createDirectoryAtPath:dirPath withIntermediateDirectories:YES attributes:nil error:&error]) {
+            NSLog(@"error while creating dir: %@", error.localizedDescription);
+        } else {
+            NSLog(@"dir was created....");
+        }
+    }
+}
+
++(NSURL*)getSharedContainerURLPath
+{
+    NSFileManager *fm = [NSFileManager defaultManager];
+    
+    NSString *appGroupName = @"group.com.gmail.jakesafo.fartbomber";
+    NSURL *groupContainerURL = [fm containerURLForSecurityApplicationGroupIdentifier:appGroupName];
+    
+    return groupContainerURL;
 }
 
 

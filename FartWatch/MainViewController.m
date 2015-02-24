@@ -9,6 +9,7 @@
 #import "MainViewController.h"
 #import <Pop/POP.h>
 #include <math.h>
+#import "AppDelegate.h"
 
 
 #define HEIGHT (self.view.frame.size.height - 54)
@@ -31,11 +32,11 @@
         
         self.title = @"Fart Bomber";
         
-        
         self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"\u2699" style:UIBarButtonItemStylePlain target:self action:@selector(settingsPressed)];
         self.navigationItem.leftBarButtonItem.tintColor = [UIColor grayColor];
         
         _camBtn = [UIButton buttonWithType:UIButtonTypeSystem];
+        _camBtn.tintColor = [UIColor blackColor];
         
         _cushionImg = img;
         
@@ -105,10 +106,14 @@
 
 }
 
+
+
+
 -(void)actionSheet:(UIActionSheet *)actionSheet clickedButtonAtIndex:(NSInteger)buttonIndex
 {
     _picker = [[UIImagePickerController alloc] init];
     _picker.delegate = self;
+    _picker.allowsEditing = YES;
     
     if(buttonIndex == 0)
     {
@@ -130,7 +135,7 @@
 
 -(void)imagePickerController:(UIImagePickerController *)picker didFinishPickingMediaWithInfo:(NSDictionary *)info
 {
-    UIImage* temp = [info objectForKey:UIImagePickerControllerOriginalImage];
+    UIImage* temp = [info objectForKey:UIImagePickerControllerEditedImage];
     
     [self changeImage:temp];
     
@@ -156,6 +161,14 @@
     UIImage* newBlend = [self mergeTwoImages:[self circularScaleAndCropImage:newImg frame:TOP_IMAGE_RECT] :_cushionImg];
     
     _blendVw.image = newBlend;
+    
+    /** Save image everytime it changes*/
+    NSString* imgPath = [[AppDelegate getSharedContainerURLPath] path];
+    imgPath = [imgPath stringByAppendingPathExtension:@"curImg.saf"];
+    NSURL* imgURL = [NSURL URLWithString:imgPath];
+    NSData* imgData = UIImagePNGRepresentation(newBlend);
+    
+    [imgData writeToURL:imgURL atomically:YES];
 }
 
 

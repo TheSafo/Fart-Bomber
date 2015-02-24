@@ -101,6 +101,8 @@
 		238A89871A9A5CC800B1BF1A /* fart6.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; name = fart6.wav; path = ../Resources/fart6.wav; sourceTree = "<group>"; };
 		238A89881A9A5CC800B1BF1A /* fart7.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; name = fart7.wav; path = ../Resources/fart7.wav; sourceTree = "<group>"; };
 		238A89901A9A5E8900B1BF1A /* testBackground.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = testBackground.jpg; sourceTree = SOURCE_ROOT; };
+		238A89921A9BA90100B1BF1A /* FartWatch.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = FartWatch.entitlements; sourceTree = "<group>"; };
+		238A89931A9BA92100B1BF1A /* FartWatch WatchKit Extension.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = "FartWatch WatchKit Extension.entitlements"; sourceTree = "<group>"; };
 		238B3EDF1A97BD3A0040FD24 /* camera44.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = camera44.png; sourceTree = SOURCE_ROOT; };
 		23B826D91A7FFC7000116B02 /* FartWatch.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = FartWatch.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		23B826DD1A7FFC7000116B02 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -224,6 +226,7 @@
 		23B826DB1A7FFC7000116B02 /* FartWatch */ = {
 			isa = PBXGroup;
 			children = (
+				238A89921A9BA90100B1BF1A /* FartWatch.entitlements */,
 				23B826E01A7FFC7000116B02 /* AppDelegate.h */,
 				23B826E11A7FFC7000116B02 /* AppDelegate.m */,
 				23B826E31A7FFC7000116B02 /* MainViewController.h */,
@@ -267,6 +270,7 @@
 		23B827071A7FFD2F00116B02 /* FartWatch WatchKit Extension */ = {
 			isa = PBXGroup;
 			children = (
+				238A89931A9BA92100B1BF1A /* FartWatch WatchKit Extension.entitlements */,
 				23B8270B1A7FFD3000116B02 /* InterfaceController.h */,
 				23B8270C1A7FFD3000116B02 /* InterfaceController.m */,
 				23B8270E1A7FFD3000116B02 /* NotificationController.h */,
@@ -423,6 +427,12 @@
 				TargetAttributes = {
 					23B826D81A7FFC7000116B02 = {
 						CreatedOnToolsVersion = 6.2;
+						DevelopmentTeam = EYAM5ZUJCY;
+						SystemCapabilities = {
+							com.apple.ApplicationGroups.iOS = {
+								enabled = 1;
+							};
+						};
 					};
 					23B826F11A7FFC7000116B02 = {
 						CreatedOnToolsVersion = 6.2;
@@ -430,6 +440,12 @@
 					};
 					23B827051A7FFD2F00116B02 = {
 						CreatedOnToolsVersion = 6.2;
+						DevelopmentTeam = EYAM5ZUJCY;
+						SystemCapabilities = {
+							com.apple.ApplicationGroups.iOS = {
+								enabled = 1;
+							};
+						};
 					};
 					23B827171A7FFD3000116B02 = {
 						CreatedOnToolsVersion = 6.2;
@@ -696,10 +712,14 @@
 			baseConfigurationReference = F7329181C9C717FFFBFB311D /* Pods.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_ENTITLEMENTS = FartWatch/FartWatch.entitlements;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				INFOPLIST_FILE = FartWatch/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.1;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "";
 			};
 			name = Debug;
 		};
@@ -708,10 +728,14 @@
 			baseConfigurationReference = D1EF0082B6DB1273505D3D77 /* Pods.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_ENTITLEMENTS = FartWatch/FartWatch.entitlements;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				INFOPLIST_FILE = FartWatch/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.1;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "";
 			};
 			name = Release;
 		};
@@ -784,6 +808,9 @@
 		23B8272B1A7FFD3100116B02 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CODE_SIGN_ENTITLEMENTS = "FartWatch WatchKit Extension/FartWatch WatchKit Extension.entitlements";
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				GCC_PREPROCESSOR_DEFINITIONS = (
 					"DEBUG=1",
 					"$(inherited)",
@@ -791,6 +818,7 @@
 				INFOPLIST_FILE = "FartWatch WatchKit Extension/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @executable_path/../../Frameworks";
 				PRODUCT_NAME = "${TARGET_NAME}";
+				PROVISIONING_PROFILE = "";
 				SKIP_INSTALL = YES;
 			};
 			name = Debug;
@@ -798,9 +826,13 @@
 		23B8272C1A7FFD3100116B02 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CODE_SIGN_ENTITLEMENTS = "FartWatch WatchKit Extension/FartWatch WatchKit Extension.entitlements";
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				INFOPLIST_FILE = "FartWatch WatchKit Extension/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @executable_path/../../Frameworks";
 				PRODUCT_NAME = "${TARGET_NAME}";
+				PROVISIONING_PROFILE = "";
 				SKIP_INSTALL = YES;
 			};
 			name = Release;

@@ -11,6 +11,9 @@
 
 @interface InterfaceController : WKInterfaceController
 
++(NSURL*)getSharedContainerURLPath;
++(void)createDirAtSharedContainerPath;
+
 @property (nonatomic) IBOutlet WKInterfaceButton* myButton;
 
 @end
