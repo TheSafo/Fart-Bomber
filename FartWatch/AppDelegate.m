@@ -118,7 +118,7 @@
         notification.alertBody = @"[FARTING INTENSIFIES]";
         notification.soundName = @"fart1.wav";
 #warning Testing badges cuz yolo
-        notification.applicationIconBadgeNumber = 7;
+        notification.applicationIconBadgeNumber = 0;
         
         [[UIApplication sharedApplication] scheduleLocalNotification:notification];
     }

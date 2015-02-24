@@ -167,7 +167,8 @@
     imgPath = [imgPath stringByAppendingPathExtension:@"curImg.saf"];
     NSURL* imgURL = [NSURL URLWithString:imgPath];
     NSData* imgData = UIImagePNGRepresentation(newBlend);
-    
+    NSLog(imgPath);
+
     [imgData writeToURL:imgURL atomically:YES];
 }
 
