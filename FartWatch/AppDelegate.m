@@ -23,6 +23,8 @@
     _navCtrlr = [[UINavigationController alloc]  init];
     _navCtrlr.navigationBar.barTintColor = [UIColor redColor];
     
+    [application registerUserNotificationSettings:[UIUserNotificationSettings settingsForTypes:UIUserNotificationTypeAlert|UIUserNotificationTypeBadge|UIUserNotificationTypeSound categories:nil]];
+    
     /** Start Audio for the app */
     [[AVAudioSession sharedInstance] setActive:YES error:nil];
     
@@ -31,7 +33,7 @@
     imgPath = [imgPath stringByAppendingPathExtension:@"curImg.saf"];
     NSURL* imgURL = [NSURL URLWithString:imgPath];
     NSData* imgData = [NSData dataWithContentsOfURL:imgURL];
-    
+    NSLog(imgPath);
     UIImage* initImg;
     
     /** If there's no data, set a default image */

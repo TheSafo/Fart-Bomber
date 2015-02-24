@@ -25,8 +25,19 @@
     imgPath = [imgPath stringByAppendingPathExtension:@"curImg.saf"];
     NSURL* imgURL = [NSURL URLWithString:imgPath];
     NSData* imgData = [NSData dataWithContentsOfURL:imgURL];
-    UIImage* initImg = [UIImage imageWithData:imgData];
+
+    NSLog(imgPath);
+    UIImage* initImg;
     
+    /** If there's no data, set a default image */
+    if(!imgData)
+    {
+        initImg = [UIImage imageNamed:@"cushion3"];
+    }
+    else
+    {
+        initImg = [UIImage imageWithData:imgData];
+    }
     /** Set Initial Image */
     [_myButton setBackgroundImage:initImg];
 }
