@@ -40,6 +40,7 @@
 		23B827261A7FFD3100116B02 /* FartWatch WatchKit Extension.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = 23B827061A7FFD2F00116B02 /* FartWatch WatchKit Extension.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
 		23B8272E1A800AB500116B02 /* InterfaceController.m in Sources */ = {isa = PBXBuildFile; fileRef = 23B8270C1A7FFD3000116B02 /* InterfaceController.m */; };
 		23F08A8F1A965B200033BE56 /* testImg.png in Resources */ = {isa = PBXBuildFile; fileRef = 23F08A8E1A965B200033BE56 /* testImg.png */; };
+		23F6CF751A9D1C2000F4C541 /* cushion3.png in Resources */ = {isa = PBXBuildFile; fileRef = 238A89781A9A5CC000B1BF1A /* cushion3.png */; };
 		65F5890619582CA18172458C /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = FC6A0F1AECF1DF3118603F1E /* libPods.a */; };
 /* End PBXBuildFile section */
 
@@ -513,6 +514,7 @@
 			files = (
 				23B827151A7FFD3000116B02 /* Images.xcassets in Resources */,
 				23B827191A7FFD3000116B02 /* FartWatch WatchKit App.app in Resources */,
+				23F6CF751A9D1C2000F4C541 /* cushion3.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

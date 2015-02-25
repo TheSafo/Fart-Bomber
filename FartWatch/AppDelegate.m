@@ -23,22 +23,24 @@
     _navCtrlr = [[UINavigationController alloc]  init];
     _navCtrlr.navigationBar.barTintColor = [UIColor redColor];
     
-    [application registerUserNotificationSettings:[UIUserNotificationSettings settingsForTypes:UIUserNotificationTypeAlert|UIUserNotificationTypeBadge|UIUserNotificationTypeSound categories:nil]];
+    if ([application respondsToSelector:@selector(registerUserNotificationSettings:)]) {
+        [application registerUserNotificationSettings:[UIUserNotificationSettings settingsForTypes:UIUserNotificationTypeAlert|UIUserNotificationTypeBadge|UIUserNotificationTypeSound categories:nil]];
+    }
     
     /** Start Audio for the app */
     [[AVAudioSession sharedInstance] setActive:YES error:nil];
     
     /** Get initial image */
     NSString* imgPath = [[AppDelegate getSharedContainerURLPath] path];
-    imgPath = [imgPath stringByAppendingPathExtension:@"curImg.saf"];
-    NSURL* imgURL = [NSURL URLWithString:imgPath];
-    NSData* imgData = [NSData dataWithContentsOfURL:imgURL];
-    NSLog(imgPath);
+    imgPath = [imgPath stringByAppendingPathComponent:@"curImg.saf"];
+    NSData* imgData = [NSData dataWithContentsOfFile:imgPath];
+    NSLog(@"%@",imgPath);
     UIImage* initImg;
     
     /** If there's no data, set a default image */
     if(!imgData)
     {
+#warning Change default image eventually
         initImg = [UIImage imageNamed:@"cushion3"];
     }
     else
@@ -116,7 +118,7 @@
         notification.timeZone = [NSTimeZone defaultTimeZone];
 #warning Randomize these options later
         notification.alertBody = @"[FARTING INTENSIFIES]";
-        notification.soundName = @"fart1.wav";
+        notification.soundName = UILocalNotificationDefaultSoundName;//@"fart1.wav";
 #warning Testing badges cuz yolo
         notification.applicationIconBadgeNumber = 0;
         

@@ -10,7 +10,7 @@
             <objects>
                 <controller id="AgC-eL-Hgc" customClass="InterfaceController">
                     <items>
-                        <button width="136" height="151" alignment="left" title="Button" backgroundImage="cushion2.png" id="98y-WF-0mP">
+                        <button width="136" height="151" alignment="left" id="98y-WF-0mP">
                             <connections>
                                 <action selector="handleButton" destination="AgC-eL-Hgc" id="81I-6d-RTC"/>
                             </connections>

@@ -22,11 +22,10 @@
     
     /** Get initial image */
     NSString* imgPath = [[InterfaceController getSharedContainerURLPath] path];
-    imgPath = [imgPath stringByAppendingPathExtension:@"curImg.saf"];
-    NSURL* imgURL = [NSURL URLWithString:imgPath];
-    NSData* imgData = [NSData dataWithContentsOfURL:imgURL];
+    imgPath = [imgPath stringByAppendingPathComponent:@"curImg.saf"];
+    NSData* imgData = [NSData dataWithContentsOfFile:imgPath];
 
-    NSLog(imgPath);
+    NSLog(@"%@",imgPath);
     UIImage* initImg;
     
     /** If there's no data, set a default image */

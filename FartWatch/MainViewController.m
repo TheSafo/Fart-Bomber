@@ -89,8 +89,8 @@
     
     [_camBtn addTarget:self action:@selector(camPressed) forControlEvents:UIControlEventTouchUpInside];
     
-    UIImage* temp = [self mergeTwoImages: [UIImage imageNamed:@"testImg.png"]: _cushionImg];
-    _blendVw.image = temp;
+//    UIImage* temp = [self mergeTwoImages: [UIImage imageNamed:@"testImg.png"]: _cushionImg];
+    _blendVw.image = _cushionImg;
     
     [self.view addSubview:_camBtn];
     [self.view addSubview:_blendVw];
@@ -162,14 +162,17 @@
     
     _blendVw.image = newBlend;
     
-    /** Save image everytime it changes*/
+    /** Save image everytime it changes */
     NSString* imgPath = [[AppDelegate getSharedContainerURLPath] path];
-    imgPath = [imgPath stringByAppendingPathExtension:@"curImg.saf"];
-    NSURL* imgURL = [NSURL URLWithString:imgPath];
+    imgPath = [imgPath stringByAppendingPathComponent:@"curImg.saf"];
+//    NSURL* imgURL = [NSURL URLWithString:imgPath];
     NSData* imgData = UIImagePNGRepresentation(newBlend);
-    NSLog(imgPath);
+    NSLog(@"%@",imgPath);
 
-    [imgData writeToURL:imgURL atomically:YES];
+    NSError* err;
+    [imgData writeToFile:imgPath options:NSDataWritingAtomic error:&err];
+    NSLog(@"%@",err);
+//    [imgData writeToURL:imgURL atomically:YES];
 }
 
 
