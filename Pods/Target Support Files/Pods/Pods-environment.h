@@ -48,6 +48,18 @@
 #define COCOAPODS_VERSION_MINOR_BlocksKit_UIKit 2
 #define COCOAPODS_VERSION_PATCH_BlocksKit_UIKit 5
 
+// MMWormhole
+#define COCOAPODS_POD_AVAILABLE_MMWormhole
+#define COCOAPODS_VERSION_MAJOR_MMWormhole 1
+#define COCOAPODS_VERSION_MINOR_MMWormhole 1
+#define COCOAPODS_VERSION_PATCH_MMWormhole 1
+
+// MMWormhole/Core
+#define COCOAPODS_POD_AVAILABLE_MMWormhole_Core
+#define COCOAPODS_VERSION_MAJOR_MMWormhole_Core 1
+#define COCOAPODS_VERSION_MINOR_MMWormhole_Core 1
+#define COCOAPODS_VERSION_PATCH_MMWormhole_Core 1
+
 // pop
 #define COCOAPODS_POD_AVAILABLE_pop
 #define COCOAPODS_VERSION_MAJOR_pop 1

@@ -8,6 +8,7 @@
 
 #import <WatchKit/WatchKit.h>
 #import <Foundation/Foundation.h>
+#import "MMWormhole.h"
 
 @interface InterfaceController : WKInterfaceController
 
@@ -15,5 +16,8 @@
 +(void)createDirAtSharedContainerPath;
 
 @property (nonatomic) IBOutlet WKInterfaceButton* myButton;
+
+@property (nonatomic) MMWormhole* wormHole;
+
 
 @end

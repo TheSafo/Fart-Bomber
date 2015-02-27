@@ -23,11 +23,13 @@
 
 @property(nonatomic) int dontPlayUntil;
 
+@property (nonatomic) int cushNum;
+
 @end
 
 @implementation MainViewController
 
--(id)initWithImg: (UIImage *) img {
+-(id)initWithImg: (UIImage *) img andNum: (int) num{
     if (self = [super init]) {
         
         self.title = @"Fart Bomber";
@@ -39,6 +41,7 @@
         _camBtn.tintColor = [UIColor blackColor];
         
         _cushionImg = img;
+        _cushNum = num;
         
         NSString* fart1 = [[NSBundle mainBundle] pathForResource:@"fart1" ofType:@"wav"];
         NSURL* fart1URL = [NSURL fileURLWithPath:fart1];
@@ -103,7 +106,6 @@
     _actnSht = [[UIActionSheet alloc] initWithTitle:@"Change Cushion Picture" delegate:self cancelButtonTitle:@"Cancel" destructiveButtonTitle:nil otherButtonTitles:@"Choose a photo", @"Take a photo", nil];
     
     [_actnSht showInView:self.view];
-
 }
 
 
@@ -153,28 +155,25 @@
 
 -(void)changeImage: (UIImage *)newImg
 {
-//    UIImageView* test = [[UIImageView alloc] initWithImage:newImg];
-//    test.frame = TOP_IMAGE_RECT;
-//    test.layer.cornerRadius = test.frame.size.width/2;
-//    test.layer.masksToBounds = YES;
-    
-    UIImage* newBlend = [self mergeTwoImages:[self circularScaleAndCropImage:newImg frame:TOP_IMAGE_RECT] :_cushionImg];
+    UIImage* temp = [self imageFromNum];
+    UIImage* newBlend = [self mergeTwoImages:[self circularScaleAndCropImage:newImg frame:TOP_IMAGE_RECT] :temp];
     
     _blendVw.image = newBlend;
-    
-    /** Save image everytime it changes */
-    NSString* imgPath = [[AppDelegate getSharedContainerURLPath] path];
-    imgPath = [imgPath stringByAppendingPathComponent:@"curImg.saf"];
-//    NSURL* imgURL = [NSURL URLWithString:imgPath];
     NSData* imgData = UIImagePNGRepresentation(newBlend);
-    NSLog(@"%@",imgPath);
-
-    NSError* err;
-    [imgData writeToFile:imgPath options:NSDataWritingAtomic error:&err];
-    NSLog(@"%@",err);
-//    [imgData writeToURL:imgURL atomically:YES];
+    
+    /** Send the image through the wormhole */
+    [((AppDelegate *)[UIApplication sharedApplication].delegate).wormHole passMessageObject:imgData identifier:@"curImg"];
 }
 
+
+-(UIImage *)imageFromNum
+{
+    NSString* str = [NSString stringWithFormat:@"cushion%i",_cushNum];
+
+    UIImage* temp = [UIImage imageNamed:str];
+    
+    return temp;
+}
 
 - (UIImage*)circularScaleAndCropImage:(UIImage*)image frame:(CGRect)frame {
     // This function returns a newImage, based on image, that has been:
@@ -326,10 +325,18 @@
     _dontPlayUntil = y;
     
     [temp play];
+    
+    for (int i = 0; i < temp.duration/.4 - .4; i++)
+    {
+        [self performSelector:@selector(vibe:) withObject:self afterDelay:i *.4f];
+    }
     [self applyEarthquakeToView:_blendVw duration:temp.duration delay:0 offset:200];
 }
 
-
+-(void)vibe:(id)sender
+{
+    AudioServicesPlayAlertSound(kSystemSoundID_Vibrate);
+}
 
 - (UIImage*) mergeTwoImages : (UIImage*) topImage : (UIImage*) bottomImage
 {

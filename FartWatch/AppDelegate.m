@@ -7,10 +7,14 @@
 //
 
 #import "AppDelegate.h"
+#import <Parse/Parse.h>
+#import <ParseFacebookUtils/PFFacebookUtils.h>
+
 
 @interface AppDelegate ()
 
 @property(nonatomic) MainViewController* mainCtrlr;
+
 @end
 
 @implementation AppDelegate
@@ -23,18 +27,28 @@
     _navCtrlr = [[UINavigationController alloc]  init];
     _navCtrlr.navigationBar.barTintColor = [UIColor redColor];
     
-    if ([application respondsToSelector:@selector(registerUserNotificationSettings:)]) {
-        [application registerUserNotificationSettings:[UIUserNotificationSettings settingsForTypes:UIUserNotificationTypeAlert|UIUserNotificationTypeBadge|UIUserNotificationTypeSound categories:nil]];
-    }
+    _wormHole = [[MMWormhole alloc] initWithApplicationGroupIdentifier:@"group.com.gmail.jakesafo.fartbomber"
+                                           optionalDirectory:@"wormhole"];
+    
+    
+    [Parse setApplicationId:@"U3jYooMOP5sHRj6R9WYR6cwzE3vQQavKBPF1jJ80" clientKey:@"gVOe8Xxnn1RymITkY7ddbNiP396IvrdMyy8vf4k6"];
+    
+    [PFFacebookUtils initializeFacebook];
+    
+    [PFAnalytics trackAppOpenedWithLaunchOptions:launchOptions];
+    
+    // Register for Push Notitications
+    UIUserNotificationType userNotificationTypes = (UIUserNotificationTypeAlert | UIUserNotificationTypeBadge | UIUserNotificationTypeSound);
+    UIUserNotificationSettings *settings = [UIUserNotificationSettings settingsForTypes:userNotificationTypes categories:nil];
+    [application registerUserNotificationSettings:settings];
+    [application registerForRemoteNotifications];
+
+
     
     /** Start Audio for the app */
     [[AVAudioSession sharedInstance] setActive:YES error:nil];
     
-    /** Get initial image */
-    NSString* imgPath = [[AppDelegate getSharedContainerURLPath] path];
-    imgPath = [imgPath stringByAppendingPathComponent:@"curImg.saf"];
-    NSData* imgData = [NSData dataWithContentsOfFile:imgPath];
-    NSLog(@"%@",imgPath);
+    NSData* imgData = [_wormHole messageWithIdentifier:@"curImg"];
     UIImage* initImg;
     
     /** If there's no data, set a default image */
@@ -47,9 +61,10 @@
     {
         initImg = [UIImage imageWithData:imgData];
     }
+
     
     /** Show the controller! */
-    _mainCtrlr = [[MainViewController alloc] initWithImg:initImg];
+    _mainCtrlr = [[MainViewController alloc] initWithImg:initImg andNum:3];
     [_navCtrlr pushViewController:_mainCtrlr animated:YES];
     [self.window setRootViewController:_navCtrlr];
     [self.window makeKeyAndVisible];
@@ -57,39 +72,26 @@
     return YES;
 }
 
-+(void)createDirAtSharedContainerPath
-{
-    NSString *sharedContainerPathLocation = [[self getSharedContainerURLPath] path];
-    NSString *directoryToCreate = @"currentPicDir";
-    //basically this is <shared_container_file_path>/user_abc
-    NSString *dirPath = [sharedContainerPathLocation stringByAppendingPathComponent:directoryToCreate];
-    
-    BOOL isdir;
-    NSError *error = nil;
-    
-    NSFileManager *mgr = [[NSFileManager alloc]init];
-    
-    if (![mgr fileExistsAtPath:dirPath isDirectory:&isdir]) { //create a dir only that does not exists
-        if (![mgr createDirectoryAtPath:dirPath withIntermediateDirectories:YES attributes:nil error:&error]) {
-            NSLog(@"error while creating dir: %@", error.localizedDescription);
-        } else {
-            NSLog(@"dir was created....");
-        }
-    }
+- (BOOL)application:(UIApplication *)application
+            openURL:(NSURL *)url
+  sourceApplication:(NSString *)sourceApplication
+         annotation:(id)annotation {
+        return [FBAppCall handleOpenURL:url
+                                  sourceApplication:sourceApplication
+                                        withSession:[PFFacebookUtils session]];
 }
 
-+(NSURL*)getSharedContainerURLPath
-{
-    NSFileManager *fm = [NSFileManager defaultManager];
-    
-    NSString *appGroupName = @"group.com.gmail.jakesafo.fartbomber";
-    
-    NSURL *groupContainerURL = [fm containerURLForSecurityApplicationGroupIdentifier:appGroupName];
-    
-    return groupContainerURL;
+
+- (void)application:(UIApplication *)application didRegisterForRemoteNotificationsWithDeviceToken:(NSData *)deviceToken {
+    // Store the deviceToken in the current installation and save it to Parse.
+    PFInstallation *currentInstallation = [PFInstallation currentInstallation];
+    [currentInstallation setDeviceTokenFromData:deviceToken];
+    [currentInstallation saveInBackground];
+}
+- (void)application:(UIApplication *)application didReceiveRemoteNotification:(NSDictionary *)userInfo {
+    [PFPush handlePush:userInfo];
 }
 
-#warning Watchkit
 - (void)application:(UIApplication *)application handleWatchKitExtensionRequest:(NSDictionary *)userInfo reply:(void(^)(NSDictionary *replyInfo))reply
 {
     if([userInfo[@"operation"] isEqualToString:@"fart"])
@@ -118,7 +120,7 @@
         notification.timeZone = [NSTimeZone defaultTimeZone];
 #warning Randomize these options later
         notification.alertBody = @"[FARTING INTENSIFIES]";
-        notification.soundName = UILocalNotificationDefaultSoundName;//@"fart1.wav";
+        notification.soundName = @"fart1.wav";
 #warning Testing badges cuz yolo
         notification.applicationIconBadgeNumber = 0;
         
@@ -144,6 +146,7 @@
 - (void)applicationDidBecomeActive:(UIApplication *)application {
     // Restart any tasks that were paused (or not yet started) while the application was inactive. If the application was previously in the background, optionally refresh the user interface.
     _isActive = YES;
+    [FBAppCall handleDidBecomeActiveWithSession:[PFFacebookUtils session]];
 }
 
 - (void)applicationWillTerminate:(UIApplication *)application {

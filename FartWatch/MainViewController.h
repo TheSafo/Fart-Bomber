@@ -9,6 +9,7 @@
 //#import <AudioToolbox/AudioToolbox.h>
 #import <UIKit/UIKit.h>
 #import <AVFoundation/AVFoundation.h>
+#import "AppDelegate.h"
 
 @interface MainViewController : UIViewController <UIImagePickerControllerDelegate, UIActionSheetDelegate>
 
@@ -20,7 +21,7 @@
 
 
 -(void)fartNoise;
--(id)initWithImg: (UIImage *) img;
+-(id)initWithImg: (UIImage *) img andNum: (int) num;
 @property (nonatomic,strong) AVAudioPlayer *plyr1;
 @property (nonatomic,strong) AVAudioPlayer *plyr2;
 @property (nonatomic,strong) AVAudioPlayer *plyr3;

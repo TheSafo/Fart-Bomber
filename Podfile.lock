@@ -18,10 +18,14 @@ PODS:
   - BlocksKit/UIKit (2.2.5):
     - BlocksKit/Core
     - BlocksKit/DynamicDelegate
+  - MMWormhole (1.1.1):
+    - MMWormhole/Core (= 1.1.1)
+  - MMWormhole/Core (1.1.1)
   - pop (1.0.7)
 
 DEPENDENCIES:
   - BlocksKit (from `https://github.com/zwaldowski/BlocksKit.git`)
+  - MMWormhole (~> 1.1.1)
   - pop (~> 1.0)
 
 EXTERNAL SOURCES:
@@ -35,6 +39,7 @@ CHECKOUT OPTIONS:
 
 SPEC CHECKSUMS:
   BlocksKit: fce66219cce8030475a04eae720cdde22f8fc30b
+  MMWormhole: 48452a7149eba409e9dffad661451fa25b9e97c4
   pop: 2f14a1ea61339767af9e66741b418c831b3844df
 
 COCOAPODS: 0.35.0
