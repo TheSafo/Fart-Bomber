@@ -10,8 +10,6 @@
 #import "MainViewController.h"
 #import <MMWormhole/MMWormhole.h>
 
-#warning Lets flurry this up
-
 @interface AppDelegate : UIResponder <UIApplicationDelegate>
 
 @property (nonatomic) MMWormhole* wormHole;

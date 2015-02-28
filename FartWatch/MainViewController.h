@@ -17,6 +17,7 @@
 @property (nonatomic) UIButton* camBtn;
 @property (nonatomic) UIImagePickerController* picker;
 @property (nonatomic) UIActionSheet* actnSht;
+@property (nonatomic) UIButton* fbBtn;
 
 
 

@@ -54,8 +54,7 @@
     /** If there's no data, set a default image */
     if(!imgData)
     {
-#warning Change default image eventually
-        initImg = [UIImage imageNamed:@"cushion3"];
+        initImg = [UIImage imageNamed:@"cushion7"];
     }
     else
     {
@@ -64,7 +63,7 @@
 
     
     /** Show the controller! */
-    _mainCtrlr = [[MainViewController alloc] initWithImg:initImg andNum:3];
+    _mainCtrlr = [[MainViewController alloc] initWithImg:initImg andNum:7];
     [_navCtrlr pushViewController:_mainCtrlr animated:YES];
     [self.window setRootViewController:_navCtrlr];
     [self.window makeKeyAndVisible];
@@ -72,13 +71,8 @@
     return YES;
 }
 
-- (BOOL)application:(UIApplication *)application
-            openURL:(NSURL *)url
-  sourceApplication:(NSString *)sourceApplication
-         annotation:(id)annotation {
-        return [FBAppCall handleOpenURL:url
-                                  sourceApplication:sourceApplication
-                                        withSession:[PFFacebookUtils session]];
+- (BOOL)application:(UIApplication *)application openURL:(NSURL *)url sourceApplication:(NSString *)sourceApplication annotation:(id)annotation {
+    return [FBAppCall handleOpenURL:url sourceApplication:sourceApplication withSession:[PFFacebookUtils session]];
 }
 
 
@@ -86,10 +80,25 @@
     // Store the deviceToken in the current installation and save it to Parse.
     PFInstallation *currentInstallation = [PFInstallation currentInstallation];
     [currentInstallation setDeviceTokenFromData:deviceToken];
+    
+    if([PFUser currentUser])
+    {
+        currentInstallation[@"user"] = [PFUser currentUser];
+    }
     [currentInstallation saveInBackground];
+    
 }
 - (void)application:(UIApplication *)application didReceiveRemoteNotification:(NSDictionary *)userInfo {
     [PFPush handlePush:userInfo];
+}
+
+-(void)application:(UIApplication *)application didReceiveLocalNotification:(UILocalNotification *)notification
+{
+    if(_isActive)
+    {
+        [[UIApplication sharedApplication] cancelAllLocalNotifications];
+        [self fart];
+    }
 }
 
 - (void)application:(UIApplication *)application handleWatchKitExtensionRequest:(NSDictionary *)userInfo reply:(void(^)(NSDictionary *replyInfo))reply
@@ -120,9 +129,7 @@
         notification.timeZone = [NSTimeZone defaultTimeZone];
 #warning Randomize these options later
         notification.alertBody = @"[FARTING INTENSIFIES]";
-        notification.soundName = @"fart1.wav";
-#warning Testing badges cuz yolo
-        notification.applicationIconBadgeNumber = 0;
+        notification.soundName = @"fart1.caf";
         
         [[UIApplication sharedApplication] scheduleLocalNotification:notification];
     }
@@ -151,6 +158,7 @@
 
 - (void)applicationWillTerminate:(UIApplication *)application {
     // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
+    [[PFFacebookUtils session] close];
 }
 
 @end

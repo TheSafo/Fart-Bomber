@@ -10,6 +10,9 @@
 #import <Pop/POP.h>
 #include <math.h>
 #import "AppDelegate.h"
+#import <ParseFacebookUtils/PFFacebookUtils.h>
+#import "FriendsListViewController.h"
+
 
 
 #define HEIGHT (self.view.frame.size.height - 54)
@@ -40,34 +43,37 @@
         _camBtn = [UIButton buttonWithType:UIButtonTypeSystem];
         _camBtn.tintColor = [UIColor blackColor];
         
+        _fbBtn = [UIButton buttonWithType:UIButtonTypeRoundedRect];
+        _fbBtn.backgroundColor = [UIColor blueColor];
+        
         _cushionImg = img;
         _cushNum = num;
         
-        NSString* fart1 = [[NSBundle mainBundle] pathForResource:@"fart1" ofType:@"wav"];
+        NSString* fart1 = [[NSBundle mainBundle] pathForResource:@"fart1" ofType:@"caf"];
         NSURL* fart1URL = [NSURL fileURLWithPath:fart1];
         _plyr1 = [[AVAudioPlayer alloc] initWithContentsOfURL:fart1URL error:nil];
         
-        NSString* fart2 = [[NSBundle mainBundle] pathForResource:@"fart2" ofType:@"wav"];
+        NSString* fart2 = [[NSBundle mainBundle] pathForResource:@"fart2" ofType:@"caf"];
         NSURL* fart2URL = [NSURL fileURLWithPath:fart2];
         _plyr2 = [[AVAudioPlayer alloc] initWithContentsOfURL:fart2URL error:nil];
         
-        NSString* fart3 = [[NSBundle mainBundle] pathForResource:@"fart3" ofType:@"wav"];
+        NSString* fart3 = [[NSBundle mainBundle] pathForResource:@"fart3" ofType:@"caf"];
         NSURL* fart3URL = [NSURL fileURLWithPath:fart3];
         _plyr3 = [[AVAudioPlayer alloc] initWithContentsOfURL:fart3URL error:nil];
         
-        NSString* fart4 = [[NSBundle mainBundle] pathForResource:@"fart4" ofType:@"wav"];
+        NSString* fart4 = [[NSBundle mainBundle] pathForResource:@"fart4" ofType:@"caf"];
         NSURL* fart4URL = [NSURL fileURLWithPath:fart4];
         _plyr4 = [[AVAudioPlayer alloc] initWithContentsOfURL:fart4URL error:nil];
         
-        NSString* fart5 = [[NSBundle mainBundle] pathForResource:@"fart5" ofType:@"wav"];
+        NSString* fart5 = [[NSBundle mainBundle] pathForResource:@"fart5" ofType:@"caf"];
         NSURL* fart5URL = [NSURL fileURLWithPath:fart5];
         _plyr5 = [[AVAudioPlayer alloc] initWithContentsOfURL:fart5URL error:nil];
         
-        NSString* fart6 = [[NSBundle mainBundle] pathForResource:@"fart6" ofType:@"wav"];
+        NSString* fart6 = [[NSBundle mainBundle] pathForResource:@"fart6" ofType:@"caf"];
         NSURL* fart6URL = [NSURL fileURLWithPath:fart6];
         _plyr6 = [[AVAudioPlayer alloc] initWithContentsOfURL:fart6URL error:nil];
         
-        NSString* fart7 = [[NSBundle mainBundle] pathForResource:@"fart7" ofType:@"wav"];
+        NSString* fart7 = [[NSBundle mainBundle] pathForResource:@"fart7" ofType:@"caf"];
         NSURL* fart7URL = [NSURL fileURLWithPath:fart7];
         _plyr7 = [[AVAudioPlayer alloc] initWithContentsOfURL:fart7URL error:nil];
     }
@@ -87,19 +93,23 @@
     _camBtn.frame = CGRectMake(WIDTH*15/16 - HEIGHT/8, 54 + HEIGHT*13/16, HEIGHT/8, HEIGHT/8);
     [_camBtn setImage:[UIImage imageNamed:@"camera44.png"] forState:UIControlStateNormal];
     [_camBtn setImage:[UIImage imageNamed:@"camera44.png"] forState:UIControlStateSelected];
-
-
-    
     [_camBtn addTarget:self action:@selector(camPressed) forControlEvents:UIControlEventTouchUpInside];
     
-//    UIImage* temp = [self mergeTwoImages: [UIImage imageNamed:@"testImg.png"]: _cushionImg];
+    _fbBtn.frame = CGRectMake(WIDTH*1/16, 54 + HEIGHT*13/16, HEIGHT/8, HEIGHT/8);
+    [_fbBtn addTarget:self action:@selector(fbPressed) forControlEvents:UIControlEventTouchUpInside];
+    
     _blendVw.image = _cushionImg;
     
     [self.view addSubview:_camBtn];
+    [self.view addSubview:_fbBtn];
     [self.view addSubview:_blendVw];
-
 }
 
+-(void)fbPressed
+{
+    FriendsListViewController* toPush = [[FriendsListViewController alloc] initWithStyle:UITableViewStylePlain];
+    [self.navigationController pushViewController: toPush animated:YES];
+}
 
 -(void)camPressed
 {
@@ -107,9 +117,6 @@
     
     [_actnSht showInView:self.view];
 }
-
-
-
 
 -(void)actionSheet:(UIActionSheet *)actionSheet clickedButtonAtIndex:(NSInteger)buttonIndex
 {
