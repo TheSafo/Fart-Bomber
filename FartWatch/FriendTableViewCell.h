@@ -12,5 +12,6 @@
 @interface FriendTableViewCell : UITableViewCell
 
 @property (nonatomic) PFUser* user;
+@property (nonatomic) NSString* userId;
 
 @end

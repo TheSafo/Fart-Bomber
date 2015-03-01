@@ -18,9 +18,25 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view.
     
-    self.view.backgroundColor = [UIColor blueColor];
+    self.view.backgroundColor = [UIColor colorWithRed:59.0/255.0 green:89.0/255.0 blue:152.0/255.0 alpha:1];
+    
+    self.navigationItem.leftBarButtonItem.tintColor = [UIColor blackColor];
+
     
     if([PFFacebookUtils isLinkedWithUser: [PFUser  currentUser]] && [PFUser currentUser]) {
+        
+        UIActivityIndicatorView* test = [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleWhiteLarge];
+        test.frame = CGRectMake(self.view.frame.size.width/2 - 50, self.view.frame.size.height/2 - 50, 100, 100);
+        test.color = [UIColor blackColor];
+        [self.view addSubview:test];
+        
+        [test startAnimating];
+        
+        UIImageView* fb = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"facebook7.png"]];
+        fb.frame = CGRectMake(self.view.frame.size.width/2 - 50, self.view.frame.size.height/2 - 150, 100, 100);
+//        fb.tintColor = [UIColor whiteColor];
+        [self.view addSubview:fb];
+        
         [FBRequestConnection startForMyFriendsWithCompletionHandler:^(FBRequestConnection *connection, id result, NSError *error) {
             if(!error)
             {
@@ -37,7 +53,6 @@
                 
                 //PFUsers Array
                 NSArray *friendUsers = [friendQuery findObjects];
-                
                 
                 [((FriendsListViewController *)[self.navigationController viewControllers][1]) setFriends:friendUsers];
 
@@ -61,7 +76,6 @@
     [login addTarget:self action:@selector(loginPressed) forControlEvents:UIControlEventTouchUpInside];
     }
 }
-
 
 -(void)loginPressed
 {

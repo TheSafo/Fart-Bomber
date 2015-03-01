@@ -24,8 +24,11 @@
     self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
     self.window.backgroundColor = [UIColor whiteColor];
     
+    self.window.tintColor = [UIColor blackColor];
+
+    
     _navCtrlr = [[UINavigationController alloc]  init];
-    _navCtrlr.navigationBar.barTintColor = [UIColor redColor];
+//    _navCtrlr.navigationBar.barTintColor = [U];
     
     _wormHole = [[MMWormhole alloc] initWithApplicationGroupIdentifier:@"group.com.gmail.jakesafo.fartbomber"
                                            optionalDirectory:@"wormhole"];

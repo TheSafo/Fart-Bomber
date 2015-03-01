@@ -19,9 +19,6 @@
 {
     if((self = [super initWithStyle:style]))
     {
-        _friends = [NSMutableArray array];
-        _recent = [NSMutableArray array];
-        _revenge = [NSMutableArray array];
         self.tableView.dataSource = self;
         self.tableView.delegate = self;
         _shouldntUseThis = NO;
@@ -45,16 +42,41 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-
+    self.navigationItem.leftBarButtonItem.tintColor = [UIColor blackColor];
+    self.title = @"Send Farts";
     
-
-    // Uncomment the following line to preserve selection between presentations.
-    // self.clearsSelectionOnViewWillAppear = NO;
+//    NSArray* arr1 = ((NSArray *)[PFUser currentUser][@"recent"]);
+//    NSArray* arr2 = ((NSArray *)[PFUser currentUser][@"revenge"]);
+//    
+//    _recent = [NSMutableArray array];
+//    _revenge = [NSMutableArray array];
+//
+//    
+//    for (PFUser* usr in arr1) {
+//        [_recent addObject:[usr fetchIfNeeded]];
+//    }
+//    
+//    for (PFUser* usr in arr2) {
+//        [_revenge addObject:[usr fetchIfNeeded]];
+//    }
+//    
+//    
+//    if(!_recent || [_recent isEqual:[NSNull null]])
+//    {
+//        _recent = [NSMutableArray array];
+//        [PFUser currentUser][@"recent"] = _recent.copy;
+//    }
+//    if(!_revenge || [_revenge isEqual:[NSNull null]])
+//    {
+//        _revenge = [NSMutableArray array];
+//        [PFUser currentUser][@"revenge"] = _revenge.copy;
+//    }
+//    [PFUser currentUser][@"recent"] = [NSMutableArray array];
+//
+//    [[PFUser currentUser] saveInBackground];
     
-    // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
-    // self.navigationItem.rightBarButtonItem = self.editButtonItem;
+    _recentIds = [PFUser currentUser][@"recent"] = [NSMutableArray array];
 }
-
 
 -(void)viewDidAppear:(BOOL)animated
 {
@@ -63,8 +85,23 @@
     {
         [self.navigationController pushViewController: [[FBLoginController alloc] init] animated:YES];
     }
-    else{
-        //Normal viewDidAppear
+    else {
+//        _revengeIds = [PFUser currentUser][@"revenge"];
+//        _recentIds = [PFUser currentUser][@"recent"];
+//        
+//        if(!_recentIds || [_recentIds isEqual:[NSNull null]])
+//        {
+//            _recentIds = [NSMutableArray array];
+//            [PFUser currentUser][@"recent"] = _recentIds.copy;
+//        }
+//        if(!_revengeIds || [_revengeIds isEqual:[NSNull null]])
+//        {
+//            _revengeIds = [NSMutableArray array];
+//            [PFUser currentUser][@"revenge"] = _revengeIds.copy;
+//        }
+        _recentIds = [PFUser currentUser][@"recent"] = [NSMutableArray array];
+
+        [[PFUser currentUser] saveInBackground];
     }
 }
 
@@ -79,48 +116,153 @@
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
     // Return the number of sections.
-    return 1;
+    return 3;
+}
+
+- (NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section
+{
+    NSString *sectionName;
+    switch (section)
+    {
+        case 0:
+            sectionName = @"Revenge";
+            break;
+        case 1:
+            sectionName = @"Recent";
+            break;
+        case 2:
+            sectionName = @"Friends";
+            break;
+    }
+    return sectionName;
 }
 
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    PFUser* toSend = _friends[indexPath.row];
+    
+    PFUser* toSend;
+    NSArray* arr;
+    
+    switch (indexPath.section) {
+        case 0:
+            arr = _revengeIds;
+            break;
+        case 1:
+            arr = _recentIds;
+            break;
+        case 2:
+            arr = _friends;
+            break;
+    }
+    
+    
+    toSend = arr[indexPath.row];
+
     
     PFQuery *qry = [PFInstallation query];
     [qry whereKey:@"user" equalTo:toSend];
     //Brendan is the best!
     
     PFPush *push = [[PFPush alloc] init];
+    
+    NSString* msg = [NSString stringWithFormat:@"FART BOMBED by %@", [PFUser currentUser][@"name"]];
 
     [push setQuery:qry];
     NSDictionary *data = @{
-        @"alert" : @"FART BOMBED",
+        @"alert" : msg,
         @"sound" : @"fart1.caf",
     };
     [push setData:data];
     [push sendPushInBackgroundWithBlock:^(BOOL succeeded, NSError *error) {
-        NSLog(@"push error %@", error);
+//        NSLog(@"push error %@", error);
     }];
     
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
-}
-
-- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-//    switch (section) {
-//        case 0:
-//            return _revenge.count;
-//            break;
-//        case 1:
-//            return _recent.count;
-//            break;
-//        case 2:
-//            return _friends.count;
-//        default:
-//            return 0;
-//            break;
+    
+    /** Also update revenge and recent for both people */
+    
+//    for (PFUser* usr in _recent) {
+//        [usr fetchIfNeeded];
 //    }
     
-    return _friends.count;
+    if(_recentIds.count == 5)
+    {
+        if([_recentIds containsObject:toSend.objectId])
+        {
+            [_recentIds removeObject:toSend.objectId];
+        }
+        else
+        {
+            [_recentIds removeLastObject];
+        }
+        
+        [_recentIds insertObject:toSend.objectId atIndex:0];
+    }
+    else
+    {
+        if([_recentIds containsObject:toSend.objectId])
+        {
+            [_recentIds removeObject:toSend.objectId];
+        }
+        
+        [_recentIds insertObject:toSend atIndex:0];
+    }
+
+    [self.tableView reloadData];
+    
+    [PFUser currentUser][@"recent"] = _recentIds.copy;
+    
+    [[PFUser currentUser] saveInBackground];
+    
+    NSArray* theirRvgTmp =  toSend[@"revenge"];
+    
+    NSMutableArray* theirRevenge = [NSMutableArray arrayWithArray:theirRvgTmp];
+    
+//    for (PFUser* usr in theirRevenge) {
+//        [usr fetchIfNeeded];
+//    }
+    
+    if(theirRevenge.count == 5)
+    {
+        if([theirRevenge containsObject:[PFUser currentUser].objectId])
+        {
+            [theirRevenge removeObject:[PFUser currentUser].objectId];
+        }
+        else
+        {
+            [theirRevenge removeLastObject];
+        }
+        
+        [theirRevenge insertObject:[PFUser currentUser].objectId atIndex:0];
+    }
+    else
+    {
+        if([theirRevenge containsObject:[PFUser currentUser].objectId])
+        {
+            [theirRevenge removeObject:[PFUser currentUser].objectId];
+        }
+        
+        [theirRevenge insertObject:[PFUser currentUser].objectId atIndex:0];
+    }
+
+    [toSend saveInBackground];
+    
+}
+
+
+- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
+    switch (section) {
+        case 0:
+            return _revengeIds.count;
+            break;
+        case 1:
+            return _recentIds.count;
+            break;
+        case 2:
+            return _friends.count;
+            break;
+    }
+    return -1;
 }
 
 
@@ -132,27 +274,29 @@
         cell = [[FriendTableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"friend"];
     }
     
-    PFUser* temp;
     NSArray* arr;
-//    
-//    switch (indexPath.section) {
-//        case 0:
-//            arr = _revenge;
-//            break;
-//        case 1:
-//            arr = _recent;
-//            break;
-//        case 2:
-//            arr = _friends;
-//            break;
-//    }
-//
-    arr = _friends;
-
     
-    temp = arr[indexPath.row];
-
-    [((FriendTableViewCell *)cell) setUser:temp];
+    switch (indexPath.section) {
+        case 0:
+            arr = _revengeIds;
+            break;
+        case 1:
+            arr = _recentIds;
+            break;
+        case 2:
+            arr = _friends;
+            break;
+    }
+    
+    /** Friends doesnt store ids but the others do*/
+    if([arr isEqualToArray:_friends])
+    {
+        [((FriendTableViewCell *)cell) setUser:arr[indexPath.row]];
+    }
+    else
+    {
+        [((FriendTableViewCell *)cell) setUserId:arr[indexPath.row]];
+    }
     return cell;
 }
 

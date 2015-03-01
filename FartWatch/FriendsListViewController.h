@@ -13,8 +13,12 @@
 
 @interface FriendsListViewController : UITableViewController
 
-@property(nonatomic) NSMutableArray* revenge;
-@property(nonatomic) NSMutableArray* recent;
+//@property(nonatomic) NSMutableArray* revenge;
+//@property(nonatomic) NSMutableArray* recent;
+
+@property(nonatomic) NSMutableArray* recentIds;
+@property(nonatomic) NSMutableArray* revengeIds;
+
 @property(nonatomic) NSArray* friends;
 
 @property (nonatomic) BOOL shouldntUseThis;

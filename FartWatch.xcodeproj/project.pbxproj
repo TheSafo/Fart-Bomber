@@ -48,6 +48,8 @@
 		238A89811A9A5CC000B1BF1A /* cushion6.png in Resources */ = {isa = PBXBuildFile; fileRef = 238A897B1A9A5CC000B1BF1A /* cushion6.png */; };
 		238A89911A9A5E8900B1BF1A /* testBackground.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 238A89901A9A5E8900B1BF1A /* testBackground.jpg */; };
 		238B3EE01A97BD3A0040FD24 /* camera44.png in Resources */ = {isa = PBXBuildFile; fileRef = 238B3EDF1A97BD3A0040FD24 /* camera44.png */; };
+		23B553131AA26DB30020A91A /* facebook7.png in Resources */ = {isa = PBXBuildFile; fileRef = 23B553121AA26DB30020A91A /* facebook7.png */; };
+		23B5532D1AA274B90020A91A /* nut4.png in Resources */ = {isa = PBXBuildFile; fileRef = 23B5532C1AA274B90020A91A /* nut4.png */; };
 		23B826DF1A7FFC7000116B02 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 23B826DE1A7FFC7000116B02 /* main.m */; };
 		23B826E21A7FFC7000116B02 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 23B826E11A7FFC7000116B02 /* AppDelegate.m */; };
 		23B826E51A7FFC7000116B02 /* MainViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 23B826E41A7FFC7000116B02 /* MainViewController.m */; };
@@ -72,6 +74,7 @@
 		23FA75711AA17C6C00F2E5FE /* fart3.caf in Resources */ = {isa = PBXBuildFile; fileRef = 23FA756A1AA17C6C00F2E5FE /* fart3.caf */; };
 		23FA75721AA17C6C00F2E5FE /* fart2.caf in Resources */ = {isa = PBXBuildFile; fileRef = 23FA756B1AA17C6C00F2E5FE /* fart2.caf */; };
 		23FA75731AA17C6C00F2E5FE /* fart1.caf in Resources */ = {isa = PBXBuildFile; fileRef = 23FA756C1AA17C6C00F2E5FE /* fart1.caf */; };
+		23FA75751AA1982700F2E5FE /* group4.png in Resources */ = {isa = PBXBuildFile; fileRef = 23FA75741AA1982700F2E5FE /* group4.png */; };
 		65F5890619582CA18172458C /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = FC6A0F1AECF1DF3118603F1E /* libPods.a */; };
 /* End PBXBuildFile section */
 
@@ -544,6 +547,8 @@
 		238A89921A9BA90100B1BF1A /* FartWatch.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = FartWatch.entitlements; sourceTree = "<group>"; };
 		238A89931A9BA92100B1BF1A /* FartWatch WatchKit Extension.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = "FartWatch WatchKit Extension.entitlements"; sourceTree = "<group>"; };
 		238B3EDF1A97BD3A0040FD24 /* camera44.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = camera44.png; sourceTree = SOURCE_ROOT; };
+		23B553121AA26DB30020A91A /* facebook7.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = facebook7.png; sourceTree = SOURCE_ROOT; };
+		23B5532C1AA274B90020A91A /* nut4.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = nut4.png; sourceTree = SOURCE_ROOT; };
 		23B826D91A7FFC7000116B02 /* FartWatch.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = FartWatch.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		23B826DD1A7FFC7000116B02 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		23B826DE1A7FFC7000116B02 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
@@ -580,6 +585,7 @@
 		23FA756A1AA17C6C00F2E5FE /* fart3.caf */ = {isa = PBXFileReference; lastKnownFileType = file; name = fart3.caf; path = Sounds/fart3.caf; sourceTree = SOURCE_ROOT; };
 		23FA756B1AA17C6C00F2E5FE /* fart2.caf */ = {isa = PBXFileReference; lastKnownFileType = file; name = fart2.caf; path = Sounds/fart2.caf; sourceTree = SOURCE_ROOT; };
 		23FA756C1AA17C6C00F2E5FE /* fart1.caf */ = {isa = PBXFileReference; lastKnownFileType = file; name = fart1.caf; path = Sounds/fart1.caf; sourceTree = SOURCE_ROOT; };
+		23FA75741AA1982700F2E5FE /* group4.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = group4.png; sourceTree = SOURCE_ROOT; };
 		D1EF0082B6DB1273505D3D77 /* Pods.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.release.xcconfig; path = "Pods/Target Support Files/Pods/Pods.release.xcconfig"; sourceTree = "<group>"; };
 		F7329181C9C717FFFBFB311D /* Pods.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.debug.xcconfig; path = "Pods/Target Support Files/Pods/Pods.debug.xcconfig"; sourceTree = "<group>"; };
 		FC6A0F1AECF1DF3118603F1E /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -1294,6 +1300,9 @@
 		236AE9DB1A959452003A56ED /* Photos */ = {
 			isa = PBXGroup;
 			children = (
+				23B5532C1AA274B90020A91A /* nut4.png */,
+				23B553121AA26DB30020A91A /* facebook7.png */,
+				23FA75741AA1982700F2E5FE /* group4.png */,
 				238A89901A9A5E8900B1BF1A /* testBackground.jpg */,
 				238B3EDF1A97BD3A0040FD24 /* camera44.png */,
 				23F08A8E1A965B200033BE56 /* testImg.png */,
@@ -1757,6 +1766,7 @@
 			files = (
 				2340D2ED1AA03AD100F51F99 /* appicon.png in Resources */,
 				23FA756E1AA17C6C00F2E5FE /* fart6.caf in Resources */,
+				23B5532D1AA274B90020A91A /* nut4.png in Resources */,
 				238A897D1A9A5CC000B1BF1A /* cushion2.png in Resources */,
 				23FA756F1AA17C6C00F2E5FE /* fart5.caf in Resources */,
 				23B826ED1A7FFC7000116B02 /* LaunchScreen.xib in Resources */,
@@ -1766,9 +1776,11 @@
 				2340D2EF1AA03AD100F51F99 /* cushion7.png in Resources */,
 				2340D2FA1AA0457700F51F99 /* appicon87.png in Resources */,
 				2340D2F91AA0457700F51F99 /* appicon120.png in Resources */,
+				23B553131AA26DB30020A91A /* facebook7.png in Resources */,
 				23FA75721AA17C6C00F2E5FE /* fart2.caf in Resources */,
 				238A89911A9A5E8900B1BF1A /* testBackground.jpg in Resources */,
 				238A897E1A9A5CC000B1BF1A /* cushion3.png in Resources */,
+				23FA75751AA1982700F2E5FE /* group4.png in Resources */,
 				23FA75711AA17C6C00F2E5FE /* fart3.caf in Resources */,
 				23FA75731AA17C6C00F2E5FE /* fart1.caf in Resources */,
 				238B3EE01A97BD3A0040FD24 /* camera44.png in Resources */,

@@ -37,14 +37,17 @@
         
         self.title = @"Fart Bomber";
         
-        self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"\u2699" style:UIBarButtonItemStylePlain target:self action:@selector(settingsPressed)];
-        self.navigationItem.leftBarButtonItem.tintColor = [UIColor grayColor];
+//        UIImage* settingsImg = [UIImage imageNamed:@"nut4.png"];
         
+        self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"Settings" style:UIBarButtonItemStylePlain  target:self action:@selector(settingsPressed)];
+        
+        self.navigationItem.leftBarButtonItem.tintColor = [UIColor blackColor];
+    
         _camBtn = [UIButton buttonWithType:UIButtonTypeSystem];
         _camBtn.tintColor = [UIColor blackColor];
         
         _fbBtn = [UIButton buttonWithType:UIButtonTypeRoundedRect];
-        _fbBtn.backgroundColor = [UIColor blueColor];
+        _fbBtn.tintColor = [UIColor blackColor];
         
         _cushionImg = img;
         _cushNum = num;
@@ -96,6 +99,9 @@
     [_camBtn addTarget:self action:@selector(camPressed) forControlEvents:UIControlEventTouchUpInside];
     
     _fbBtn.frame = CGRectMake(WIDTH*1/16, 54 + HEIGHT*13/16, HEIGHT/8, HEIGHT/8);
+    [_fbBtn setImage:[UIImage imageNamed:@"group4.png"] forState:UIControlStateNormal];
+    [_fbBtn setImage:[UIImage imageNamed:@"group4.png"] forState:UIControlStateSelected];
+    
     [_fbBtn addTarget:self action:@selector(fbPressed) forControlEvents:UIControlEventTouchUpInside];
     
     _blendVw.image = _cushionImg;
