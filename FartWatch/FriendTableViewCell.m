@@ -14,38 +14,56 @@
 {
     if(self = [super initWithStyle:style reuseIdentifier:reuseIdentifier])
     {
-        
+        _secondsLeft = 0;
     }
     return self;
 }
 
 -(void)setUser:(PFUser *)user
 {
-    if(!_userId)
-    {
-        _userId = user.objectId;
-    }
-    
-    _user = (PFUser *)[user fetchIfNeeded];
+    _user = user;
     
     self.textLabel.text = user[@"name"];
     NSData* imgData = [NSData dataWithContentsOfURL:[NSURL URLWithString:[NSString stringWithFormat:@"http://graph.facebook.com/%@/picture", user[@"fbId"]]]];
     self.imageView.image = [UIImage imageWithData:imgData];
+    self.detailTextLabel.text = @"Ready to fart again";
+    
 }
 
 -(void)setUserId:(NSString *)userId
 {
-    PFQuery* temp = [[PFUser query] whereKey:@"objectId" equalTo:userId];
+    _userId = userId;
+    PFQuery* temp = [PFUser query];
     
-    [temp getFirstObjectInBackgroundWithBlock:^(PFObject *object, NSError *error) {
-        _userId = userId;
-        [self setUser:(PFUser *)object];
+    [temp getObjectInBackgroundWithId:userId block:^(PFObject *object, NSError *error) {
+        [self setUser: (PFUser *)object];
     }];
 }
 
-
 - (void)setSelected:(BOOL)selected animated:(BOOL)animated {
     [super setSelected:selected animated:animated];
+    
+}
+
+-(void)startTimer
+{
+    _secondsLeft = 30;
+    _timer = [NSTimer scheduledTimerWithTimeInterval: 1.0 target:self selector:@selector(updateCountdown) userInfo:nil repeats: YES];
+}
+
+-(void) updateCountdown
+{
+    if (_secondsLeft == 0) {
+        [_timer invalidate];
+        self.detailTextLabel.text = @"Ready to fart again";
+        return;
+    }
+    _secondsLeft--;
+    int minutes = _secondsLeft / 60;
+    int seconds = _secondsLeft % 60;
+    
+    self.detailTextLabel.text = [NSString stringWithFormat:@"%02d:%02d", minutes, seconds];
+
 }
 
 @end

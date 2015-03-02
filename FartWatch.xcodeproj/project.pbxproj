@@ -50,6 +50,8 @@
 		238B3EE01A97BD3A0040FD24 /* camera44.png in Resources */ = {isa = PBXBuildFile; fileRef = 238B3EDF1A97BD3A0040FD24 /* camera44.png */; };
 		23B553131AA26DB30020A91A /* facebook7.png in Resources */ = {isa = PBXBuildFile; fileRef = 23B553121AA26DB30020A91A /* facebook7.png */; };
 		23B5532D1AA274B90020A91A /* nut4.png in Resources */ = {isa = PBXBuildFile; fileRef = 23B5532C1AA274B90020A91A /* nut4.png */; };
+		23B5533C1AA2DC120020A91A /* IntermediateViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 23B5533B1AA2DC120020A91A /* IntermediateViewController.m */; };
+		23B553401AA2E6790020A91A /* BombingViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 23B5533F1AA2E6790020A91A /* BombingViewController.m */; };
 		23B826DF1A7FFC7000116B02 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 23B826DE1A7FFC7000116B02 /* main.m */; };
 		23B826E21A7FFC7000116B02 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 23B826E11A7FFC7000116B02 /* AppDelegate.m */; };
 		23B826E51A7FFC7000116B02 /* MainViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 23B826E41A7FFC7000116B02 /* MainViewController.m */; };
@@ -549,6 +551,10 @@
 		238B3EDF1A97BD3A0040FD24 /* camera44.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = camera44.png; sourceTree = SOURCE_ROOT; };
 		23B553121AA26DB30020A91A /* facebook7.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = facebook7.png; sourceTree = SOURCE_ROOT; };
 		23B5532C1AA274B90020A91A /* nut4.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = nut4.png; sourceTree = SOURCE_ROOT; };
+		23B5533A1AA2DC110020A91A /* IntermediateViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IntermediateViewController.h; sourceTree = "<group>"; };
+		23B5533B1AA2DC120020A91A /* IntermediateViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IntermediateViewController.m; sourceTree = "<group>"; };
+		23B5533E1AA2E6790020A91A /* BombingViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BombingViewController.h; sourceTree = "<group>"; };
+		23B5533F1AA2E6790020A91A /* BombingViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BombingViewController.m; sourceTree = "<group>"; };
 		23B826D91A7FFC7000116B02 /* FartWatch.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = FartWatch.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		23B826DD1A7FFC7000116B02 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		23B826DE1A7FFC7000116B02 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
@@ -1317,6 +1323,17 @@
 			name = Photos;
 			sourceTree = "<group>";
 		};
+		23B5533D1AA2DC1E0020A91A /* OLD */ = {
+			isa = PBXGroup;
+			children = (
+				23FA753F1AA0DE6F00F2E5FE /* FBLoginController.h */,
+				23FA75401AA0DE6F00F2E5FE /* FBLoginController.m */,
+				2340D2E31AA0102F00F51F99 /* FriendsListViewController.h */,
+				2340D2E41AA0102F00F51F99 /* FriendsListViewController.m */,
+			);
+			name = OLD;
+			sourceTree = "<group>";
+		};
 		23B826D01A7FFC7000116B02 = {
 			isa = PBXGroup;
 			children = (
@@ -1348,12 +1365,13 @@
 				23B826E11A7FFC7000116B02 /* AppDelegate.m */,
 				23B826E31A7FFC7000116B02 /* MainViewController.h */,
 				23B826E41A7FFC7000116B02 /* MainViewController.m */,
-				23FA753F1AA0DE6F00F2E5FE /* FBLoginController.h */,
-				23FA75401AA0DE6F00F2E5FE /* FBLoginController.m */,
-				2340D2E31AA0102F00F51F99 /* FriendsListViewController.h */,
-				2340D2E41AA0102F00F51F99 /* FriendsListViewController.m */,
+				23B5533A1AA2DC110020A91A /* IntermediateViewController.h */,
+				23B5533B1AA2DC120020A91A /* IntermediateViewController.m */,
+				23B5533E1AA2E6790020A91A /* BombingViewController.h */,
+				23B5533F1AA2E6790020A91A /* BombingViewController.m */,
 				2340D2E61AA013A000F51F99 /* FriendTableViewCell.h */,
 				2340D2E71AA013A000F51F99 /* FriendTableViewCell.m */,
+				23B5533D1AA2DC1E0020A91A /* OLD */,
 				2340D2E91AA03AD100F51F99 /* FinIcons */,
 				236AE9DB1A959452003A56ED /* Photos */,
 				23BD14181A93DA8A0016AA5E /* Sounds */,
@@ -1863,7 +1881,9 @@
 			buildActionMask = 2147483647;
 			files = (
 				2340D2E51AA0102F00F51F99 /* FriendsListViewController.m in Sources */,
+				23B553401AA2E6790020A91A /* BombingViewController.m in Sources */,
 				23B826E51A7FFC7000116B02 /* MainViewController.m in Sources */,
+				23B5533C1AA2DC120020A91A /* IntermediateViewController.m in Sources */,
 				23B826E21A7FFC7000116B02 /* AppDelegate.m in Sources */,
 				23FA75411AA0DE6F00F2E5FE /* FBLoginController.m in Sources */,
 				23607E9E1A8D1D6A00EEAADF /* PersistentDictionary.m in Sources */,

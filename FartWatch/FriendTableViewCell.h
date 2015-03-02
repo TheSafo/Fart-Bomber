@@ -13,5 +13,10 @@
 
 @property (nonatomic) PFUser* user;
 @property (nonatomic) NSString* userId;
+@property (nonatomic) int secondsLeft;
+@property (nonatomic) NSTimer* timer;
+@property (nonatomic) UILabel* lbl;
+
+-(void)startTimer;
 
 @end

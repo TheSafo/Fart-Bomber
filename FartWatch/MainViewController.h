@@ -10,6 +10,7 @@
 #import <UIKit/UIKit.h>
 #import <AVFoundation/AVFoundation.h>
 #import "AppDelegate.h"
+#import "IntermediateViewController.h"
 
 @interface MainViewController : UIViewController <UIImagePickerControllerDelegate, UIActionSheetDelegate>
 

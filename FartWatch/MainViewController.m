@@ -113,8 +113,9 @@
 
 -(void)fbPressed
 {
-    FriendsListViewController* toPush = [[FriendsListViewController alloc] initWithStyle:UITableViewStylePlain];
-    [self.navigationController pushViewController: toPush animated:YES];
+//    FriendsListViewController* toPush = [[FriendsListViewController alloc] initWithStyle:UITableViewStylePlain];
+    IntermediateViewController* toPush = [[IntermediateViewController alloc] init];
+    [self.navigationController pushViewController:toPush animated:YES];
 }
 
 -(void)camPressed
