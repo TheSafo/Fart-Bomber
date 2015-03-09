@@ -24,10 +24,15 @@
     _user = user;
     
     self.textLabel.text = user[@"name"];
-    NSData* imgData = [NSData dataWithContentsOfURL:[NSURL URLWithString:[NSString stringWithFormat:@"http://graph.facebook.com/%@/picture", user[@"fbId"]]]];
+    NSData* imgData = [NSData dataWithContentsOfURL:[NSURL URLWithString:[NSString stringWithFormat:@"http://graph.facebook.com/%@/picture?type=large", user[@"fbId"]]]];
     self.imageView.image = [UIImage imageWithData:imgData];
     self.detailTextLabel.text = @"Ready to fart again";
     
+}
+
+-(void)setUserId2: (NSString *)userId
+{
+    _userId = userId;
 }
 
 -(void)setUserId:(NSString *)userId

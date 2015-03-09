@@ -9,7 +9,9 @@
 #import "BombingViewController.h"
 #import "FriendTableViewCell.h"
 #import <BlocksKit/BlocksKit.h>
+#import <Pop/POP.h>
 #import <UIAlertView+BlocksKit.h>
+#import <RKCardView/RKCardView.h>
 
 @interface BombingViewController ()
 
@@ -40,6 +42,67 @@
 //    [[PFUser currentUser] saveInBackground];
 }
 
+-(void)startFartAnimWithUser: (PFUser *) usr andImg: (UIImage *)img
+{
+    int h = self.view.frame.size.height;
+    int w = self.view.frame.size.width;
+    
+//    UIView* testVw = [[UIView alloc] initWithFrame:CGRectMake(0, 0, w, h)];
+//    testVw.backgroundColor = [UIColor blueColor];
+//    testVw.layer.shadowOffset = CGSizeMake(10, 10);
+//    testVw.layer.shadowOpacity = .5;
+//    testVw.layer.shadowRadius = 5;
+//    
+//    testVw.transform = CGAffineTransformMakeTranslation(w, 0);
+    
+    UIBlurEffect *blurEffect = [UIBlurEffect effectWithStyle:UIBlurEffectStyleLight];
+    UIVisualEffectView *bluredEffectView = [[UIVisualEffectView alloc] initWithEffect:blurEffect];
+    [bluredEffectView setFrame:CGRectMake(0, 0, w, h)];
+    
+    RKCardView* cardView= [[RKCardView alloc]initWithFrame:CGRectMake(w/8.0, h/8.0, w*3.0/4.0, h*3.0/4.0)];
+    
+    cardView.coverImageView.image = [UIImage imageNamed:@"cushion3"];
+    cardView.profileImageView.image = img;
+    cardView.titleLabel.text = usr[@"name"];
+    //[cardView addBlur]; // comment this out if you don't want blur
+    [cardView addShadow]; // comment this out if you don't want a shadow
+    
+    cardView.transform = CGAffineTransformMakeTranslation(w, 0);
+    
+    
+    UIView* test = [[UIView alloc] initWithFrame:CGRectMake(w/8.0, h/8.0, w*3.0/4.0, h*3.0/4.0)];
+    test.backgroundColor = [UIColor greenColor];
+
+    
+    [self.tableView addSubview:bluredEffectView];
+    [bluredEffectView addSubview:test];
+    [bluredEffectView addSubview:cardView];
+
+
+
+    
+    [UIView animateWithDuration:.75 delay:0 options:UIViewAnimationOptionCurveLinear animations:^{
+        cardView.transform = CGAffineTransformIdentity;
+    } completion:^(BOOL finished) {
+        
+    }];
+    
+
+//    POPBasicAnimation *anim = [POPBasicAnimation animationWithPropertyNamed:kPopLayer];
+//    anim.timingFunction = [CAMediaTimingFunction functionWithName:kCAMediaTimingFunctionEaseIn];
+//    anim.duration = 1;
+//    anim.toValue = @(0);
+//    anim.beginTime = CACurrentMediaTime();
+//    
+//    [testVw pop_addAnimation:anim forKey:@"frameX"];
+//
+//    anim.completionBlock =  ^(POPAnimation* completedAnim, BOOL completed) {
+//        
+//    };
+
+    
+}
+
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
     NSArray* arr;
@@ -55,19 +118,11 @@
             break;
     }
     
-//    NSMutableArray* allSimilarCells = [NSMutableArray array];
     FriendTableViewCell* tappedCell = (FriendTableViewCell *)[self.tableView cellForRowAtIndexPath:indexPath];
-//    [allSimilarCells addObject:tappedCell];
     
-//    if (tappedCell.secondsLeft != 0) {
-//        NSLog(@"IT'S NOT TIME YET");
-//        [self.tableView deselectRowAtIndexPath:indexPath animated:YES];
-//        
-//        [UIAlertView bk_showAlertViewWithTitle:@"ON COOLDOWN" message:@"You can't do that yet, sorry!" cancelButtonTitle:@"Ok" otherButtonTitles:nil handler:^(UIAlertView *alertView, NSInteger buttonIndex) {
-//            
-//        }];
-//        return;
-//    }
+    /** Fancy ass animation for confirmation */
+    [self startFartAnimWithUser:tappedCell.user andImg: tappedCell.imageView.image];
+
     
     /** Update recentIds on tableview/user */
     NSString* sendStr = tappedCell.userId;
@@ -81,108 +136,7 @@
     }
     [_recentIds insertObject:sendStr atIndex:0];
     
-    {
-//    //Get other arrays
-//    if (indexPath.section == 0) {
-//        NSUInteger ind;
-//        
-//        for (int i = 0; i < _recentIds.count; i++) {
-//            if ([_recentIds[i] isEqualToString:tappedCell.userId]) {
-//                ind = i;
-//                break;
-//            }
-//        }
-//        
-//        NSIndexPath* path = [NSIndexPath indexPathForRow:ind inSection:1];
-//        
-//        FriendTableViewCell* tempCell = (FriendTableViewCell *)[self.tableView cellForRowAtIndexPath:path];
-//        if (tempCell) {
-//            [allSimilarCells addObject:tempCell];
-//        }
-//        
-//        NSUInteger ind2;
-//        
-//        for (int i = 0; i < _friendIds.count; i++) {
-//            if ([_friendIds[i] isEqualToString:tappedCell.userId]) {
-//                ind2 = i;
-//                break;
-//            }
-//        }
-//        
-//        NSIndexPath* path2 = [NSIndexPath indexPathForRow:ind2 inSection:2];
-//        FriendTableViewCell* tempCell2 = (FriendTableViewCell *)[self.tableView cellForRowAtIndexPath:path2];
-//        if (tempCell2) {
-//            [allSimilarCells addObject:tempCell2];
-//        }
-//    }
-//    else if(indexPath.section == 1)
-//    {
-//        NSUInteger ind;
-//        
-//        for (int i = 0; i < _revengeIds.count; i++) {
-//            if ([_revengeIds[i] isEqualToString:tappedCell.userId]) {
-//                ind = i;
-//                break;
-//            }
-//        }
-//        
-//        NSIndexPath* path = [NSIndexPath indexPathForRow:ind inSection:0];
-//        FriendTableViewCell* tempCell = (FriendTableViewCell *)[self.tableView cellForRowAtIndexPath:path];
-//        if (tempCell) {
-//            [allSimilarCells addObject:tempCell];
-//        }
-//        
-//        NSUInteger ind2;
-//        
-//        for (int i = 0; i < _friendIds.count; i++) {
-//            if ([_friendIds[i] isEqualToString:tappedCell.userId]) {
-//                ind2 = i;
-//                break;
-//            }
-//        }
-//        NSIndexPath* path2 = [NSIndexPath indexPathForRow:ind2 inSection:2];
-//        FriendTableViewCell* tempCell2 = (FriendTableViewCell *)[self.tableView cellForRowAtIndexPath:path2];
-//        if (tempCell2) {
-//            [allSimilarCells addObject:tempCell2];
-//        }
-//    }
-//    else if(indexPath.section == 2)
-//    {
-//        NSUInteger ind;
-//        
-//        for (int i = 0; i < _revengeIds.count; i++) {
-//            if ([_revengeIds[i] isEqualToString:tappedCell.userId]) {
-//                ind = i;
-//                break;
-//            }
-//        }
-//        
-//        NSIndexPath* path = [NSIndexPath indexPathForRow:ind inSection:0];
-//        FriendTableViewCell* tempCell = (FriendTableViewCell *)[self.tableView cellForRowAtIndexPath:path];
-//        if (tempCell) {
-//            [allSimilarCells addObject:tempCell];
-//        }
-//        
-//        NSUInteger ind2;
-//        
-//        for (int i = 0; i < _recentIds.count; i++) {
-//            if ([_recentIds[i] isEqualToString:tappedCell.userId]) {
-//                ind2 = i;
-//                break;
-//            }
-//        }
-//        NSIndexPath* path2 = [NSIndexPath indexPathForRow:ind2 inSection:1];
-//        FriendTableViewCell* tempCell2 = (FriendTableViewCell *)[self.tableView cellForRowAtIndexPath:path2];
-//        if (tempCell2) {
-//            [allSimilarCells addObject:tempCell2];
-//        }
-//    }
-//    
-//    /** Start all their timers*/
-//    for (FriendTableViewCell* cell in allSimilarCells) {
-//        [cell startTimer];
-//    }
-} //Old stuff in here
+
     
     [PFUser currentUser][@"recent"] = _recentIds;
     
@@ -226,8 +180,6 @@
             if(error) { NSLog(@"Cloud error: %@", error); }
         }];
         
-//        toSend[@"revenge"] = sendArr;
-//        [toSend saveInBackground];
     }];
     
     [self.tableView deselectRowAtIndexPath:indexPath animated:YES];
