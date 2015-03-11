@@ -12,9 +12,10 @@
 #import "AppDelegate.h"
 #import "IntermediateViewController.h"
 #import <iAd/iAd.h>
+#import "AdSingleton.h"
 
 
-@interface MainViewController : UIViewController <UIImagePickerControllerDelegate, UIActionSheetDelegate, ADBannerViewDelegate>
+@interface MainViewController : UIViewController <UIImagePickerControllerDelegate, UIActionSheetDelegate>
 
 @property (nonatomic) UIImageView* blendVw;
 @property (nonatomic) UIButton* camBtn;

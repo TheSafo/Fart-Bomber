@@ -12,9 +12,9 @@
 #import <ParseFacebookUtils/PFFacebookUtils.h>
 #import "FriendsListViewController.h"
 
+#warning Change from viewDidLoad to ViewDidAppear for ad stuffs
 
-
-#define HEIGHT (self.view.frame.size.height - 54)
+#define HEIGHT (self.view.frame.size.height -54)
 #define WIDTH self.view.frame.size.width
 #define TOP_IMAGE_RECT CGRectMake(_blendVw.frame.size.width/8,_blendVw.frame.size.height/16,_blendVw.frame.size.width*3/4,_blendVw.frame.size.height*5/8)
 
@@ -27,9 +27,7 @@
 
 @property (nonatomic) int cushNum;
 
-@property (nonatomic) BOOL bannerIsVisible;
 
-@property (nonatomic) ADBannerView *adBanner;
 
 
 @end
@@ -87,6 +85,29 @@
     return self;
 }
 
+-(void)viewWillAppear:(BOOL)animated
+{
+    [super viewWillAppear:animated];
+    
+    if(ADS_ON)
+    {
+        int h = HEIGHT - 50;
+        
+        _blendVw.frame = CGRectMake(WIDTH/16, 54 + h/16, WIDTH*7/8 ,h*13/16);
+        _camBtn.frame = CGRectMake(WIDTH*15/16 - h/8, 54 + h*14/16, h/8, h/8);
+        _fbBtn.frame = CGRectMake(WIDTH*1/16, 54 + h*14/16, h/8, h/8);
+        
+
+        [self.view addSubview:[AdSingleton sharedInstance].adBanner];
+    }
+    else
+    {
+        _blendVw.frame = CGRectMake(WIDTH/16, 54 + HEIGHT/16, WIDTH*7/8 ,HEIGHT*13/16);
+        _camBtn.frame = CGRectMake(WIDTH*15/16 - HEIGHT/8, 54 + HEIGHT*14/16, HEIGHT/8, HEIGHT/8);
+        _fbBtn.frame = CGRectMake(WIDTH*1/16, 54 + HEIGHT*14/16,  HEIGHT/8,  HEIGHT/8);
+    }
+}
+
 - (void)viewDidLoad {
     [super viewDidLoad];
     
@@ -96,26 +117,20 @@
     
     [self.view addSubview:bckgd];
     
-    
-#warning iAd Debugging
     if(ADS_ON)
     {
         int h = HEIGHT - 50;
+
+        [AdSingleton sharedInstance].adBanner = [[ADBannerView alloc] initWithFrame:CGRectMake(0, 54 + h + 50, WIDTH, 50)]; ///Off the screen initially
+        [AdSingleton sharedInstance].adBanner.delegate = [AdSingleton sharedInstance];
         
-        _blendVw = [[UIImageView alloc] initWithFrame:CGRectMake(WIDTH/16, 54 + h/16, WIDTH*7/8 ,h*3/4)];
-        _camBtn.frame = CGRectMake(WIDTH*15/16 - h/8, 54 + h*13/16, h/8, h/8);
-        _fbBtn.frame = CGRectMake(WIDTH*1/16, 54 + h*13/16, h/8, h/8);
         
-        _adBanner = [[ADBannerView alloc] initWithFrame:CGRectMake(0, 54 + h + 50, WIDTH, 50)]; ///Off the screen initially
-        _adBanner.delegate = self;
+        _blendVw = [[UIImageView alloc] initWithFrame:CGRectMake(WIDTH/16, 54 + h/16, WIDTH*7/8 ,h*13/16)];
     }
-    else
-    {
-        _blendVw = [[UIImageView alloc] initWithFrame:CGRectMake(WIDTH/16, 54 + HEIGHT/16, WIDTH*7/8 ,HEIGHT*3/4)];
-        _camBtn.frame = CGRectMake(WIDTH*15/16 - HEIGHT/8, 54 + HEIGHT*13/16, HEIGHT/8, HEIGHT/8);
-        _fbBtn.frame = CGRectMake(WIDTH*1/16, 54 + HEIGHT*13/16, HEIGHT/8, HEIGHT/8);
+    else{
+        _blendVw = [[UIImageView alloc] initWithFrame:CGRectMake(WIDTH/16, 54 + HEIGHT/16, WIDTH*7/8 ,HEIGHT*13/16)];
     }
-    
+
     
     [_camBtn setImage:[UIImage imageNamed:@"camera44.png"] forState:UIControlStateNormal];
     [_camBtn setImage:[UIImage imageNamed:@"camera44.png"] forState:UIControlStateSelected];
@@ -131,55 +146,23 @@
     [self.view addSubview:_camBtn];
     [self.view addSubview:_fbBtn];
     [self.view addSubview:_blendVw];
+   
 }
 
-#pragma Ad shit
-- (void)bannerViewDidLoadAd:(ADBannerView *)banner
-{
-    NSLog(@"Retrieved an ad");
-    
-    
-    if (!_bannerIsVisible)
-    {
-        // If banner isn't part of view hierarchy, add it
-        if (_adBanner.superview == nil)
-        {
-            [self.view addSubview:_adBanner];
-        }
-        
-        [UIView beginAnimations:@"animateAdBannerOn" context:NULL];
-        
-        
-        // Assumes the banner view is just off the bottom of the screen.
-        banner.frame = CGRectOffset(banner.frame, 0, -banner.frame.size.height);
-        
-        [UIView commitAnimations];
 
-        _bannerIsVisible = YES;
-    }
-}
-
-- (void)bannerView:(ADBannerView *)banner didFailToReceiveAdWithError:(NSError *)error
-{
-    NSLog(@"Failed to retrieve ad");
-    
-    if (_bannerIsVisible)
-    {
-        [UIView beginAnimations:@"animateAdBannerOff" context:NULL];
-        
-        // Assumes the banner view is placed at the bottom of the screen.
-        banner.frame = CGRectOffset(banner.frame, 0, banner.frame.size.height);
-        [UIView commitAnimations];
-        
-        _bannerIsVisible = NO;
-    }
-}
 
 
 -(void)fbPressed
 {
     IntermediateViewController* toPush = [[IntermediateViewController alloc] init];
     [self.navigationController pushViewController:toPush animated:YES];
+    
+    
+//    [UIView beginAnimations:@"animateAdBannerOff" context:NULL];
+    
+//    [AdSingleton sharedInstance].adBanner.frame = CGRectOffset([AdSingleton sharedInstance].adBanner.frame, 0, [AdSingleton sharedInstance].adBanner.frame.size.height);
+//    [UIView commitAnimations];
+//    [AdSingleton sharedInstance].bannerIsVisible = NO;
 }
 
 -(void)camPressed

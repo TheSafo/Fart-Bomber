@@ -14,6 +14,7 @@
 #import <UIAlertView+BlocksKit.h>
 #import <RKCardView/RKCardView.h>
 #import <LetterpressExplosion/UIView+Explode.h>
+#import "AdSingleton.h"
 
 @interface BombingViewController ()
 
@@ -38,7 +39,17 @@
         self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"Back" style:UIBarButtonItemStylePlain  target:self action:@selector(backPressed)];
         self.title = @"Send Farts";
         
-        CGRect tblFrm = CGRectMake(0, 0, self.view.frame.size.width, self.view.frame.size.height);
+        
+#warning update view based on if ads load or not
+        CGRect tblFrm;
+        if(ADS_ON)
+        {
+            tblFrm = CGRectMake(0, 0, self.view.frame.size.width, self.view.frame.size.height - 50);
+        }
+        else
+        {
+           tblFrm = CGRectMake(0, 0, self.view.frame.size.width, self.view.frame.size.height);
+        }
         
         self.tableView = [[UITableView alloc] initWithFrame:tblFrm style:style];
         self.tableView.dataSource = self;
@@ -46,6 +57,9 @@
         self.tableView.delegate = self;
         
         [self.view addSubview:self.tableView];
+        
+        [self.view addSubview:[AdSingleton sharedInstance].adBanner];
+
         
         _revengeIds = arr1;
         _recentIds = arr2;
@@ -78,37 +92,31 @@
     _cardView.coverImageView.image = [UIImage imageNamed:@"cushion3"];
     _cardView.profileImageView.image = cell.imageView.image;
     _cardView.titleLabel.text = usr[@"name"];
-    
-    _cardView.backgroundColor = [UIColor colorWithRed:247 green:186 blue:186 alpha:.5];
+//    _cardView.backgroundColor = [UIColor colorWithRed:247 green:186 blue:186 alpha:1];
     
     _cardView.transform = CGAffineTransformMakeTranslation(w2, 0);
     
+    
     int h3 = _cardView.frame.size.height;
     int w3 = _cardView.frame.size.width;
-
     
-    _confirmation = [UIButton buttonWithType:UIButtonTypeRoundedRect];
-    _confirmation.frame = CGRectMake(w3/8, h3*7/8, w3*3/4, h3/8);
-    _confirmation.backgroundColor = [UIColor grayColor];
-    [_confirmation setTitle:@"SEND FART" forState:UIControlStateNormal];
-    _confirmation.titleLabel.textAlignment = NSTextAlignmentCenter;
-    _confirmation.titleLabel.textColor = [UIColor blackColor];
-    _confirmation.layer.cornerRadius = 10;
-    
-    
-    UILabel* msgTitle = [[UILabel alloc]initWithFrame:CGRectMake(w3/8, h3*5/8 - 30, w3*3/4, 20)];
-    msgTitle.textAlignment = NSTextAlignmentCenter;
+    UILabel* msgTitle = [[UILabel alloc]initWithFrame:CGRectMake(w3/8 + 5, h3*4/8, w3*3/4, 15)];
+    msgTitle.textAlignment = NSTextAlignmentLeft;
     msgTitle.text = @"Message to Send";
+    msgTitle.textColor = [UIColor lightGrayColor];
     
-    _message = [[UITextField alloc] initWithFrame:CGRectMake(w3/8, h3*5/8, w3*3/4, 40)];
+    _message = [[UITextField alloc] initWithFrame:CGRectMake(w3/8, h3*4/8 + 15, w3*3/4, 40)];
     [_message setEnabled:NO];
-    _message.backgroundColor = [UIColor lightGrayColor];
+//    _message.backgroundColor = [UIColor lightGrayColor];
     _message.layer.cornerRadius = 10;
     _message.textAlignment = NSTextAlignmentCenter;
+    _message.borderStyle = UITextBorderStyleRoundedRect;
+    _message.layer.borderColor = [UIColor blackColor].CGColor;
+    _message.layer.borderWidth = 5;
     
     
     UIButton* buyCustom = [UIButton buttonWithType:UIButtonTypeRoundedRect];
-    buyCustom.frame = CGRectMake(w3/8, h3*6/8 - 20, w3*3/4, h3/8);
+    buyCustom.frame = CGRectMake(w3/8, h3*4/8 + 40 + 20 + 15, w3*3/4, h3/8);
     buyCustom.backgroundColor = [UIColor grayColor];
     [buyCustom setTitle:@"Unlock Custom Farts" forState:UIControlStateNormal];
     buyCustom.contentHorizontalAlignment = UIControlContentHorizontalAlignmentLeft;
@@ -119,9 +127,16 @@
     int h4 = buyCustom.frame.size.height;
     int w4 = buyCustom.frame.size.width;
     UIImageView* lock = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"locked59.png"]];
-    lock.frame = CGRectMake(w4*11/16, 5, h4 - 10, h4 - 10 );
-
+    lock.frame = CGRectMake(w4 - h4 - 5, 5, h4 - 10, h4 - 10 );
     
+    _confirmation = [UIButton buttonWithType:UIButtonTypeRoundedRect];
+    _confirmation.frame = CGRectMake(w3/8, h3*4/8 + 40 + 20 + h3/8 + 20 + 15, w3*3/4, h3/8);
+    _confirmation.backgroundColor = [UIColor grayColor];
+    [_confirmation setTitle:@"SEND FART" forState:UIControlStateNormal];
+    _confirmation.titleLabel.textAlignment = NSTextAlignmentCenter;
+    _confirmation.titleLabel.textColor = [UIColor blackColor];
+    _confirmation.layer.cornerRadius = 10;
+
     
     UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc]
                                    initWithTarget:self

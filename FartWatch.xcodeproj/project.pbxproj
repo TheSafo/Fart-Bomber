@@ -73,6 +73,7 @@
 		23F671FF1AB019B000A7038F /* bomber.png in Resources */ = {isa = PBXBuildFile; fileRef = 23F671FD1AB019B000A7038F /* bomber.png */; };
 		23F672001AB019B000A7038F /* beanBomb.png in Resources */ = {isa = PBXBuildFile; fileRef = 23F671FE1AB019B000A7038F /* beanBomb.png */; };
 		23F672021AB01E0B00A7038F /* locked59.png in Resources */ = {isa = PBXBuildFile; fileRef = 23F672011AB01E0B00A7038F /* locked59.png */; };
+		23F672111AB0A95B00A7038F /* AdSingleton.m in Sources */ = {isa = PBXBuildFile; fileRef = 23F672101AB0A95B00A7038F /* AdSingleton.m */; };
 		23F6CF751A9D1C2000F4C541 /* cushion3.png in Resources */ = {isa = PBXBuildFile; fileRef = 238A89781A9A5CC000B1BF1A /* cushion3.png */; };
 		23FA75411AA0DE6F00F2E5FE /* FBLoginController.m in Sources */ = {isa = PBXBuildFile; fileRef = 23FA75401AA0DE6F00F2E5FE /* FBLoginController.m */; };
 		23FA756D1AA17C6C00F2E5FE /* fart7.caf in Resources */ = {isa = PBXBuildFile; fileRef = 23FA75661AA17C6C00F2E5FE /* fart7.caf */; };
@@ -595,6 +596,8 @@
 		23F671FD1AB019B000A7038F /* bomber.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = bomber.png; sourceTree = SOURCE_ROOT; };
 		23F671FE1AB019B000A7038F /* beanBomb.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = beanBomb.png; sourceTree = SOURCE_ROOT; };
 		23F672011AB01E0B00A7038F /* locked59.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = locked59.png; sourceTree = SOURCE_ROOT; };
+		23F6720F1AB0A95B00A7038F /* AdSingleton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AdSingleton.h; sourceTree = "<group>"; };
+		23F672101AB0A95B00A7038F /* AdSingleton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AdSingleton.m; sourceTree = "<group>"; };
 		23FA753F1AA0DE6F00F2E5FE /* FBLoginController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FBLoginController.h; sourceTree = "<group>"; };
 		23FA75401AA0DE6F00F2E5FE /* FBLoginController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FBLoginController.m; sourceTree = "<group>"; };
 		23FA75661AA17C6C00F2E5FE /* fart7.caf */ = {isa = PBXFileReference; lastKnownFileType = file; name = fart7.caf; path = Sounds/fart7.caf; sourceTree = SOURCE_ROOT; };
@@ -1384,6 +1387,8 @@
 				23B826E11A7FFC7000116B02 /* AppDelegate.m */,
 				23B826E31A7FFC7000116B02 /* MainViewController.h */,
 				23B826E41A7FFC7000116B02 /* MainViewController.m */,
+				23F6720F1AB0A95B00A7038F /* AdSingleton.h */,
+				23F672101AB0A95B00A7038F /* AdSingleton.m */,
 				23B5533A1AA2DC110020A91A /* IntermediateViewController.h */,
 				23B5533B1AA2DC120020A91A /* IntermediateViewController.m */,
 				23B5533E1AA2E6790020A91A /* BombingViewController.h */,
@@ -1906,6 +1911,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				23F672111AB0A95B00A7038F /* AdSingleton.m in Sources */,
 				2340D2E51AA0102F00F51F99 /* FriendsListViewController.m in Sources */,
 				23B553401AA2E6790020A91A /* BombingViewController.m in Sources */,
 				23B826E51A7FFC7000116B02 /* MainViewController.m in Sources */,
