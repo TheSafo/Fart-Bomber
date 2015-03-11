@@ -9,7 +9,6 @@
 #import "MainViewController.h"
 #import <Pop/POP.h>
 #include <math.h>
-#import "AppDelegate.h"
 #import <ParseFacebookUtils/PFFacebookUtils.h>
 #import "FriendsListViewController.h"
 
@@ -27,6 +26,11 @@
 @property(nonatomic) int dontPlayUntil;
 
 @property (nonatomic) int cushNum;
+
+@property (nonatomic) BOOL bannerIsVisible;
+
+@property (nonatomic) ADBannerView *adBanner;
+
 
 @end
 
@@ -92,13 +96,31 @@
     
     [self.view addSubview:bckgd];
     
-    _blendVw = [[UIImageView alloc] initWithFrame:CGRectMake(WIDTH/16, 54 + HEIGHT/16, WIDTH*7/8 ,HEIGHT*3/4)];
-    _camBtn.frame = CGRectMake(WIDTH*15/16 - HEIGHT/8, 54 + HEIGHT*13/16, HEIGHT/8, HEIGHT/8);
+    
+#warning iAd Debugging
+    if(ADS_ON)
+    {
+        int h = HEIGHT - 50;
+        
+        _blendVw = [[UIImageView alloc] initWithFrame:CGRectMake(WIDTH/16, 54 + h/16, WIDTH*7/8 ,h*3/4)];
+        _camBtn.frame = CGRectMake(WIDTH*15/16 - h/8, 54 + h*13/16, h/8, h/8);
+        _fbBtn.frame = CGRectMake(WIDTH*1/16, 54 + h*13/16, h/8, h/8);
+        
+        _adBanner = [[ADBannerView alloc] initWithFrame:CGRectMake(0, 54 + h + 50, WIDTH, 50)]; ///Off the screen initially
+        _adBanner.delegate = self;
+    }
+    else
+    {
+        _blendVw = [[UIImageView alloc] initWithFrame:CGRectMake(WIDTH/16, 54 + HEIGHT/16, WIDTH*7/8 ,HEIGHT*3/4)];
+        _camBtn.frame = CGRectMake(WIDTH*15/16 - HEIGHT/8, 54 + HEIGHT*13/16, HEIGHT/8, HEIGHT/8);
+        _fbBtn.frame = CGRectMake(WIDTH*1/16, 54 + HEIGHT*13/16, HEIGHT/8, HEIGHT/8);
+    }
+    
+    
     [_camBtn setImage:[UIImage imageNamed:@"camera44.png"] forState:UIControlStateNormal];
     [_camBtn setImage:[UIImage imageNamed:@"camera44.png"] forState:UIControlStateSelected];
     [_camBtn addTarget:self action:@selector(camPressed) forControlEvents:UIControlEventTouchUpInside];
     
-    _fbBtn.frame = CGRectMake(WIDTH*1/16, 54 + HEIGHT*13/16, HEIGHT/8, HEIGHT/8);
     [_fbBtn setImage:[UIImage imageNamed:@"group4.png"] forState:UIControlStateNormal];
     [_fbBtn setImage:[UIImage imageNamed:@"group4.png"] forState:UIControlStateSelected];
     
@@ -111,9 +133,51 @@
     [self.view addSubview:_blendVw];
 }
 
+#pragma Ad shit
+- (void)bannerViewDidLoadAd:(ADBannerView *)banner
+{
+    NSLog(@"Retrieved an ad");
+    
+    
+    if (!_bannerIsVisible)
+    {
+        // If banner isn't part of view hierarchy, add it
+        if (_adBanner.superview == nil)
+        {
+            [self.view addSubview:_adBanner];
+        }
+        
+        [UIView beginAnimations:@"animateAdBannerOn" context:NULL];
+        
+        
+        // Assumes the banner view is just off the bottom of the screen.
+        banner.frame = CGRectOffset(banner.frame, 0, -banner.frame.size.height);
+        
+        [UIView commitAnimations];
+
+        _bannerIsVisible = YES;
+    }
+}
+
+- (void)bannerView:(ADBannerView *)banner didFailToReceiveAdWithError:(NSError *)error
+{
+    NSLog(@"Failed to retrieve ad");
+    
+    if (_bannerIsVisible)
+    {
+        [UIView beginAnimations:@"animateAdBannerOff" context:NULL];
+        
+        // Assumes the banner view is placed at the bottom of the screen.
+        banner.frame = CGRectOffset(banner.frame, 0, banner.frame.size.height);
+        [UIView commitAnimations];
+        
+        _bannerIsVisible = NO;
+    }
+}
+
+
 -(void)fbPressed
 {
-//    FriendsListViewController* toPush = [[FriendsListViewController alloc] initWithStyle:UITableViewStylePlain];
     IntermediateViewController* toPush = [[IntermediateViewController alloc] init];
     [self.navigationController pushViewController:toPush animated:YES];
 }
@@ -242,14 +306,19 @@
 
 -(void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event
 {
-//    UITouch* touch = [touches anyObject];
+    UITouch* touch = [touches anyObject];
     
-//    CGPoint loc = [touch locationInView:self.view];
+    CGPoint loc = [touch locationInView:_blendVw];
+    
 //    NSLog(@"%f, %f", loc.x, loc.y);
     
     if(CFAbsoluteTimeGetCurrent() < _dontPlayUntil)
     {
-//        NSLog(@"TOO SOON");
+        NSLog(@"TOO SOON");
+    }
+    else if (loc.x < 0 || loc.y <0 || loc.y > _blendVw.frame.size.height || loc.x > _blendVw.frame.size.width)
+    {
+        NSLog(@"Didn't touch the cushion");
     }
     else
     {

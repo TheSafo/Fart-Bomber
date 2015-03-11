@@ -10,9 +10,10 @@
 #import <Parse/Parse.h>
 #import <ParseFacebookUtils/PFFacebookUtils.h>
 
-@interface BombingViewController : UITableViewController
+@interface BombingViewController : UIViewController <UITableViewDataSource, UITableViewDelegate>
 
 
+@property (nonatomic) UITableView* tableView;
 @property (nonatomic) NSMutableArray* revengeIds;
 @property (nonatomic) NSMutableArray* friendIds;
 @property (nonatomic) NSMutableArray* recentIds;

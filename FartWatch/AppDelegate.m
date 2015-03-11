@@ -44,9 +44,7 @@
     UIUserNotificationType userNotificationTypes = (UIUserNotificationTypeAlert | UIUserNotificationTypeBadge | UIUserNotificationTypeSound);
     UIUserNotificationSettings *settings = [UIUserNotificationSettings settingsForTypes:userNotificationTypes categories:nil];
     [application registerUserNotificationSettings:settings];
-    [application registerForRemoteNotifications];
-
-
+    [application registerForRemoteNotifications];    
     
     /** Start Audio for the app */
     [[AVAudioSession sharedInstance] setActive:YES error:nil];

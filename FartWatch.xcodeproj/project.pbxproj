@@ -28,6 +28,8 @@
 		231438A51A9EB2B700F513D6 /* FBAudienceNetwork.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 231437061A9EB29600F513D6 /* FBAudienceNetwork.framework */; };
 		231438A61A9EB2B700F513D6 /* FacebookSDK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 231437041A9EB29600F513D6 /* FacebookSDK.framework */; };
 		231438A81A9EB69900F513D6 /* libstdc++.6.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 231438A71A9EB69900F513D6 /* libstdc++.6.dylib */; };
+		232897EA1AAE5FF20062BB2F /* bomb.gif in Resources */ = {isa = PBXBuildFile; fileRef = 232897E81AAE5FF10062BB2F /* bomb.gif */; };
+		232897EB1AAE5FF20062BB2F /* plane.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 232897E91AAE5FF20062BB2F /* plane.jpg */; };
 		2340D2E51AA0102F00F51F99 /* FriendsListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2340D2E41AA0102F00F51F99 /* FriendsListViewController.m */; };
 		2340D2E81AA013A000F51F99 /* FriendTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 2340D2E71AA013A000F51F99 /* FriendTableViewCell.m */; };
 		2340D2ED1AA03AD100F51F99 /* appicon.png in Resources */ = {isa = PBXBuildFile; fileRef = 2340D2EA1AA03AD100F51F99 /* appicon.png */; };
@@ -67,6 +69,10 @@
 		23B827261A7FFD3100116B02 /* FartWatch WatchKit Extension.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = 23B827061A7FFD2F00116B02 /* FartWatch WatchKit Extension.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
 		23B8272E1A800AB500116B02 /* InterfaceController.m in Sources */ = {isa = PBXBuildFile; fileRef = 23B8270C1A7FFD3000116B02 /* InterfaceController.m */; };
 		23F08A8F1A965B200033BE56 /* testImg.png in Resources */ = {isa = PBXBuildFile; fileRef = 23F08A8E1A965B200033BE56 /* testImg.png */; };
+		23F671FC1AAFF32500A7038F /* iAd.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 23F671FB1AAFF32500A7038F /* iAd.framework */; };
+		23F671FF1AB019B000A7038F /* bomber.png in Resources */ = {isa = PBXBuildFile; fileRef = 23F671FD1AB019B000A7038F /* bomber.png */; };
+		23F672001AB019B000A7038F /* beanBomb.png in Resources */ = {isa = PBXBuildFile; fileRef = 23F671FE1AB019B000A7038F /* beanBomb.png */; };
+		23F672021AB01E0B00A7038F /* locked59.png in Resources */ = {isa = PBXBuildFile; fileRef = 23F672011AB01E0B00A7038F /* locked59.png */; };
 		23F6CF751A9D1C2000F4C541 /* cushion3.png in Resources */ = {isa = PBXBuildFile; fileRef = 238A89781A9A5CC000B1BF1A /* cushion3.png */; };
 		23FA75411AA0DE6F00F2E5FE /* FBLoginController.m in Sources */ = {isa = PBXBuildFile; fileRef = 23FA75401AA0DE6F00F2E5FE /* FBLoginController.m */; };
 		23FA756D1AA17C6C00F2E5FE /* fart7.caf in Resources */ = {isa = PBXBuildFile; fileRef = 23FA75661AA17C6C00F2E5FE /* fart7.caf */; };
@@ -525,6 +531,8 @@
 		2314387D1A9EB29C00F513D6 /* SwitchUserSample-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "SwitchUserSample-Prefix.pch"; sourceTree = "<group>"; };
 		2314387E1A9EB29C00F513D6 /* SwitchUserSample.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; path = SwitchUserSample.xcodeproj; sourceTree = "<group>"; };
 		231438A71A9EB69900F513D6 /* libstdc++.6.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = "libstdc++.6.dylib"; path = "usr/lib/libstdc++.6.dylib"; sourceTree = SDKROOT; };
+		232897E81AAE5FF10062BB2F /* bomb.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = bomb.gif; sourceTree = SOURCE_ROOT; };
+		232897E91AAE5FF20062BB2F /* plane.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = plane.jpg; sourceTree = SOURCE_ROOT; };
 		2340D2E31AA0102F00F51F99 /* FriendsListViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FriendsListViewController.h; sourceTree = "<group>"; };
 		2340D2E41AA0102F00F51F99 /* FriendsListViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FriendsListViewController.m; sourceTree = "<group>"; };
 		2340D2E61AA013A000F51F99 /* FriendTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FriendTableViewCell.h; sourceTree = "<group>"; };
@@ -582,6 +590,11 @@
 		23B827201A7FFD3000116B02 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Interface.storyboard; sourceTree = "<group>"; };
 		23B827221A7FFD3100116B02 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		23F08A8E1A965B200033BE56 /* testImg.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = testImg.png; sourceTree = SOURCE_ROOT; };
+		23F671EE1AAFF0D200A7038F /* PrefixHeader.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PrefixHeader.pch; sourceTree = "<group>"; };
+		23F671FB1AAFF32500A7038F /* iAd.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = iAd.framework; path = System/Library/Frameworks/iAd.framework; sourceTree = SDKROOT; };
+		23F671FD1AB019B000A7038F /* bomber.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = bomber.png; sourceTree = SOURCE_ROOT; };
+		23F671FE1AB019B000A7038F /* beanBomb.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = beanBomb.png; sourceTree = SOURCE_ROOT; };
+		23F672011AB01E0B00A7038F /* locked59.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = locked59.png; sourceTree = SOURCE_ROOT; };
 		23FA753F1AA0DE6F00F2E5FE /* FBLoginController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FBLoginController.h; sourceTree = "<group>"; };
 		23FA75401AA0DE6F00F2E5FE /* FBLoginController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FBLoginController.m; sourceTree = "<group>"; };
 		23FA75661AA17C6C00F2E5FE /* fart7.caf */ = {isa = PBXFileReference; lastKnownFileType = file; name = fart7.caf; path = Sounds/fart7.caf; sourceTree = SOURCE_ROOT; };
@@ -602,6 +615,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				23F671FC1AAFF32500A7038F /* iAd.framework in Frameworks */,
 				231438A81A9EB69900F513D6 /* libstdc++.6.dylib in Frameworks */,
 				231438A51A9EB2B700F513D6 /* FBAudienceNetwork.framework in Frameworks */,
 				231438A61A9EB2B700F513D6 /* FacebookSDK.framework in Frameworks */,
@@ -1306,6 +1320,11 @@
 		236AE9DB1A959452003A56ED /* Photos */ = {
 			isa = PBXGroup;
 			children = (
+				23F672011AB01E0B00A7038F /* locked59.png */,
+				23F671FD1AB019B000A7038F /* bomber.png */,
+				23F671FE1AB019B000A7038F /* beanBomb.png */,
+				232897E81AAE5FF10062BB2F /* bomb.gif */,
+				232897E91AAE5FF20062BB2F /* plane.jpg */,
 				23B5532C1AA274B90020A91A /* nut4.png */,
 				23B553121AA26DB30020A91A /* facebook7.png */,
 				23FA75741AA1982700F2E5FE /* group4.png */,
@@ -1387,8 +1406,9 @@
 		23B826DC1A7FFC7000116B02 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
-				23B826DD1A7FFC7000116B02 /* Info.plist */,
+				23F671EE1AAFF0D200A7038F /* PrefixHeader.pch */,
 				23B826DE1A7FFC7000116B02 /* main.m */,
+				23B826DD1A7FFC7000116B02 /* Info.plist */,
 			);
 			name = "Supporting Files";
 			sourceTree = "<group>";
@@ -1472,6 +1492,7 @@
 		9CDF2A208DA33239CD1C902E /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				23F671FB1AAFF32500A7038F /* iAd.framework */,
 				231438A71A9EB69900F513D6 /* libstdc++.6.dylib */,
 				231437021A9EB29500F513D6 /* FacebookSDK */,
 				231436F31A9E7ECA00F513D6 /* libsqlite3.dylib */,
@@ -1789,17 +1810,21 @@
 				23FA756F1AA17C6C00F2E5FE /* fart5.caf in Resources */,
 				23B826ED1A7FFC7000116B02 /* LaunchScreen.xib in Resources */,
 				23FA756D1AA17C6C00F2E5FE /* fart7.caf in Resources */,
+				23F672001AB019B000A7038F /* beanBomb.png in Resources */,
 				238A897F1A9A5CC000B1BF1A /* cushion4.png in Resources */,
 				2340D2F81AA0457700F51F99 /* appicon80.png in Resources */,
 				2340D2EF1AA03AD100F51F99 /* cushion7.png in Resources */,
 				2340D2FA1AA0457700F51F99 /* appicon87.png in Resources */,
 				2340D2F91AA0457700F51F99 /* appicon120.png in Resources */,
+				232897EA1AAE5FF20062BB2F /* bomb.gif in Resources */,
 				23B553131AA26DB30020A91A /* facebook7.png in Resources */,
 				23FA75721AA17C6C00F2E5FE /* fart2.caf in Resources */,
 				238A89911A9A5E8900B1BF1A /* testBackground.jpg in Resources */,
 				238A897E1A9A5CC000B1BF1A /* cushion3.png in Resources */,
 				23FA75751AA1982700F2E5FE /* group4.png in Resources */,
+				232897EB1AAE5FF20062BB2F /* plane.jpg in Resources */,
 				23FA75711AA17C6C00F2E5FE /* fart3.caf in Resources */,
+				23F671FF1AB019B000A7038F /* bomber.png in Resources */,
 				23FA75731AA17C6C00F2E5FE /* fart1.caf in Resources */,
 				238B3EE01A97BD3A0040FD24 /* camera44.png in Resources */,
 				23F08A8F1A965B200033BE56 /* testImg.png in Resources */,
@@ -1809,6 +1834,7 @@
 				23FA75701AA17C6C00F2E5FE /* fart4.caf in Resources */,
 				2340D2F71AA0457700F51F99 /* appicon58.png in Resources */,
 				238A897C1A9A5CC000B1BF1A /* cushion1.png in Resources */,
+				23F672021AB01E0B00A7038F /* locked59.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -2274,6 +2300,8 @@
 					"$(PROJECT_DIR)",
 					/Users/jake/Documents/FacebookSDK,
 				);
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = FartWatch/PrefixHeader.pch;
 				INFOPLIST_FILE = FartWatch/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.1;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
@@ -2296,6 +2324,8 @@
 					"$(PROJECT_DIR)",
 					/Users/jake/Documents/FacebookSDK,
 				);
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = FartWatch/PrefixHeader.pch;
 				INFOPLIST_FILE = FartWatch/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.1;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
