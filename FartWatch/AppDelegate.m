@@ -28,7 +28,6 @@
 
     
     _navCtrlr = [[UINavigationController alloc]  init];
-//    _navCtrlr.navigationBar.barTintColor = [U];
     
     _wormHole = [[MMWormhole alloc] initWithApplicationGroupIdentifier:@"group.com.gmail.jakesafo.fartbomber"
                                            optionalDirectory:@"wormhole"];
@@ -125,12 +124,14 @@
     {
         NSLog(@"Sending local notification");
         
+        int x = arc4random_uniform(7) + 1;
+        NSString* sound = [NSString stringWithFormat:@"fart%i.caf", x]; ///Randomizes sound!!!
+        
         UILocalNotification *notification = [[UILocalNotification alloc] init];
         notification.fireDate = [NSDate date];
         notification.timeZone = [NSTimeZone defaultTimeZone];
-#warning Randomize these options later
-        notification.alertBody = @"[FARTING INTENSIFIES]";
-        notification.soundName = @"fart1.caf";
+        notification.alertBody = @"FART BOMBED";
+        notification.soundName = sound;
         
         [[UIApplication sharedApplication] scheduleLocalNotification:notification];
     }

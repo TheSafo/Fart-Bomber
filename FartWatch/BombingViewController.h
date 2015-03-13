@@ -9,8 +9,9 @@
 #import <UIKit/UIKit.h>
 #import <Parse/Parse.h>
 #import <ParseFacebookUtils/PFFacebookUtils.h>
+#import <iAd/iAd.h>
 
-@interface BombingViewController : UIViewController <UITableViewDataSource, UITableViewDelegate>
+@interface BombingViewController : UIViewController <UITableViewDataSource, UITableViewDelegate, ADInterstitialAdDelegate>
 
 
 @property (nonatomic) UITableView* tableView;

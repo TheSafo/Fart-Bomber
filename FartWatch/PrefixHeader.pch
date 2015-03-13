@@ -14,5 +14,6 @@
 
 
 #define ADS_ON 1
+#define CUSTOM_MSG_ON 0
 
 #endif

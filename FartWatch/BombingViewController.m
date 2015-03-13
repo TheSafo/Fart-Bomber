@@ -14,7 +14,6 @@
 #import <UIAlertView+BlocksKit.h>
 #import <RKCardView/RKCardView.h>
 #import <LetterpressExplosion/UIView+Explode.h>
-#import "AdSingleton.h"
 
 @interface BombingViewController ()
 
@@ -23,6 +22,10 @@
 @property (nonatomic, strong) UIButton* confirmation;
 @property (nonatomic, strong) UIBlurEffect* blurEffect;
 @property (nonatomic, strong) UITextField* message;
+
+
+@property (nonatomic) ADInterstitialAd* theAd;
+@property (nonatomic) BOOL adIsLoaded;
 
 @end
 
@@ -40,16 +43,7 @@
         self.title = @"Send Farts";
         
         
-#warning update view based on if ads load or not
-        CGRect tblFrm;
-        if(ADS_ON)
-        {
-            tblFrm = CGRectMake(0, 0, self.view.frame.size.width, self.view.frame.size.height - 50);
-        }
-        else
-        {
-           tblFrm = CGRectMake(0, 0, self.view.frame.size.width, self.view.frame.size.height);
-        }
+        CGRect tblFrm = CGRectMake(0, 0, self.view.frame.size.width, self.view.frame.size.height);
         
         self.tableView = [[UITableView alloc] initWithFrame:tblFrm style:style];
         self.tableView.dataSource = self;
@@ -58,8 +52,12 @@
         
         [self.view addSubview:self.tableView];
         
-        [self.view addSubview:[AdSingleton sharedInstance].adBanner];
-
+        if(ADS_ON)
+        {
+            _adIsLoaded = NO;
+            _theAd = [[ADInterstitialAd alloc] init];
+        }
+        
         
         _revengeIds = arr1;
         _recentIds = arr2;
@@ -97,6 +95,7 @@
     _cardView.transform = CGAffineTransformMakeTranslation(w2, 0);
     
     
+    /** STUFF IN THE CARDVIEW */
     int h3 = _cardView.frame.size.height;
     int w3 = _cardView.frame.size.width;
     
@@ -107,48 +106,56 @@
     
     _message = [[UITextField alloc] initWithFrame:CGRectMake(w3/8, h3*4/8 + 15, w3*3/4, 40)];
     [_message setEnabled:NO];
-//    _message.backgroundColor = [UIColor lightGrayColor];
     _message.layer.cornerRadius = 10;
     _message.textAlignment = NSTextAlignmentCenter;
     _message.borderStyle = UITextBorderStyleRoundedRect;
     _message.layer.borderColor = [UIColor blackColor].CGColor;
     _message.layer.borderWidth = 5;
     
-    
-    UIButton* buyCustom = [UIButton buttonWithType:UIButtonTypeRoundedRect];
-    buyCustom.frame = CGRectMake(w3/8, h3*4/8 + 40 + 20 + 15, w3*3/4, h3/8);
-    buyCustom.backgroundColor = [UIColor grayColor];
-    [buyCustom setTitle:@"Unlock Custom Farts" forState:UIControlStateNormal];
-    buyCustom.contentHorizontalAlignment = UIControlContentHorizontalAlignmentLeft;
-    buyCustom.contentEdgeInsets = UIEdgeInsetsMake(buyCustom.contentEdgeInsets.top, 10, buyCustom.contentEdgeInsets.bottom, buyCustom.contentEdgeInsets.top);
-    buyCustom.titleLabel.textColor = [UIColor blackColor];
-    buyCustom.layer.cornerRadius = 10;
-    
-    int h4 = buyCustom.frame.size.height;
-    int w4 = buyCustom.frame.size.width;
-    UIImageView* lock = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"locked59.png"]];
-    lock.frame = CGRectMake(w4 - h4 - 5, 5, h4 - 10, h4 - 10 );
-    
     _confirmation = [UIButton buttonWithType:UIButtonTypeRoundedRect];
-    _confirmation.frame = CGRectMake(w3/8, h3*4/8 + 40 + 20 + h3/8 + 20 + 15, w3*3/4, h3/8);
     _confirmation.backgroundColor = [UIColor grayColor];
     [_confirmation setTitle:@"SEND FART" forState:UIControlStateNormal];
     _confirmation.titleLabel.textAlignment = NSTextAlignmentCenter;
     _confirmation.titleLabel.textColor = [UIColor blackColor];
     _confirmation.layer.cornerRadius = 10;
-
     
+   
+    /** If custom isn't on */
+    if(!CUSTOM_MSG_ON)
+    {
+        UIButton* buyCustom = [UIButton buttonWithType:UIButtonTypeRoundedRect];
+        UIImageView* lock = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"locked59.png"]];
+        
+        buyCustom.frame = CGRectMake(w3/8, h3*4/8 + 40 + 20 + 15, w3*3/4, h3/8);
+        buyCustom.backgroundColor = [UIColor grayColor];
+        [buyCustom setTitle:@"Unlock Custom Farts" forState:UIControlStateNormal];
+        buyCustom.contentHorizontalAlignment = UIControlContentHorizontalAlignmentLeft;
+        buyCustom.contentEdgeInsets = UIEdgeInsetsMake(buyCustom.contentEdgeInsets.top, 10, buyCustom.contentEdgeInsets.bottom, buyCustom.contentEdgeInsets.top);
+        buyCustom.titleLabel.textColor = [UIColor blackColor];
+        buyCustom.layer.cornerRadius = 10;
+    
+        int h4 = buyCustom.frame.size.height;
+        int w4 = buyCustom.frame.size.width;
+        lock.frame = CGRectMake(w4 - h4 - 5, 5, h4 - 10, h4 - 10 );
+        
+        [_cardView addSubview:buyCustom];
+        [buyCustom addSubview:lock];
+        
+        _confirmation.frame = CGRectMake(w3/8, h3*4/8 + 40 + 20 + h3/8 + 20 + 15, w3*3/4, h3/8);
+    }
+    else
+    {
+        _confirmation.frame = CGRectMake(w3/8, h3*4/8 + 40 + 20 + 15, w3*3/4, h3*2/8);
+        [_message setEnabled:YES];
+    }
+
     UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc]
                                    initWithTarget:self
                                    action:@selector(dismissKeyboard)];
     [_blurredEffectView addGestureRecognizer:tap];
-
-#warning Implement paying for custom later
-    {
-        [_message setEnabled:YES];
-    }
     
     _message.text = @"FART BOMB";
+    /** END OF STUFF IN CARDVIEW */
     
     
     [self.view addSubview:_blurredEffectView];
@@ -156,8 +163,6 @@
     [_cardView addSubview:_confirmation];
     [_cardView addSubview:_message];
     [_cardView addSubview:msgTitle];
-    [_cardView addSubview:buyCustom];
-    [buyCustom addSubview:lock];
     
     
     [UIView animateWithDuration:.75 delay:0 options:UIViewAnimationOptionCurveLinear animations:^{

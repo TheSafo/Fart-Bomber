@@ -38,22 +38,21 @@
     if([PFFacebookUtils isLinkedWithUser: [PFUser  currentUser]] && [PFUser currentUser]) {
         self.title = @"Connecting to Facebook";
         
+        
+ 
+        
+        
         /** Start an Activity Indicator while loading friends list */
         UIActivityIndicatorView* test = [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleWhiteLarge];
         test.frame = CGRectMake(self.view.frame.size.width/2 - 50, self.view.frame.size.height/2 - 50, 100, 100);
         test.color = [UIColor blackColor];
         [self.view addSubview:test];
         [test startAnimating];
-        
-//#warning Debugging only
-//        self.revengeIds = [PFUser currentUser][@"revenge"] = [NSMutableArray array];
-//        self.recentIds = [PFUser currentUser][@"recent"] = [NSMutableArray array];
-//        [[PFUser currentUser] saveInBackground];
 
-        
         UIImageView* fb = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"facebook7.png"]];
         fb.frame = CGRectMake(self.view.frame.size.width/2 - 50, self.view.frame.size.height/2 - 150, 100, 100);
         [self.view addSubview:fb];
+        
         
         [FBRequestConnection startForMyFriendsWithCompletionHandler:^(FBRequestConnection *connection, id result, NSError *error) {
             if(!error)
@@ -79,8 +78,9 @@
                         self.revengeIds =  [[PFUser currentUser] objectForKey:@"revenge"]; //= @[@"9oPcwNoSjI"]; //= @[@"xFlcvadOFv"];
                         self.recentIds = [PFUser currentUser][@"recent"];
                         
-                        BombingViewController* nextCtrlr = [[BombingViewController alloc] initWithStyle:UITableViewStylePlain andRevengeList:self.revengeIds andRecentList:self.recentIds andFriendsList:self.friendIds];
-                        [self.navigationController pushViewController:nextCtrlr animated:YES];
+                            BombingViewController* nextCtrlr = [[BombingViewController alloc] initWithStyle:UITableViewStylePlain andRevengeList:self.revengeIds andRecentList:self.recentIds andFriendsList:self.friendIds];
+                            [self.navigationController pushViewController:nextCtrlr animated:YES];
+
                     }];
                 }];
             }
@@ -89,7 +89,7 @@
     
     else
     {
-        self.title = @"Connect to Facebook";
+        self.title = @"Login with Facebook";
         /** Show Login button */
         UIButton* login = [UIButton buttonWithType:UIButtonTypeRoundedRect];
         login.frame = CGRectMake(self.view.frame.size.width/2 - 50, self.view.frame.size.height/2 - 50, 100, 100);

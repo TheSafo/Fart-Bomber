@@ -392,7 +392,13 @@
     
     [temp play];
     
-    for (int i = 0; i < temp.duration/.4 - .4; i++)
+    int endAtTime = temp.duration/.4 - .4;
+    if(endAtTime < 0)
+    {
+        endAtTime = 1;
+    }
+    
+    for (int i = 0; i < endAtTime; i++)
     {
         [self performSelector:@selector(vibe:) withObject:self afterDelay:i *.4f];
     }
