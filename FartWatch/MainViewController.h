@@ -15,7 +15,7 @@
 #import "AdSingleton.h"
 
 
-@interface MainViewController : UIViewController <UIImagePickerControllerDelegate, UIActionSheetDelegate>
+@interface MainViewController : UIViewController <UIImagePickerControllerDelegate, UIActionSheetDelegate, UINavigationControllerDelegate>
 
 @property (nonatomic) UIImageView* blendVw;
 @property (nonatomic) UIButton* camBtn;

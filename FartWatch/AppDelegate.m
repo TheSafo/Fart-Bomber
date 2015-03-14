@@ -25,7 +25,11 @@
     self.window.backgroundColor = [UIColor whiteColor];
     
     self.window.tintColor = [UIColor blackColor];
-
+    
+    
+    [AdSingleton sharedInstance].adBanner = [[ADBannerView alloc] initWithFrame:CGRectMake(0, self.window.frame.size.height, self.window.frame.size.width, 50)];//CGRectMake(0, 50 + self.view.frame.size.height, self.view.frame.size.width, 50)]; ///Off the screen initially
+    [AdSingleton sharedInstance].adBanner.delegate = [AdSingleton sharedInstance];
+    
     
     _navCtrlr = [[UINavigationController alloc]  init];
     

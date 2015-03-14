@@ -25,7 +25,6 @@
 
 
 @property (nonatomic) ADInterstitialAd* theAd;
-@property (nonatomic) BOOL adIsLoaded;
 
 @end
 
@@ -54,8 +53,8 @@
         
         if(ADS_ON)
         {
-            _adIsLoaded = NO;
             _theAd = [[ADInterstitialAd alloc] init];
+            _theAd.delegate = self;
         }
         
         
@@ -64,6 +63,21 @@
         _friendIds = arr3;
     }
     return self;
+}
+
+-(void)interstitialAdDidLoad:(ADInterstitialAd *)interstitialAd
+{
+    NSLog(@"Ad loaded");
+}
+
+-(void)interstitialAdDidUnload:(ADInterstitialAd *)interstitialAd
+{
+    NSLog(@"Ad unloaded");
+}
+
+-(void)interstitialAd:(ADInterstitialAd *)interstitialAd didFailWithError:(NSError *)error
+{
+    NSLog(@"Ad failed to load");
 }
 
 -(void)dismissKeyboard {
@@ -203,6 +217,8 @@
         anim2.duration = 3;
         anim2.toValue = [NSValue valueWithCGPoint:CGPointMake(w/4, h*3/4)];
         anim2.beginTime = CACurrentMediaTime() + delay;
+#warning play sound???
+
         
         
         [self.view addSubview:temp];
@@ -215,15 +231,23 @@
         [temp2.layer pop_addAnimation:anim2 forKey:@"bomb"];
         
         anim2.completionBlock =  ^(POPAnimation* completedAnim, BOOL completed) {
-            [temp2 lp_explode];
+            [temp2 lp_explodeWithCompletion:^(BOOL completed) {
+            }];
             
             /** Animate the views to dissapear and shit */
             [_cardView removeFromSuperview];
-            [_blurredEffectView lp_explode];
-            
-#warning play sound???
-        };
+            [_blurredEffectView lp_explodeWithCompletion:^(BOOL completed) {
+                
+                if (ADS_ON && _theAd.loaded)
+                {
+                    
+                    [_theAd performSelector:@selector(presentFromViewController:) withObject:self afterDelay:.5];
+                    //[_theAd presentFromViewController:self];
+                }
 
+            }];
+            
+        };
     } forControlEvents:UIControlEventTouchUpInside];
 }
 

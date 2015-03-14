@@ -12,8 +12,6 @@
 #import <ParseFacebookUtils/PFFacebookUtils.h>
 #import "FriendsListViewController.h"
 
-#warning Change from viewDidLoad to ViewDidAppear for ad stuffs
-
 #define HEIGHT (self.view.frame.size.height -54)
 #define WIDTH self.view.frame.size.width
 #define TOP_IMAGE_RECT CGRectMake(_blendVw.frame.size.width/8,_blendVw.frame.size.height/16,_blendVw.frame.size.width*3/4,_blendVw.frame.size.height*5/8)
@@ -97,8 +95,6 @@
         _camBtn.frame = CGRectMake(WIDTH*15/16 - h/8, 54 + h*14/16, h/8, h/8);
         _fbBtn.frame = CGRectMake(WIDTH*1/16, 54 + h*14/16, h/8, h/8);
         
-
-        [self.view addSubview:[AdSingleton sharedInstance].adBanner];
     }
     else
     {
@@ -121,11 +117,8 @@
     {
         int h = HEIGHT - 50;
 
-        [AdSingleton sharedInstance].adBanner = [[ADBannerView alloc] initWithFrame:CGRectMake(0, 54 + h + 50, WIDTH, 50)]; ///Off the screen initially
-        [AdSingleton sharedInstance].adBanner.delegate = [AdSingleton sharedInstance];
-        
-        
         _blendVw = [[UIImageView alloc] initWithFrame:CGRectMake(WIDTH/16, 54 + h/16, WIDTH*7/8 ,h*13/16)];
+        
     }
     else{
         _blendVw = [[UIImageView alloc] initWithFrame:CGRectMake(WIDTH/16, 54 + HEIGHT/16, WIDTH*7/8 ,HEIGHT*13/16)];
@@ -146,7 +139,11 @@
     [self.view addSubview:_camBtn];
     [self.view addSubview:_fbBtn];
     [self.view addSubview:_blendVw];
-   
+    if(ADS_ON)
+    {
+        [self.view addSubview:[AdSingleton sharedInstance].adBanner];
+    }
+
 }
 
 

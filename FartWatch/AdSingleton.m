@@ -12,7 +12,7 @@
 
 SINGLETON_IMPL(AdSingleton);
 
-
+#warning fix ads
 - (void)bannerViewDidLoadAd:(ADBannerView *)banner
 {
     NSLog(@"Retrieved an ad");
@@ -20,15 +20,8 @@ SINGLETON_IMPL(AdSingleton);
     
     if (![AdSingleton sharedInstance].bannerIsVisible)
     {
-        // If banner isn't part of view hierarchy, add it
-//        if ([AdSingleton sharedInstance].adBanner.superview == nil)
-//        {
-//            [self.view addSubview:[AdSingleton sharedInstance].adBanner];
-//        }
-        
         [UIView beginAnimations:@"animateAdBannerOn" context:NULL];
         
-        // Assumes the banner view is just off the bottom of the screen.
         banner.frame = CGRectOffset(banner.frame, 0, -banner.frame.size.height);
         
         [UIView commitAnimations];
