@@ -30,6 +30,9 @@
 		231438A81A9EB69900F513D6 /* libstdc++.6.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 231438A71A9EB69900F513D6 /* libstdc++.6.dylib */; };
 		232897EA1AAE5FF20062BB2F /* bomb.gif in Resources */ = {isa = PBXBuildFile; fileRef = 232897E81AAE5FF10062BB2F /* bomb.gif */; };
 		232897EB1AAE5FF20062BB2F /* plane.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 232897E91AAE5FF20062BB2F /* plane.jpg */; };
+		232B9C501AB4B8D60019D2F2 /* WLSegment.m in Sources */ = {isa = PBXBuildFile; fileRef = 232B9C491AB4B8D60019D2F2 /* WLSegment.m */; };
+		232B9C511AB4B8D60019D2F2 /* WLSegmentedControl.m in Sources */ = {isa = PBXBuildFile; fileRef = 232B9C4B1AB4B8D60019D2F2 /* WLSegmentedControl.m */; };
+		232B9C521AB4B8D60019D2F2 /* WLVerticalSegmentedControl.m in Sources */ = {isa = PBXBuildFile; fileRef = 232B9C4E1AB4B8D60019D2F2 /* WLVerticalSegmentedControl.m */; };
 		2340D2E51AA0102F00F51F99 /* FriendsListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2340D2E41AA0102F00F51F99 /* FriendsListViewController.m */; };
 		2340D2E81AA013A000F51F99 /* FriendTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 2340D2E71AA013A000F51F99 /* FriendTableViewCell.m */; };
 		2340D2ED1AA03AD100F51F99 /* appicon.png in Resources */ = {isa = PBXBuildFile; fileRef = 2340D2EA1AA03AD100F51F99 /* appicon.png */; };
@@ -534,6 +537,12 @@
 		231438A71A9EB69900F513D6 /* libstdc++.6.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = "libstdc++.6.dylib"; path = "usr/lib/libstdc++.6.dylib"; sourceTree = SDKROOT; };
 		232897E81AAE5FF10062BB2F /* bomb.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = bomb.gif; sourceTree = SOURCE_ROOT; };
 		232897E91AAE5FF20062BB2F /* plane.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = plane.jpg; sourceTree = SOURCE_ROOT; };
+		232B9C481AB4B8D60019D2F2 /* WLSegment.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WLSegment.h; sourceTree = "<group>"; };
+		232B9C491AB4B8D60019D2F2 /* WLSegment.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WLSegment.m; sourceTree = "<group>"; };
+		232B9C4A1AB4B8D60019D2F2 /* WLSegmentedControl.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WLSegmentedControl.h; sourceTree = "<group>"; };
+		232B9C4B1AB4B8D60019D2F2 /* WLSegmentedControl.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WLSegmentedControl.m; sourceTree = "<group>"; };
+		232B9C4D1AB4B8D60019D2F2 /* WLVerticalSegmentedControl.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WLVerticalSegmentedControl.h; sourceTree = "<group>"; };
+		232B9C4E1AB4B8D60019D2F2 /* WLVerticalSegmentedControl.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WLVerticalSegmentedControl.m; sourceTree = "<group>"; };
 		2340D2E31AA0102F00F51F99 /* FriendsListViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FriendsListViewController.h; sourceTree = "<group>"; };
 		2340D2E41AA0102F00F51F99 /* FriendsListViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FriendsListViewController.m; sourceTree = "<group>"; };
 		2340D2E61AA013A000F51F99 /* FriendTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FriendTableViewCell.h; sourceTree = "<group>"; };
@@ -1288,6 +1297,19 @@
 			name = Products;
 			sourceTree = "<group>";
 		};
+		232B9C451AB4B8D60019D2F2 /* VerticalStuff */ = {
+			isa = PBXGroup;
+			children = (
+				232B9C481AB4B8D60019D2F2 /* WLSegment.h */,
+				232B9C491AB4B8D60019D2F2 /* WLSegment.m */,
+				232B9C4A1AB4B8D60019D2F2 /* WLSegmentedControl.h */,
+				232B9C4B1AB4B8D60019D2F2 /* WLSegmentedControl.m */,
+				232B9C4D1AB4B8D60019D2F2 /* WLVerticalSegmentedControl.h */,
+				232B9C4E1AB4B8D60019D2F2 /* WLVerticalSegmentedControl.m */,
+			);
+			path = VerticalStuff;
+			sourceTree = "<group>";
+		};
 		2340D2E91AA03AD100F51F99 /* FinIcons */ = {
 			isa = PBXGroup;
 			children = (
@@ -1395,6 +1417,7 @@
 				23B5533F1AA2E6790020A91A /* BombingViewController.m */,
 				2340D2E61AA013A000F51F99 /* FriendTableViewCell.h */,
 				2340D2E71AA013A000F51F99 /* FriendTableViewCell.m */,
+				232B9C451AB4B8D60019D2F2 /* VerticalStuff */,
 				23B5533D1AA2DC1E0020A91A /* OLD */,
 				2340D2E91AA03AD100F51F99 /* FinIcons */,
 				236AE9DB1A959452003A56ED /* Photos */,
@@ -1913,10 +1936,13 @@
 			files = (
 				23F672111AB0A95B00A7038F /* AdSingleton.m in Sources */,
 				2340D2E51AA0102F00F51F99 /* FriendsListViewController.m in Sources */,
+				232B9C521AB4B8D60019D2F2 /* WLVerticalSegmentedControl.m in Sources */,
 				23B553401AA2E6790020A91A /* BombingViewController.m in Sources */,
+				232B9C501AB4B8D60019D2F2 /* WLSegment.m in Sources */,
 				23B826E51A7FFC7000116B02 /* MainViewController.m in Sources */,
 				23B5533C1AA2DC120020A91A /* IntermediateViewController.m in Sources */,
 				23B826E21A7FFC7000116B02 /* AppDelegate.m in Sources */,
+				232B9C511AB4B8D60019D2F2 /* WLSegmentedControl.m in Sources */,
 				23FA75411AA0DE6F00F2E5FE /* FBLoginController.m in Sources */,
 				23607E9E1A8D1D6A00EEAADF /* PersistentDictionary.m in Sources */,
 				23607EA11A8D1D8C00EEAADF /* Singleton.m in Sources */,

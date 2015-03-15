@@ -23,6 +23,8 @@
 @property (nonatomic, strong) UIBlurEffect* blurEffect;
 @property (nonatomic, strong) UITextField* message;
 
+@property (nonatomic, strong) WLVerticalSegmentedControl* testCtrl;
+
 
 @property (nonatomic) ADInterstitialAd* theAd;
 
@@ -118,51 +120,62 @@
     msgTitle.text = @"Message to Send";
     msgTitle.textColor = [UIColor lightGrayColor];
     
-    _message = [[UITextField alloc] initWithFrame:CGRectMake(w3/8, h3*4/8 + 15, w3*3/4, 40)];
-    [_message setEnabled:NO];
-    _message.layer.cornerRadius = 10;
-    _message.textAlignment = NSTextAlignmentCenter;
-    _message.borderStyle = UITextBorderStyleRoundedRect;
-    _message.layer.borderColor = [UIColor blackColor].CGColor;
-    _message.layer.borderWidth = 5;
-    
-    _confirmation = [UIButton buttonWithType:UIButtonTypeRoundedRect];
-    _confirmation.backgroundColor = [UIColor grayColor];
-    [_confirmation setTitle:@"SEND FART" forState:UIControlStateNormal];
-    _confirmation.titleLabel.textAlignment = NSTextAlignmentCenter;
-    _confirmation.titleLabel.textColor = [UIColor blackColor];
-    _confirmation.layer.cornerRadius = 10;
-    
-   
-    /** If custom isn't on */
-    if(!CUSTOM_MSG_ON)
-    {
-        UIButton* buyCustom = [UIButton buttonWithType:UIButtonTypeRoundedRect];
-        UIImageView* lock = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"locked59.png"]];
-        
-        buyCustom.frame = CGRectMake(w3/8, h3*4/8 + 40 + 20 + 15, w3*3/4, h3/8);
-        buyCustom.backgroundColor = [UIColor grayColor];
-        [buyCustom setTitle:@"Unlock Custom Farts" forState:UIControlStateNormal];
-        buyCustom.contentHorizontalAlignment = UIControlContentHorizontalAlignmentLeft;
-        buyCustom.contentEdgeInsets = UIEdgeInsetsMake(buyCustom.contentEdgeInsets.top, 10, buyCustom.contentEdgeInsets.bottom, buyCustom.contentEdgeInsets.top);
-        buyCustom.titleLabel.textColor = [UIColor blackColor];
-        buyCustom.layer.cornerRadius = 10;
-    
-        int h4 = buyCustom.frame.size.height;
-        int w4 = buyCustom.frame.size.width;
-        lock.frame = CGRectMake(w4 - h4 - 5, 5, h4 - 10, h4 - 10 );
-        
-        [_cardView addSubview:buyCustom];
-        [buyCustom addSubview:lock];
-        
-        _confirmation.frame = CGRectMake(w3/8, h3*4/8 + 40 + 20 + h3/8 + 20 + 15, w3*3/4, h3/8);
-    }
-    else
-    {
-        _confirmation.frame = CGRectMake(w3/8, h3*4/8 + 40 + 20 + 15, w3*3/4, h3*2/8);
-        [_message setEnabled:YES];
-    }
+    _testCtrl = [[WLVerticalSegmentedControl alloc] initWithItems:@[@"Message", @"Button1", @"Button2"]];
+    _testCtrl.frame = CGRectMake(w3/8, h3/2 + 20, w3*3/4, h3*3/8);
+    _testCtrl.allowsMultiSelection = NO;
+    ((WLSegment *)_testCtrl.segments[1]).backgroundColor = [UIColor redColor];
+    ((WLSegment *)_testCtrl.segments[2]).backgroundColor = [UIColor redColor];
+    ((WLSegment *)_testCtrl.segments[1]).tintColor = [UIColor blackColor];
+    ((WLSegment *)_testCtrl.segments[2]).tintColor = [UIColor blackColor];
 
+    //OLD!
+    {
+//    _message = [[UITextField alloc] initWithFrame:CGRectMake(w3/8, h3*4/8 + 20, w3*3/4, 40)];
+//    [_message setEnabled:NO];
+//    _message.layer.cornerRadius = 5;
+//    _message.textAlignment = NSTextAlignmentCenter;
+//    _message.borderStyle = UITextBorderStyleLine;
+//    _message.layer.borderWidth = 5;
+//    
+//    
+//    _confirmation = [UIButton buttonWithType:UIButtonTypeRoundedRect];
+//    _confirmation.backgroundColor = [UIColor grayColor];
+//    [_confirmation setTitle:@"SEND FART" forState:UIControlStateNormal];
+//    _confirmation.titleLabel.textAlignment = NSTextAlignmentCenter;
+//    _confirmation.titleLabel.textColor = [UIColor blackColor];
+//    _confirmation.layer.cornerRadius = 10;
+//    
+//   
+//    /** If custom isn't on */
+//    if(!CUSTOM_MSG_ON)
+//    {
+//        UIButton* buyCustom = [UIButton buttonWithType:UIButtonTypeRoundedRect];
+//        UIImageView* lock = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"locked59.png"]];
+//        
+//        buyCustom.frame = CGRectMake(w3/8, h3*4/8 + 40 + 20 + 20, w3*3/4, h3/8);
+//        buyCustom.backgroundColor = [UIColor grayColor];
+//        [buyCustom setTitle:@"Unlock Custom Farts" forState:UIControlStateNormal];
+//        buyCustom.contentHorizontalAlignment = UIControlContentHorizontalAlignmentLeft;
+//        buyCustom.contentEdgeInsets = UIEdgeInsetsMake(buyCustom.contentEdgeInsets.top, 10, buyCustom.contentEdgeInsets.bottom, buyCustom.contentEdgeInsets.top);
+//        buyCustom.titleLabel.textColor = [UIColor blackColor];
+//        buyCustom.layer.cornerRadius = 10;
+//    
+//        int h4 = buyCustom.frame.size.height;
+//        int w4 = buyCustom.frame.size.width;
+//        lock.frame = CGRectMake(w4 - h4 - 5, 5, h4 - 10, h4 - 10 );
+//        
+//        [_cardView addSubview:buyCustom];
+//        [buyCustom addSubview:lock];
+//        
+//        _confirmation.frame = CGRectMake(w3/8, h3*4/8 + 40 + 20 + h3/8 + 20 + 20, w3*3/4, h3/8);
+//    }
+//    else
+//    {
+//        _confirmation.frame = CGRectMake(w3/8, h3*4/8 + 40 + 20 + 20, w3*3/4, h3*2/8);
+//        [_message setEnabled:YES];
+//    }
+    }
+    
     UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc]
                                    initWithTarget:self
                                    action:@selector(dismissKeyboard)];
@@ -174,23 +187,20 @@
     
     [self.view addSubview:_blurredEffectView];
     [_blurredEffectView addSubview:_cardView];
-    [_cardView addSubview:_confirmation];
-    [_cardView addSubview:_message];
-    [_cardView addSubview:msgTitle];
+//    [_cardView addSubview:_confirmation];
+//    [_cardView addSubview:_message];
+//    [_cardView addSubview:msgTitle];
+    [_cardView addSubview:_testCtrl];
     
     
     [UIView animateWithDuration:.75 delay:0 options:UIViewAnimationOptionCurveLinear animations:^{
         _cardView.transform = CGAffineTransformIdentity;
-    } completion:^(BOOL finished) {
-        
-    }];
-    
-    
-    
+    } completion:^(BOOL finished) { }];
 
     
-    [_confirmation bk_addEventHandler:^(id sender) {
-        [_confirmation setEnabled:NO];
+    [_testCtrl.segments[2] bk_addEventHandler:^(id sender) {
+//        [_confirmation setEnabled:NO];
+        _testCtrl.enabled = NO;
         
         /** Send the push */
         [self finalizePushWithCell:cell andPath:indexPath andMsg:_message.text];
@@ -238,13 +248,11 @@
             [_cardView removeFromSuperview];
             [_blurredEffectView lp_explodeWithCompletion:^(BOOL completed) {
                 
+                
                 if (ADS_ON && _theAd.loaded)
                 {
-                    
                     [_theAd performSelector:@selector(presentFromViewController:) withObject:self afterDelay:.5];
-                    //[_theAd presentFromViewController:self];
                 }
-
             }];
             
         };
