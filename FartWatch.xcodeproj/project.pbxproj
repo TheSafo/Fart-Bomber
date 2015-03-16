@@ -43,8 +43,10 @@
 		2340D2F81AA0457700F51F99 /* appicon80.png in Resources */ = {isa = PBXBuildFile; fileRef = 2340D2F41AA0457700F51F99 /* appicon80.png */; };
 		2340D2F91AA0457700F51F99 /* appicon120.png in Resources */ = {isa = PBXBuildFile; fileRef = 2340D2F51AA0457700F51F99 /* appicon120.png */; };
 		2340D2FA1AA0457700F51F99 /* appicon87.png in Resources */ = {isa = PBXBuildFile; fileRef = 2340D2F61AA0457700F51F99 /* appicon87.png */; };
+		2344AD911AB72E5600AF82A8 /* SettingsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2344AD901AB72E5600AF82A8 /* SettingsViewController.m */; };
 		23607E9E1A8D1D6A00EEAADF /* PersistentDictionary.m in Sources */ = {isa = PBXBuildFile; fileRef = 23607E9D1A8D1D6A00EEAADF /* PersistentDictionary.m */; };
 		23607EA11A8D1D8C00EEAADF /* Singleton.m in Sources */ = {isa = PBXBuildFile; fileRef = 23607EA01A8D1D8C00EEAADF /* Singleton.m */; };
+		23781A711AB55EB200B22C21 /* UIView+Explode.m in Sources */ = {isa = PBXBuildFile; fileRef = 23781A701AB55EB200B22C21 /* UIView+Explode.m */; };
 		238A897C1A9A5CC000B1BF1A /* cushion1.png in Resources */ = {isa = PBXBuildFile; fileRef = 238A89761A9A5CC000B1BF1A /* cushion1.png */; };
 		238A897D1A9A5CC000B1BF1A /* cushion2.png in Resources */ = {isa = PBXBuildFile; fileRef = 238A89771A9A5CC000B1BF1A /* cushion2.png */; };
 		238A897E1A9A5CC000B1BF1A /* cushion3.png in Resources */ = {isa = PBXBuildFile; fileRef = 238A89781A9A5CC000B1BF1A /* cushion3.png */; };
@@ -553,10 +555,14 @@
 		2340D2F41AA0457700F51F99 /* appicon80.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = appicon80.png; sourceTree = "<group>"; };
 		2340D2F51AA0457700F51F99 /* appicon120.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = appicon120.png; sourceTree = "<group>"; };
 		2340D2F61AA0457700F51F99 /* appicon87.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = appicon87.png; sourceTree = "<group>"; };
+		2344AD8F1AB72E5600AF82A8 /* SettingsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SettingsViewController.h; sourceTree = "<group>"; };
+		2344AD901AB72E5600AF82A8 /* SettingsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SettingsViewController.m; sourceTree = "<group>"; };
 		23607E9C1A8D1D6A00EEAADF /* PersistentDictionary.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = PersistentDictionary.h; path = FartWatch/PersistentDictionary.h; sourceTree = "<group>"; };
 		23607E9D1A8D1D6A00EEAADF /* PersistentDictionary.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = PersistentDictionary.m; path = FartWatch/PersistentDictionary.m; sourceTree = "<group>"; };
 		23607E9F1A8D1D8C00EEAADF /* Singleton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Singleton.h; path = FartWatch/Singleton.h; sourceTree = "<group>"; };
 		23607EA01A8D1D8C00EEAADF /* Singleton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = Singleton.m; path = FartWatch/Singleton.m; sourceTree = "<group>"; };
+		23781A6F1AB55EB200B22C21 /* UIView+Explode.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIView+Explode.h"; sourceTree = "<group>"; };
+		23781A701AB55EB200B22C21 /* UIView+Explode.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIView+Explode.m"; sourceTree = "<group>"; };
 		238A89761A9A5CC000B1BF1A /* cushion1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = cushion1.png; path = ../Resources/cushion1.png; sourceTree = "<group>"; };
 		238A89771A9A5CC000B1BF1A /* cushion2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = cushion2.png; path = ../Resources/cushion2.png; sourceTree = "<group>"; };
 		238A89781A9A5CC000B1BF1A /* cushion3.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = cushion3.png; path = ../Resources/cushion3.png; sourceTree = "<group>"; };
@@ -1404,6 +1410,8 @@
 		23B826DB1A7FFC7000116B02 /* FartWatch */ = {
 			isa = PBXGroup;
 			children = (
+				23781A6F1AB55EB200B22C21 /* UIView+Explode.h */,
+				23781A701AB55EB200B22C21 /* UIView+Explode.m */,
 				238A89921A9BA90100B1BF1A /* FartWatch.entitlements */,
 				23B826E01A7FFC7000116B02 /* AppDelegate.h */,
 				23B826E11A7FFC7000116B02 /* AppDelegate.m */,
@@ -1417,6 +1425,8 @@
 				23B5533F1AA2E6790020A91A /* BombingViewController.m */,
 				2340D2E61AA013A000F51F99 /* FriendTableViewCell.h */,
 				2340D2E71AA013A000F51F99 /* FriendTableViewCell.m */,
+				2344AD8F1AB72E5600AF82A8 /* SettingsViewController.h */,
+				2344AD901AB72E5600AF82A8 /* SettingsViewController.m */,
 				232B9C451AB4B8D60019D2F2 /* VerticalStuff */,
 				23B5533D1AA2DC1E0020A91A /* OLD */,
 				2340D2E91AA03AD100F51F99 /* FinIcons */,
@@ -1937,6 +1947,7 @@
 				23F672111AB0A95B00A7038F /* AdSingleton.m in Sources */,
 				2340D2E51AA0102F00F51F99 /* FriendsListViewController.m in Sources */,
 				232B9C521AB4B8D60019D2F2 /* WLVerticalSegmentedControl.m in Sources */,
+				2344AD911AB72E5600AF82A8 /* SettingsViewController.m in Sources */,
 				23B553401AA2E6790020A91A /* BombingViewController.m in Sources */,
 				232B9C501AB4B8D60019D2F2 /* WLSegment.m in Sources */,
 				23B826E51A7FFC7000116B02 /* MainViewController.m in Sources */,
@@ -1947,6 +1958,7 @@
 				23607E9E1A8D1D6A00EEAADF /* PersistentDictionary.m in Sources */,
 				23607EA11A8D1D8C00EEAADF /* Singleton.m in Sources */,
 				23B826DF1A7FFC7000116B02 /* main.m in Sources */,
+				23781A711AB55EB200B22C21 /* UIView+Explode.m in Sources */,
 				2340D2E81AA013A000F51F99 /* FriendTableViewCell.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

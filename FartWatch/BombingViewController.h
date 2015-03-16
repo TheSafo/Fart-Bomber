@@ -21,8 +21,10 @@
 @property (nonatomic) NSMutableArray* recentIds;
 
 
--(id)initWithStyle:(UITableViewStyle)style andRevengeList: (NSMutableArray *)arr1 andRecentList: (NSMutableArray *)arr2 andFriendsList: (NSMutableArray *)arr3;
+@property (nonatomic) WLVerticalSegmentedControl* testCtrl;
 
+
+-(id)initWithStyle:(UITableViewStyle)style andRevengeList: (NSMutableArray *)arr1 andRecentList: (NSMutableArray *)arr2 andFriendsList: (NSMutableArray *)arr3;
 
 
 @end

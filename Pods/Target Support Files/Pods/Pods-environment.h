@@ -48,12 +48,6 @@
 #define COCOAPODS_VERSION_MINOR_BlocksKit_UIKit 2
 #define COCOAPODS_VERSION_PATCH_BlocksKit_UIKit 5
 
-// LetterpressExplosion
-#define COCOAPODS_POD_AVAILABLE_LetterpressExplosion
-#define COCOAPODS_VERSION_MAJOR_LetterpressExplosion 1
-#define COCOAPODS_VERSION_MINOR_LetterpressExplosion 0
-#define COCOAPODS_VERSION_PATCH_LetterpressExplosion 0
-
 // MMWormhole
 #define COCOAPODS_POD_AVAILABLE_MMWormhole
 #define COCOAPODS_VERSION_MAJOR_MMWormhole 1

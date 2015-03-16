@@ -281,7 +281,7 @@
 
 -(void)settingsPressed
 {
-    NSLog(@"Presenting Settings");
+    [self.navigationController pushViewController: [[SettingsViewController alloc] init] animated:YES];
 }
 
 -(void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event

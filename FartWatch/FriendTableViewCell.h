@@ -17,6 +17,8 @@
 @property (nonatomic) NSTimer* timer;
 @property (nonatomic) UILabel* lbl;
 
+
+
 -(void)startTimer;
 -(void)setUserId2: (NSString *)userId;
 

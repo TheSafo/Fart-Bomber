@@ -13,6 +13,7 @@
 #import "IntermediateViewController.h"
 #import <iAd/iAd.h>
 #import "AdSingleton.h"
+#import "SettingsViewController.h"
 
 
 @interface MainViewController : UIViewController <UIImagePickerControllerDelegate, UIActionSheetDelegate, UINavigationControllerDelegate>

@@ -18,7 +18,6 @@ PODS:
   - BlocksKit/UIKit (2.2.5):
     - BlocksKit/Core
     - BlocksKit/DynamicDelegate
-  - LetterpressExplosion (1.0)
   - MMWormhole (1.1.1):
     - MMWormhole/Core (= 1.1.1)
   - MMWormhole/Core (1.1.1)
@@ -27,7 +26,6 @@ PODS:
 
 DEPENDENCIES:
   - BlocksKit (from `https://github.com/zwaldowski/BlocksKit.git`)
-  - LetterpressExplosion
   - MMWormhole (~> 1.1.1)
   - pop (~> 1.0)
   - RKCardView
@@ -43,7 +41,6 @@ CHECKOUT OPTIONS:
 
 SPEC CHECKSUMS:
   BlocksKit: fce66219cce8030475a04eae720cdde22f8fc30b
-  LetterpressExplosion: 76d4442ae245f6c7b90a1fea664d00bf4874360e
   MMWormhole: 48452a7149eba409e9dffad661451fa25b9e97c4
   pop: 2f14a1ea61339767af9e66741b418c831b3844df
   RKCardView: bb96e9288f1ccc34468a2d52c5f83bcf58a506ee

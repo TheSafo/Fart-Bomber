@@ -13,20 +13,21 @@
 #import <Pop/POP.h>
 #import <UIAlertView+BlocksKit.h>
 #import <RKCardView/RKCardView.h>
-#import <LetterpressExplosion/UIView+Explode.h>
+#import "UIView+Explode.h"
 
 @interface BombingViewController ()
+
+
+//@property (nonatomic, strong) WLVerticalSegmentedControl* testCtrl;
+
+
+@property (nonatomic) ADInterstitialAd* theAd;
 
 @property (nonatomic, strong) RKCardView* cardView;
 @property (nonatomic, strong) UIVisualEffectView *blurredEffectView;
 @property (nonatomic, strong) UIButton* confirmation;
 @property (nonatomic, strong) UIBlurEffect* blurEffect;
 @property (nonatomic, strong) UITextField* message;
-
-@property (nonatomic, strong) WLVerticalSegmentedControl* testCtrl;
-
-
-@property (nonatomic) ADInterstitialAd* theAd;
 
 @end
 
@@ -96,7 +97,7 @@
     
     _blurEffect = [UIBlurEffect effectWithStyle:UIBlurEffectStyleDark];
     _blurredEffectView = [[UIVisualEffectView alloc] initWithEffect:_blurEffect];
-    [_blurredEffectView setFrame:CGRectMake(0, 54, w, h)];
+    [_blurredEffectView setFrame:CGRectMake(0, 0, w, h)];
     
     int h2 = _blurredEffectView.frame.size.height;
     int w2 = _blurredEffectView.frame.size.width;
@@ -119,6 +120,7 @@
     msgTitle.textAlignment = NSTextAlignmentLeft;
     msgTitle.text = @"Message to Send";
     msgTitle.textColor = [UIColor lightGrayColor];
+    
     
     _testCtrl = [[WLVerticalSegmentedControl alloc] initWithItems:@[@"Message", @"Button1", @"Button2"]];
     _testCtrl.frame = CGRectMake(w3/8, h3/2 + 20, w3*3/4, h3*3/8);
@@ -185,11 +187,8 @@
     /** END OF STUFF IN CARDVIEW */
     
     
-    [self.view addSubview:_blurredEffectView];
+    [_tableView addSubview:_blurredEffectView];
     [_blurredEffectView addSubview:_cardView];
-//    [_cardView addSubview:_confirmation];
-//    [_cardView addSubview:_message];
-//    [_cardView addSubview:msgTitle];
     [_cardView addSubview:_testCtrl];
     
     
@@ -234,7 +233,6 @@
         [self.view addSubview:temp];
         
         [self.view performSelector:@selector(addSubview:) withObject:temp2 afterDelay:delay];
-//        [self.view addSubview:temp2];
         
         
         [temp.layer pop_addAnimation:anim forKey:@"fly"];
@@ -245,12 +243,12 @@
             }];
             
             /** Animate the views to dissapear and shit */
-            [_cardView removeFromSuperview];
             [_blurredEffectView lp_explodeWithCompletion:^(BOOL completed) {
-                
+                [temp removeFromSuperview];
                 
                 if (ADS_ON && _theAd.loaded)
                 {
+                    
                     [_theAd performSelector:@selector(presentFromViewController:) withObject:self afterDelay:.5];
                 }
             }];
@@ -258,7 +256,6 @@
         };
     } forControlEvents:UIControlEventTouchUpInside];
 }
-
 
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {

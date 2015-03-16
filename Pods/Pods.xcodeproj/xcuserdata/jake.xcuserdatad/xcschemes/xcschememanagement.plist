@@ -9,11 +9,6 @@
 			<key>isShown</key>
 			<false/>
 		</dict>
-		<key>Pods-LetterpressExplosion.xcscheme</key>
-		<dict>
-			<key>isShown</key>
-			<false/>
-		</dict>
 		<key>Pods-MMWormhole.xcscheme</key>
 		<dict>
 			<key>isShown</key>
@@ -37,32 +32,27 @@
 	</dict>
 	<key>SuppressBuildableAutocreation</key>
 	<dict>
-		<key>178C103D23AD9BF90B7B4B6C</key>
+		<key>09E9230B06A8B35F6969553F</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>1EB4471E30FE86E2805C335E</key>
+		<key>2D8224D6D4DA519361C97286</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>30235C34B1BF69F7ABD1F017</key>
+		<key>9FDDB0B9D6485A198E7F62D6</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>5465CCB634D5888E7F590243</key>
+		<key>AE96A8120EA2962F132BC25D</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>7EF5A3B908B81046F9DFB04D</key>
-		<dict>
-			<key>primary</key>
-			<true/>
-		</dict>
-		<key>91AB22C8631F7AFE3BEC3CC5</key>
+		<key>C97E7FFEACE404C53A1C0857</key>
 		<dict>
 			<key>primary</key>
 			<true/>
