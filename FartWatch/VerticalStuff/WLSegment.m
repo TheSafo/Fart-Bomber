@@ -18,9 +18,11 @@
 
 @implementation WLSegment
 
+
 + (instancetype)segmentWithItem:(id)item selectedItem:(id)selectedItem backgroundImage:(UIImage *)backgroundImage selectedBackgroundImage:(UIImage *)selectedBackgroundImage style:(WLSegmentStyle)style tint:(BOOL)tint {
 	WLSegment *segment = [self buttonWithType:UIButtonTypeCustom];
 	segment.contentEdgeInsets = UIEdgeInsetsMake(6, 6, 6, 6);
+    
 	if (segment) {
 		if ([item isKindOfClass:[UIImage class]]) {
 			[segment setImage:item forState:UIControlStateNormal];
@@ -142,7 +144,7 @@
 		[[self.tintColor colorWithAlphaComponent:(CGFloat)0.15] setFill];
 	}
 	[path fill];
-
+    
 	if (self.selected) {
 		CGContextRef context = UIGraphicsGetCurrentContext();
 		CGContextSetBlendMode(context, kCGBlendModeClear);

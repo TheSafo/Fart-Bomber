@@ -27,6 +27,9 @@
     self.window.tintColor = [UIColor blackColor];
     
     
+    [[StoreManager sharedInstance] updatePurchaseInfo];
+    
+    
     [AdSingleton sharedInstance].adBanner = [[ADBannerView alloc] initWithFrame:CGRectMake(0, self.window.frame.size.height, self.window.frame.size.width, 50)];//CGRectMake(0, 50 + self.view.frame.size.height, self.view.frame.size.width, 50)]; ///Off the screen initially
     [AdSingleton sharedInstance].adBanner.delegate = [AdSingleton sharedInstance];
     
@@ -52,22 +55,27 @@
     /** Start Audio for the app */
     [[AVAudioSession sharedInstance] setActive:YES error:nil];
     
-    NSData* imgData = [_wormHole messageWithIdentifier:@"curImg"];
-    UIImage* initImg;
+//    NSData* imgData = [_wormHole messageWithIdentifier:@"rawImg"];
+    UIImage* initImg = [_wormHole messageWithIdentifier:@"rawImg"];
     
-    /** If there's no data, set a default image */
-    if(!imgData)
-    {
-        initImg = [UIImage imageNamed:@"cushion7"];
-    }
-    else
-    {
-        initImg = [UIImage imageWithData:imgData];
-    }
+//    /** If there's no data, set a default image */
+//    if(!imgData)
+//    {
+//        initImg = nil;
+//    }
+//    else
+//    {
+//        initImg = [UIImage imageWithData:imgData];
+//    }
 
+    long cushionNum = [[NSUserDefaults standardUserDefaults] integerForKey:@"cushNum"];
+    if (!cushionNum) {
+        cushionNum = 7;
+    }
+    
     
     /** Show the controller! */
-    _mainCtrlr = [[MainViewController alloc] initWithImg:initImg andNum:7];
+    _mainCtrlr = [[MainViewController alloc] initWithImg:initImg andNum:cushionNum];
     [_navCtrlr pushViewController:_mainCtrlr animated:YES];
     [self.window setRootViewController:_navCtrlr];
     [self.window makeKeyAndVisible];

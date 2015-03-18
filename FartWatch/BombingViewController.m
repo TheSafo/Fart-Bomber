@@ -64,6 +64,41 @@
         _revengeIds = arr1;
         _recentIds = arr2;
         _friendIds = arr3;
+        
+        
+        NSString* fart1 = [[NSBundle mainBundle] pathForResource:@"fart1" ofType:@"caf"];
+        NSURL* fart1URL = [NSURL fileURLWithPath:fart1];
+        _plyr1 = [[AVAudioPlayer alloc] initWithContentsOfURL:fart1URL error:nil];
+        
+        NSString* fart2 = [[NSBundle mainBundle] pathForResource:@"fart2" ofType:@"caf"];
+        NSURL* fart2URL = [NSURL fileURLWithPath:fart2];
+        _plyr2 = [[AVAudioPlayer alloc] initWithContentsOfURL:fart2URL error:nil];
+        
+        NSString* fart3 = [[NSBundle mainBundle] pathForResource:@"fart3" ofType:@"caf"];
+        NSURL* fart3URL = [NSURL fileURLWithPath:fart3];
+        _plyr3 = [[AVAudioPlayer alloc] initWithContentsOfURL:fart3URL error:nil];
+        
+        NSString* fart4 = [[NSBundle mainBundle] pathForResource:@"fart4" ofType:@"caf"];
+        NSURL* fart4URL = [NSURL fileURLWithPath:fart4];
+        _plyr4 = [[AVAudioPlayer alloc] initWithContentsOfURL:fart4URL error:nil];
+        
+        NSString* fart5 = [[NSBundle mainBundle] pathForResource:@"fart5" ofType:@"caf"];
+        NSURL* fart5URL = [NSURL fileURLWithPath:fart5];
+        _plyr5 = [[AVAudioPlayer alloc] initWithContentsOfURL:fart5URL error:nil];
+        
+        NSString* fart6 = [[NSBundle mainBundle] pathForResource:@"fart6" ofType:@"caf"];
+        NSURL* fart6URL = [NSURL fileURLWithPath:fart6];
+        _plyr6 = [[AVAudioPlayer alloc] initWithContentsOfURL:fart6URL error:nil];
+        
+        NSString* fart7 = [[NSBundle mainBundle] pathForResource:@"fart7" ofType:@"caf"];
+        NSURL* fart7URL = [NSURL fileURLWithPath:fart7];
+        _plyr7 = [[AVAudioPlayer alloc] initWithContentsOfURL:fart7URL error:nil];
+        
+        
+        NSString* airstrike = [[NSBundle mainBundle] pathForResource:@"airstrike" ofType:@"mp3"];
+        NSURL* airstrikeURL = [NSURL fileURLWithPath:airstrike];
+        _plyrAirStrike = [[AVAudioPlayer alloc] initWithContentsOfURL:airstrikeURL error:nil];
+
     }
     return self;
 }
@@ -90,6 +125,9 @@
 -(void)startFartAnimWithCell: (FriendTableViewCell *) cell andPath:(NSIndexPath *)indexPath
 {
     
+    [self.tableView deselectRowAtIndexPath:indexPath animated:YES];
+
+    
     PFUser* usr = cell.user;
     
     int h = self.tableView.frame.size.height - 54;
@@ -97,7 +135,7 @@
     
     _blurEffect = [UIBlurEffect effectWithStyle:UIBlurEffectStyleDark];
     _blurredEffectView = [[UIVisualEffectView alloc] initWithEffect:_blurEffect];
-    [_blurredEffectView setFrame:CGRectMake(0, 0, w, h)];
+    [_blurredEffectView setFrame:CGRectMake(0, 54, w, h)];
     
     int h2 = _blurredEffectView.frame.size.height;
     int w2 = _blurredEffectView.frame.size.width;
@@ -121,75 +159,107 @@
     msgTitle.text = @"Message to Send";
     msgTitle.textColor = [UIColor lightGrayColor];
     
-    
-    _testCtrl = [[WLVerticalSegmentedControl alloc] initWithItems:@[@"Message", @"Button1", @"Button2"]];
-    _testCtrl.frame = CGRectMake(w3/8, h3/2 + 20, w3*3/4, h3*3/8);
-    _testCtrl.allowsMultiSelection = NO;
-    ((WLSegment *)_testCtrl.segments[1]).backgroundColor = [UIColor redColor];
-    ((WLSegment *)_testCtrl.segments[2]).backgroundColor = [UIColor redColor];
-    ((WLSegment *)_testCtrl.segments[1]).tintColor = [UIColor blackColor];
-    ((WLSegment *)_testCtrl.segments[2]).tintColor = [UIColor blackColor];
 
-    //OLD!
-    {
-//    _message = [[UITextField alloc] initWithFrame:CGRectMake(w3/8, h3*4/8 + 20, w3*3/4, 40)];
-//    [_message setEnabled:NO];
-//    _message.layer.cornerRadius = 5;
-//    _message.textAlignment = NSTextAlignmentCenter;
-//    _message.borderStyle = UITextBorderStyleLine;
-//    _message.layer.borderWidth = 5;
-//    
-//    
-//    _confirmation = [UIButton buttonWithType:UIButtonTypeRoundedRect];
-//    _confirmation.backgroundColor = [UIColor grayColor];
-//    [_confirmation setTitle:@"SEND FART" forState:UIControlStateNormal];
-//    _confirmation.titleLabel.textAlignment = NSTextAlignmentCenter;
-//    _confirmation.titleLabel.textColor = [UIColor blackColor];
-//    _confirmation.layer.cornerRadius = 10;
-//    
-//   
-//    /** If custom isn't on */
-//    if(!CUSTOM_MSG_ON)
-//    {
-//        UIButton* buyCustom = [UIButton buttonWithType:UIButtonTypeRoundedRect];
-//        UIImageView* lock = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"locked59.png"]];
-//        
-//        buyCustom.frame = CGRectMake(w3/8, h3*4/8 + 40 + 20 + 20, w3*3/4, h3/8);
-//        buyCustom.backgroundColor = [UIColor grayColor];
-//        [buyCustom setTitle:@"Unlock Custom Farts" forState:UIControlStateNormal];
-//        buyCustom.contentHorizontalAlignment = UIControlContentHorizontalAlignmentLeft;
-//        buyCustom.contentEdgeInsets = UIEdgeInsetsMake(buyCustom.contentEdgeInsets.top, 10, buyCustom.contentEdgeInsets.bottom, buyCustom.contentEdgeInsets.top);
-//        buyCustom.titleLabel.textColor = [UIColor blackColor];
-//        buyCustom.layer.cornerRadius = 10;
-//    
-//        int h4 = buyCustom.frame.size.height;
-//        int w4 = buyCustom.frame.size.width;
-//        lock.frame = CGRectMake(w4 - h4 - 5, 5, h4 - 10, h4 - 10 );
-//        
-//        [_cardView addSubview:buyCustom];
-//        [buyCustom addSubview:lock];
-//        
-//        _confirmation.frame = CGRectMake(w3/8, h3*4/8 + 40 + 20 + h3/8 + 20 + 20, w3*3/4, h3/8);
-//    }
-//    else
-//    {
-//        _confirmation.frame = CGRectMake(w3/8, h3*4/8 + 40 + 20 + 20, w3*3/4, h3*2/8);
-//        [_message setEnabled:YES];
-//    }
+    
+    
+    if (!CUSTOM_MSG_ON) {
+        _testCtrl = [[WLVerticalSegmentedControl alloc] initWithItems:@[@"", @"Enable Custom Messages", @"Send Fart"]];
+        _testCtrl.frame = CGRectMake(w3/8, h3/2 + 20, w3*3/4, h3*3/8);
+        _testCtrl.allowsMultiSelection = NO;
+        
+        [((WLSegment *)_testCtrl.segments[0]) setEnabled:NO];
+        
+        ((WLSegment *)_testCtrl.segments[0]).tintColor = [UIColor blackColor];
+        ((WLSegment *)_testCtrl.segments[1]).tintColor = [UIColor blackColor];
+        ((WLSegment *)_testCtrl.segments[2]).tintColor = [UIColor blackColor];
+        
+        ((WLSegment *)_testCtrl.segments[1]).backgroundColor = [UIColor colorWithRed:200 green:50 blue:50 alpha:.5];
+        ((WLSegment *)_testCtrl.segments[2]).backgroundColor = [UIColor colorWithRed:200 green:50 blue:50 alpha:.5];
+        
+//        ((WLSegment *)_testCtrl.segments[1]).backgroundColor = [UIColor redColor];
+//        ((WLSegment *)_testCtrl.segments[2]).backgroundColor = [UIColor redColor];
+        
+        ((WLSegment *)_testCtrl.segments[1]).titleLabel.textColor = [UIColor blackColor];
+        ((WLSegment *)_testCtrl.segments[2]).titleLabel.textColor = [UIColor blackColor];
+        
+//        int segW = ((WLSegment *)_testCtrl.segments[0]).frame.size.width;
+//        int segH = ((WLSegment *)_testCtrl.segments[0]).frame.size.height;
+        
+        
+        [((WLSegment *)_testCtrl.segments[1]) bk_addEventHandler:^(id sender) {
+            [[StoreManager sharedInstance] purchaseCustom];
+//            ((WLSegment *)_testCtrl.segments[1]).isSelected = NO;
+        } forControlEvents:UIControlEventTouchUpInside];
+
+        
+        UILabel* lbl = [[UILabel alloc] initWithFrame:CGRectMake(w3/8, h3/2 + 20, w3*3/4, h3*3/24)];
+        lbl.text = @"Message: \n FART BOMBED";
+        lbl.numberOfLines = 2;
+        lbl.textAlignment = NSTextAlignmentCenter;
+        lbl.layer.zPosition = 1;
+        
+        [_cardView addSubview:lbl];
     }
+    else
+    {
+        _testCtrl = [[WLVerticalSegmentedControl alloc] initWithItems:@[@"", @"Send Fart"]];
+        _testCtrl.frame = CGRectMake(w3/8, h3/2 + 20, w3*3/4, h3*3/8);
+        _testCtrl.allowsMultiSelection = NO;
+        
+        [((WLSegment *)_testCtrl.segments[0]) setEnabled:NO];
+        
+        ((WLSegment *)_testCtrl.segments[0]).tintColor = [UIColor blackColor];
+        ((WLSegment *)_testCtrl.segments[1]).tintColor = [UIColor blackColor];
+        
+        ((WLSegment *)_testCtrl.segments[1]).backgroundColor = [UIColor colorWithRed:200 green:50 blue:50 alpha:.5];
+        
+        
+//        ((WLSegment *)_testCtrl.segments[1]).backgroundColor = [UIColor redColor];
+//        ((WLSegment *)_testCtrl.segments[1]).titleLabel.textColor = [UIColor blackColor];
+        
+        UILabel* lbl = [[UILabel alloc] initWithFrame:CGRectMake(w3/8, h3/2 + 20, w3*3/4, h3*3/48)];
+        lbl.text = @"Message:";
+        lbl.textAlignment = NSTextAlignmentCenter;
+        lbl.layer.zPosition = 1;
+        
+        _message = [[UITextField alloc] initWithFrame:CGRectMake(w3/8, h3/2 + 20 + h3*3/48, w3*3/4, h3*3/48)];
+        _message.placeholder = @"FART BOMBED";
+        _message.textAlignment = NSTextAlignmentCenter;
+        _message.autocorrectionType = UITextAutocorrectionTypeNo;
+//        _message.layer.zPosition = 2;
+        
+        [_message setEnabled:YES];
+
+        
+        [_cardView addSubview:lbl];
+    }
+    
+    
+    UIButton* cancelBtn = [UIButton buttonWithType:UIButtonTypeRoundedRect];
+    cancelBtn.frame = CGRectMake(w3/8, h3/2 + 20 + h3*3/8 + 5, 50, h3 - (h3/2 + 20 + h3*3/8) - 10);
+//    cancelBtn.backgroundColor = [UIColor greenColor];
+    [cancelBtn setTitle:@"Cancel" forState:UIControlStateNormal];
+    
+    [cancelBtn addTarget:self action:@selector(cancelPressed:) forControlEvents:UIControlEventTouchUpInside];
+    
+    [_cardView addSubview:cancelBtn];
+
     
     UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc]
                                    initWithTarget:self
                                    action:@selector(dismissKeyboard)];
     [_blurredEffectView addGestureRecognizer:tap];
     
-    _message.text = @"FART BOMB";
+//    _message.text = @"FART BOMB";
     /** END OF STUFF IN CARDVIEW */
     
     
-    [_tableView addSubview:_blurredEffectView];
+    [self.view addSubview:_blurredEffectView];
     [_blurredEffectView addSubview:_cardView];
     [_cardView addSubview:_testCtrl];
+    if (CUSTOM_MSG_ON) {
+        [_cardView addSubview:_message];
+    }
     
     
     [UIView animateWithDuration:.75 delay:0 options:UIViewAnimationOptionCurveLinear animations:^{
@@ -197,12 +267,36 @@
     } completion:^(BOOL finished) { }];
 
     
-    [_testCtrl.segments[2] bk_addEventHandler:^(id sender) {
+    int theInt;
+    if (CUSTOM_MSG_ON) {
+        theInt = 1;
+    }
+    else
+    {
+        theInt = 2;
+    }
+    
+    [_testCtrl.segments[theInt] bk_addEventHandler:^(id sender) {
 //        [_confirmation setEnabled:NO];
         _testCtrl.enabled = NO;
         
         /** Send the push */
-        [self finalizePushWithCell:cell andPath:indexPath andMsg:_message.text];
+        
+        NSString* msgToSend;
+        if(CUSTOM_MSG_ON)
+        {
+            if(_message.text.length == 0)
+            {
+                msgToSend = _message.placeholder;
+            }
+            msgToSend = _message.text;
+        }
+        else
+        {
+            msgToSend=@"FART BOMBED";
+        }
+        
+        [self finalizePushWithCell:cell andPath:indexPath andMsg:msgToSend];
         
         /** BOMB EVERYTHING */
         UIImageView* temp = [[UIImageView alloc] initWithFrame:CGRectMake(w, h/16, w/4, w/4)];
@@ -219,6 +313,8 @@
         UIImageView* temp2 = [[UIImageView alloc] initWithFrame:CGRectMake(w - 80, h/16 + w/8, w/8, w/8)];
         temp2.image = [UIImage imageNamed:@"beanBomb.png"];
         
+        [temp2 setHidden:YES];
+        
         int delay = .8;
         
         POPBasicAnimation *anim2 = [POPBasicAnimation animationWithPropertyNamed:kPOPLayerPosition];
@@ -226,21 +322,24 @@
         anim2.duration = 3;
         anim2.toValue = [NSValue valueWithCGPoint:CGPointMake(w/4, h*3/4)];
         anim2.beginTime = CACurrentMediaTime() + delay;
-#warning play sound???
 
         
-        
         [self.view addSubview:temp];
+        [self.view addSubview:temp2];
         
-        [self.view performSelector:@selector(addSubview:) withObject:temp2 afterDelay:delay];
+        [temp2 performSelector:@selector(setHidden:) withObject:NO afterDelay:delay];
+        
+//        [self.view performSelector:@selector(addSubview:) withObject:temp2 afterDelay:delay];
         
         
         [temp.layer pop_addAnimation:anim forKey:@"fly"];
         [temp2.layer pop_addAnimation:anim2 forKey:@"bomb"];
+        [_plyrAirStrike play];
+        
         
         anim2.completionBlock =  ^(POPAnimation* completedAnim, BOOL completed) {
-            [temp2 lp_explodeWithCompletion:^(BOOL completed) {
-            }];
+            [self fartNoise];
+            [temp2 lp_explodeWithCompletion:^(BOOL completed) {}];
             
             /** Animate the views to dissapear and shit */
             [_blurredEffectView lp_explodeWithCompletion:^(BOOL completed) {
@@ -255,6 +354,46 @@
             
         };
     } forControlEvents:UIControlEventTouchUpInside];
+}
+
+-(void)cancelPressed: (UIButton *)btn
+{
+    [_blurredEffectView lp_explodeWithCompletion:^(BOOL completed) {
+    }];
+}
+
+-(void)fartNoise
+{
+    AVAudioPlayer* temp;
+    
+    int x = arc4random_uniform(7) + 1;
+    
+    switch (x) {
+        case 1:
+            temp = _plyr1;
+            break;
+        case 2:
+            temp = _plyr2;
+            break;
+        case 3:
+            temp = _plyr3;
+            break;
+        case 4:
+            temp = _plyr4;
+            break;
+        case 5:
+            temp = _plyr5;
+            break;
+        case 6:
+            temp = _plyr6;
+            break;
+        case 7:
+            temp = _plyr7;
+            break;
+    }
+    
+    [temp play];
+
 }
 
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
@@ -353,7 +492,6 @@
         
     }];
     
-    [self.tableView deselectRowAtIndexPath:indexPath animated:YES];
 }
 
 

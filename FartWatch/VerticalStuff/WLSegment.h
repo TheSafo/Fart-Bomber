@@ -20,4 +20,7 @@ typedef NS_ENUM(NSInteger, WLSegmentStyle) {
 @property(nonatomic, assign) BOOL isFirst;
 @property(nonatomic, assign) BOOL isLast;
 
+-(void) setEnabled:(BOOL)enabled;
+
+
 @end

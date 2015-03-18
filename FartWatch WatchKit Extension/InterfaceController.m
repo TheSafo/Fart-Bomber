@@ -36,7 +36,6 @@
     /** If there's no data, set a default image */
     if(!imgData)
     {
-#warning Change default image eventually
         initImg = [UIImage imageNamed:@"cushion3"];
     }
     else

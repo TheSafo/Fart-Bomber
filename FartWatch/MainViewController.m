@@ -19,11 +19,10 @@
 @interface MainViewController ()
 
 
-@property(nonatomic) UIImage* cushionImg; /* Stores image from init for use later*/
+@property(nonatomic) UIImage* rawImg; /* Stores image from init for use later*/
 
 @property(nonatomic) int dontPlayUntil;
 
-@property (nonatomic) int cushNum;
 
 
 
@@ -32,24 +31,31 @@
 
 @implementation MainViewController
 
--(id)initWithImg: (UIImage *) img andNum: (int) num{
+-(id)initWithImg: (UIImage *) img andNum: (long) num{
     if (self = [super init]) {
         
         self.title = @"Fart Bomber";
         
-//        UIImage* settingsImg = [UIImage imageNamed:@"nut4.png"];
-        
-        self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"Settings" style:UIBarButtonItemStylePlain  target:self action:@selector(settingsPressed)];
+        self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"Settings" style:UIBarButtonItemStylePlain
+                                                                                target:self action:@selector(settingsPressed)];
         
         self.navigationItem.leftBarButtonItem.tintColor = [UIColor blackColor];
-    
+        
+        
+        if(ADS_ON)
+        {
+            self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"Remove Ads" style:UIBarButtonItemStylePlain
+                                                                                     target:self action:@selector(removeAdsPressed)];
+            self.navigationItem.rightBarButtonItem.tintColor = [UIColor blackColor];
+        }
+        
         _camBtn = [UIButton buttonWithType:UIButtonTypeSystem];
         _camBtn.tintColor = [UIColor blackColor];
         
         _fbBtn = [UIButton buttonWithType:UIButtonTypeRoundedRect];
         _fbBtn.tintColor = [UIColor blackColor];
         
-        _cushionImg = img;
+        _rawImg = img;
         _cushNum = num;
         
         NSString* fart1 = [[NSBundle mainBundle] pathForResource:@"fart1" ofType:@"caf"];
@@ -79,6 +85,61 @@
         NSString* fart7 = [[NSBundle mainBundle] pathForResource:@"fart7" ofType:@"caf"];
         NSURL* fart7URL = [NSURL fileURLWithPath:fart7];
         _plyr7 = [[AVAudioPlayer alloc] initWithContentsOfURL:fart7URL error:nil];
+        
+        
+        
+        UIImageView* bckgd = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"testBackground.jpg"]];
+        
+        bckgd.frame = self.view.bounds;
+        
+        [self.view addSubview:bckgd];
+        
+        if(ADS_ON)
+        {
+            int h = HEIGHT - 50;
+            
+            _blendVw = [[UIImageView alloc] initWithFrame:CGRectMake(WIDTH/16, 54 + h/16, WIDTH*7/8 ,h*13/16)];
+            
+        }
+        else{
+            _blendVw = [[UIImageView alloc] initWithFrame:CGRectMake(WIDTH/16, 54 + HEIGHT/16, WIDTH*7/8 ,HEIGHT*13/16)];
+        }
+        
+        
+        [_camBtn setImage:[UIImage imageNamed:@"camera44.png"] forState:UIControlStateNormal];
+        [_camBtn setImage:[UIImage imageNamed:@"camera44.png"] forState:UIControlStateSelected];
+        [_camBtn addTarget:self action:@selector(camPressed) forControlEvents:UIControlEventTouchUpInside];
+        
+        [_fbBtn setImage:[UIImage imageNamed:@"group4.png"] forState:UIControlStateNormal];
+        [_fbBtn setImage:[UIImage imageNamed:@"group4.png"] forState:UIControlStateSelected];
+        
+        [_fbBtn addTarget:self action:@selector(fbPressed) forControlEvents:UIControlEventTouchUpInside];
+        
+        if(_rawImg)
+        {
+//            [self circularScaleAndCropImage:_rawImg frame:TOP_IMAGE_RECT];
+            _blendVw.image = [self mergeTwoImages:_rawImg :[self imageFromNum]];
+        }
+        else{
+            _blendVw.image = [self imageFromNum];
+        }
+
+        
+        /** Send the image through the wormhole */
+        NSData* imgData = UIImagePNGRepresentation(_blendVw.image);
+        [((AppDelegate *)[UIApplication sharedApplication].delegate).wormHole passMessageObject:imgData identifier:@"curImg"];
+        
+        
+        [self.view addSubview:_camBtn];
+        [self.view addSubview:_fbBtn];
+        [self.view addSubview:_blendVw];
+        
+        
+        if(ADS_ON)
+        {
+            [self.view addSubview:[AdSingleton sharedInstance].adBanner];
+        }
+
     }
     return self;
 }
@@ -86,6 +147,14 @@
 -(void)viewWillAppear:(BOOL)animated
 {
     [super viewWillAppear:animated];
+    
+    if(_rawImg)
+    {
+        _blendVw.image = [self mergeTwoImages:_rawImg :[self imageFromNum]];
+    }
+    else{
+        _blendVw.image = [self imageFromNum];
+    }
     
     if(ADS_ON)
     {
@@ -104,50 +173,10 @@
     }
 }
 
-- (void)viewDidLoad {
-    [super viewDidLoad];
-    
-    UIImageView* bckgd = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"testBackground.jpg"]];
-    
-    bckgd.frame = self.view.bounds;
-    
-    [self.view addSubview:bckgd];
-    
-    if(ADS_ON)
-    {
-        int h = HEIGHT - 50;
-
-        _blendVw = [[UIImageView alloc] initWithFrame:CGRectMake(WIDTH/16, 54 + h/16, WIDTH*7/8 ,h*13/16)];
-        
-    }
-    else{
-        _blendVw = [[UIImageView alloc] initWithFrame:CGRectMake(WIDTH/16, 54 + HEIGHT/16, WIDTH*7/8 ,HEIGHT*13/16)];
-    }
-
-    
-    [_camBtn setImage:[UIImage imageNamed:@"camera44.png"] forState:UIControlStateNormal];
-    [_camBtn setImage:[UIImage imageNamed:@"camera44.png"] forState:UIControlStateSelected];
-    [_camBtn addTarget:self action:@selector(camPressed) forControlEvents:UIControlEventTouchUpInside];
-    
-    [_fbBtn setImage:[UIImage imageNamed:@"group4.png"] forState:UIControlStateNormal];
-    [_fbBtn setImage:[UIImage imageNamed:@"group4.png"] forState:UIControlStateSelected];
-    
-    [_fbBtn addTarget:self action:@selector(fbPressed) forControlEvents:UIControlEventTouchUpInside];
-    
-    _blendVw.image = _cushionImg;
-    
-    [self.view addSubview:_camBtn];
-    [self.view addSubview:_fbBtn];
-    [self.view addSubview:_blendVw];
-    if(ADS_ON)
-    {
-        [self.view addSubview:[AdSingleton sharedInstance].adBanner];
-    }
-
+-(void)removeAdsPressed
+{
+    [[StoreManager sharedInstance] purchaseAds];
 }
-
-
-
 
 -(void)fbPressed
 {
@@ -213,20 +242,26 @@
 
 -(void)changeImage: (UIImage *)newImg
 {
+    UIImage* finalImg = [self circularScaleAndCropImage:newImg frame:TOP_IMAGE_RECT];
+    
+    
     UIImage* temp = [self imageFromNum];
-    UIImage* newBlend = [self mergeTwoImages:[self circularScaleAndCropImage:newImg frame:TOP_IMAGE_RECT] :temp];
+    UIImage* newBlend = [self mergeTwoImages:finalImg :temp];
     
     _blendVw.image = newBlend;
     NSData* imgData = UIImagePNGRepresentation(newBlend);
     
-    /** Send the image through the wormhole */
+    /** Send the image through the wormhole to watch*/
     [((AppDelegate *)[UIApplication sharedApplication].delegate).wormHole passMessageObject:imgData identifier:@"curImg"];
+    
+    /** Save this image for future use*/
+    [((AppDelegate *)[UIApplication sharedApplication].delegate).wormHole passMessageObject:finalImg identifier:@"rawImg"];
+    _rawImg = finalImg;
 }
-
 
 -(UIImage *)imageFromNum
 {
-    NSString* str = [NSString stringWithFormat:@"cushion%i",_cushNum];
+    NSString* str = [NSString stringWithFormat:@"cushion%li",_cushNum];
 
     UIImage* temp = [UIImage imageNamed:str];
     

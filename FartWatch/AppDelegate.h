@@ -6,6 +6,7 @@
 //  Copyright (c) 2015 Jake Saferstein. All rights reserved.
 //
 
+#import "StoreManager.h"
 #import <UIKit/UIKit.h>
 #import "MainViewController.h"
 #import <MMWormhole/MMWormhole.h>

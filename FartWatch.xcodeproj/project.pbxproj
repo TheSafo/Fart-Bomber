@@ -46,6 +46,7 @@
 		2344AD911AB72E5600AF82A8 /* SettingsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2344AD901AB72E5600AF82A8 /* SettingsViewController.m */; };
 		23607E9E1A8D1D6A00EEAADF /* PersistentDictionary.m in Sources */ = {isa = PBXBuildFile; fileRef = 23607E9D1A8D1D6A00EEAADF /* PersistentDictionary.m */; };
 		23607EA11A8D1D8C00EEAADF /* Singleton.m in Sources */ = {isa = PBXBuildFile; fileRef = 23607EA01A8D1D8C00EEAADF /* Singleton.m */; };
+		236DBA351AB76C7C008B057D /* airstrike.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 236DBA341AB76C7C008B057D /* airstrike.mp3 */; };
 		23781A711AB55EB200B22C21 /* UIView+Explode.m in Sources */ = {isa = PBXBuildFile; fileRef = 23781A701AB55EB200B22C21 /* UIView+Explode.m */; };
 		238A897C1A9A5CC000B1BF1A /* cushion1.png in Resources */ = {isa = PBXBuildFile; fileRef = 238A89761A9A5CC000B1BF1A /* cushion1.png */; };
 		238A897D1A9A5CC000B1BF1A /* cushion2.png in Resources */ = {isa = PBXBuildFile; fileRef = 238A89771A9A5CC000B1BF1A /* cushion2.png */; };
@@ -73,6 +74,8 @@
 		23B827231A7FFD3100116B02 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 23B827221A7FFD3100116B02 /* Images.xcassets */; };
 		23B827261A7FFD3100116B02 /* FartWatch WatchKit Extension.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = 23B827061A7FFD2F00116B02 /* FartWatch WatchKit Extension.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
 		23B8272E1A800AB500116B02 /* InterfaceController.m in Sources */ = {isa = PBXBuildFile; fileRef = 23B8270C1A7FFD3000116B02 /* InterfaceController.m */; };
+		23E78A091AB8932A00A1FE52 /* StoreManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 23E78A071AB8932A00A1FE52 /* StoreManager.m */; };
+		23E78A171AB91FB300A1FE52 /* appiconlarge.png in Resources */ = {isa = PBXBuildFile; fileRef = 23E78A161AB91FB300A1FE52 /* appiconlarge.png */; };
 		23F08A8F1A965B200033BE56 /* testImg.png in Resources */ = {isa = PBXBuildFile; fileRef = 23F08A8E1A965B200033BE56 /* testImg.png */; };
 		23F671FC1AAFF32500A7038F /* iAd.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 23F671FB1AAFF32500A7038F /* iAd.framework */; };
 		23F671FF1AB019B000A7038F /* bomber.png in Resources */ = {isa = PBXBuildFile; fileRef = 23F671FD1AB019B000A7038F /* bomber.png */; };
@@ -561,6 +564,7 @@
 		23607E9D1A8D1D6A00EEAADF /* PersistentDictionary.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = PersistentDictionary.m; path = FartWatch/PersistentDictionary.m; sourceTree = "<group>"; };
 		23607E9F1A8D1D8C00EEAADF /* Singleton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Singleton.h; path = FartWatch/Singleton.h; sourceTree = "<group>"; };
 		23607EA01A8D1D8C00EEAADF /* Singleton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = Singleton.m; path = FartWatch/Singleton.m; sourceTree = "<group>"; };
+		236DBA341AB76C7C008B057D /* airstrike.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; name = airstrike.mp3; path = Sounds/airstrike.mp3; sourceTree = SOURCE_ROOT; };
 		23781A6F1AB55EB200B22C21 /* UIView+Explode.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIView+Explode.h"; sourceTree = "<group>"; };
 		23781A701AB55EB200B22C21 /* UIView+Explode.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIView+Explode.m"; sourceTree = "<group>"; };
 		238A89761A9A5CC000B1BF1A /* cushion1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = cushion1.png; path = ../Resources/cushion1.png; sourceTree = "<group>"; };
@@ -605,6 +609,9 @@
 		23B8271E1A7FFD3000116B02 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		23B827201A7FFD3000116B02 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Interface.storyboard; sourceTree = "<group>"; };
 		23B827221A7FFD3100116B02 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
+		23E78A071AB8932A00A1FE52 /* StoreManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = StoreManager.m; sourceTree = "<group>"; };
+		23E78A081AB8932A00A1FE52 /* StoreManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = StoreManager.h; sourceTree = "<group>"; };
+		23E78A161AB91FB300A1FE52 /* appiconlarge.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = appiconlarge.png; path = FinIcons/appiconlarge.png; sourceTree = SOURCE_ROOT; };
 		23F08A8E1A965B200033BE56 /* testImg.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = testImg.png; sourceTree = SOURCE_ROOT; };
 		23F671EE1AAFF0D200A7038F /* PrefixHeader.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PrefixHeader.pch; sourceTree = "<group>"; };
 		23F671FB1AAFF32500A7038F /* iAd.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = iAd.framework; path = System/Library/Frameworks/iAd.framework; sourceTree = SDKROOT; };
@@ -1319,6 +1326,7 @@
 		2340D2E91AA03AD100F51F99 /* FinIcons */ = {
 			isa = PBXGroup;
 			children = (
+				23E78A161AB91FB300A1FE52 /* appiconlarge.png */,
 				2340D2F31AA0457700F51F99 /* appicon58.png */,
 				2340D2F41AA0457700F51F99 /* appicon80.png */,
 				2340D2F51AA0457700F51F99 /* appicon120.png */,
@@ -1423,6 +1431,8 @@
 				23B5533B1AA2DC120020A91A /* IntermediateViewController.m */,
 				23B5533E1AA2E6790020A91A /* BombingViewController.h */,
 				23B5533F1AA2E6790020A91A /* BombingViewController.m */,
+				23E78A081AB8932A00A1FE52 /* StoreManager.h */,
+				23E78A071AB8932A00A1FE52 /* StoreManager.m */,
 				2340D2E61AA013A000F51F99 /* FriendTableViewCell.h */,
 				2340D2E71AA013A000F51F99 /* FriendTableViewCell.m */,
 				2344AD8F1AB72E5600AF82A8 /* SettingsViewController.h */,
@@ -1516,6 +1526,7 @@
 		23BD14181A93DA8A0016AA5E /* Sounds */ = {
 			isa = PBXGroup;
 			children = (
+				236DBA341AB76C7C008B057D /* airstrike.mp3 */,
 				23FA756C1AA17C6C00F2E5FE /* fart1.caf */,
 				23FA756B1AA17C6C00F2E5FE /* fart2.caf */,
 				23FA756A1AA17C6C00F2E5FE /* fart3.caf */,
@@ -1847,6 +1858,7 @@
 				238A897D1A9A5CC000B1BF1A /* cushion2.png in Resources */,
 				23FA756F1AA17C6C00F2E5FE /* fart5.caf in Resources */,
 				23B826ED1A7FFC7000116B02 /* LaunchScreen.xib in Resources */,
+				23E78A171AB91FB300A1FE52 /* appiconlarge.png in Resources */,
 				23FA756D1AA17C6C00F2E5FE /* fart7.caf in Resources */,
 				23F672001AB019B000A7038F /* beanBomb.png in Resources */,
 				238A897F1A9A5CC000B1BF1A /* cushion4.png in Resources */,
@@ -1863,6 +1875,7 @@
 				232897EB1AAE5FF20062BB2F /* plane.jpg in Resources */,
 				23FA75711AA17C6C00F2E5FE /* fart3.caf in Resources */,
 				23F671FF1AB019B000A7038F /* bomber.png in Resources */,
+				236DBA351AB76C7C008B057D /* airstrike.mp3 in Resources */,
 				23FA75731AA17C6C00F2E5FE /* fart1.caf in Resources */,
 				238B3EE01A97BD3A0040FD24 /* camera44.png in Resources */,
 				23F08A8F1A965B200033BE56 /* testImg.png in Resources */,
@@ -1954,6 +1967,7 @@
 				23B5533C1AA2DC120020A91A /* IntermediateViewController.m in Sources */,
 				23B826E21A7FFC7000116B02 /* AppDelegate.m in Sources */,
 				232B9C511AB4B8D60019D2F2 /* WLSegmentedControl.m in Sources */,
+				23E78A091AB8932A00A1FE52 /* StoreManager.m in Sources */,
 				23FA75411AA0DE6F00F2E5FE /* FBLoginController.m in Sources */,
 				23607E9E1A8D1D6A00EEAADF /* PersistentDictionary.m in Sources */,
 				23607EA11A8D1D8C00EEAADF /* Singleton.m in Sources */,

@@ -13,6 +13,7 @@
 #import "IntermediateViewController.h"
 #import <iAd/iAd.h>
 #import "AdSingleton.h"
+#import "StoreManager.h"
 #import "SettingsViewController.h"
 
 
@@ -27,7 +28,7 @@
 
 
 -(void)fartNoise;
--(id)initWithImg: (UIImage *) img andNum: (int) num;
+-(id)initWithImg: (UIImage *) img andNum: (long) num;
 @property (nonatomic,strong) AVAudioPlayer *plyr1;
 @property (nonatomic,strong) AVAudioPlayer *plyr2;
 @property (nonatomic,strong) AVAudioPlayer *plyr3;
@@ -35,6 +36,10 @@
 @property (nonatomic,strong) AVAudioPlayer *plyr5;
 @property (nonatomic,strong) AVAudioPlayer *plyr6;
 @property (nonatomic,strong) AVAudioPlayer *plyr7;
+
+
+@property (nonatomic) long cushNum;
+
 
 
 
