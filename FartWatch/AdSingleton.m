@@ -12,7 +12,6 @@
 
 SINGLETON_IMPL(AdSingleton);
 
-#warning fix ads
 - (void)bannerViewDidLoadAd:(ADBannerView *)banner
 {
     NSLog(@"Retrieved an ad");

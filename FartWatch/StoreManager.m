@@ -76,7 +76,6 @@ SINGLETON_IMPL(StoreManager);
     SKPayment *payment = [SKPayment paymentWithProduct:_adsProduct];
     [[SKPaymentQueue defaultQueue] addPayment:payment];
     
-#warning track data
     	//[Flurry logEvent:@"InitiatePackPurchase" withParameters:@{ @"packId":packId }];
 }
 

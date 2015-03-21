@@ -327,7 +327,7 @@
         [self.view addSubview:temp];
         [self.view addSubview:temp2];
         
-        [temp2 performSelector:@selector(setHidden:) withObject:NO afterDelay:delay];
+        [temp2 performSelector:@selector(setHidden:) withObject:nil afterDelay:delay];
         
 //        [self.view performSelector:@selector(addSubview:) withObject:temp2 afterDelay:delay];
         
@@ -489,9 +489,7 @@
         [PFCloud callFunctionInBackground:@"editUser" withParameters:@{@"userId": toSendId, @"newRev":sendArr} block:^(id object, NSError *error) {
             if(error) { NSLog(@"Cloud error: %@", error); }
         }];
-        
-    }];
-    
+    }];    
 }
 
 

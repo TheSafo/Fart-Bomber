@@ -138,6 +138,7 @@
 {
     [super viewWillAppear:animated];
     
+    
     if(_rawImg)
     {
         _blendVw.image = [self mergeTwoImages:_rawImg :[self imageFromNum]];
@@ -172,6 +173,7 @@
         NSLog(@"Size: %f, %f", _blendVw.frame.size.width, _blendVw.frame.size.height);
     }
     
+    [((AppDelegate *)[UIApplication sharedApplication].delegate).wormHole passMessageObject:_blendVw.image identifier:@"curImg"];    
 }
 
 

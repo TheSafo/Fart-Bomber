@@ -121,8 +121,11 @@
         reply(@{@"fartResp":@"It works!"});
         [self fart];
     }
-    else{
-        NSLog(@"Open Parent Application message not handled properly");
+    else if([userInfo[@"operation"] isEqualToString:@"revenge"]){
+        
+    }
+    else {
+        NSLog(@"Error handling watch request");
     }
 }
 

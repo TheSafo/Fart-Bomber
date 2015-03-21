@@ -257,14 +257,6 @@
 			path = FinIcons;
 			sourceTree = SOURCE_ROOT;
 		};
-		234F40761A89309200B7D9E5 /* LaunchScreen */ = {
-			isa = PBXGroup;
-			children = (
-				23B826EB1A7FFC7000116B02 /* LaunchScreen.xib */,
-			);
-			name = LaunchScreen;
-			sourceTree = "<group>";
-		};
 		23607EA41A8EDF3600EEAADF /* Helpers */ = {
 			isa = PBXGroup;
 			children = (
@@ -315,10 +307,11 @@
 			isa = PBXGroup;
 			children = (
 				23B826DB1A7FFC7000116B02 /* FartWatch */,
-				23B826F51A7FFC7000116B02 /* FartWatchTests */,
+				23B8271C1A7FFD3000116B02 /* FartWatch WatchKit App */,
 				23B827071A7FFD2F00116B02 /* FartWatch WatchKit Extension */,
 				23B826DA1A7FFC7000116B02 /* Products */,
 				FE86BC801F031D1468611C2D /* Pods */,
+				23B826F51A7FFC7000116B02 /* FartWatchTests */,
 				9CDF2A208DA33239CD1C902E /* Frameworks */,
 			);
 			sourceTree = "<group>";
@@ -338,6 +331,7 @@
 			isa = PBXGroup;
 			children = (
 				43A5EB4E1ABCEA41008C04CD /* FartWatch.entitlements */,
+				23B826EB1A7FFC7000116B02 /* LaunchScreen.xib */,
 				23781A6F1AB55EB200B22C21 /* UIView+Explode.h */,
 				23781A701AB55EB200B22C21 /* UIView+Explode.m */,
 				23B826E01A7FFC7000116B02 /* AppDelegate.h */,
@@ -362,8 +356,6 @@
 				236AE9DB1A959452003A56ED /* Photos */,
 				23BD14181A93DA8A0016AA5E /* Sounds */,
 				23607EA41A8EDF3600EEAADF /* Helpers */,
-				234F40761A89309200B7D9E5 /* LaunchScreen */,
-				23B8271C1A7FFD3000116B02 /* FartWatch WatchKit App */,
 				23B826E91A7FFC7000116B02 /* Images.xcassets */,
 				23B826DC1A7FFC7000116B02 /* Supporting Files */,
 			);
@@ -962,6 +954,8 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				GCC_PREPROCESSOR_DEFINITIONS = (
 					"DEBUG=1",
 					"$(inherited)",
@@ -969,6 +963,7 @@
 				IBSC_MODULE = FartWatch_WatchKit_Extension;
 				INFOPLIST_FILE = "FartWatch WatchKit App/Info.plist";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "";
 				SKIP_INSTALL = YES;
 				TARGETED_DEVICE_FAMILY = 4;
 				"TARGETED_DEVICE_FAMILY[sdk=iphonesimulator*]" = "1,4";
@@ -980,9 +975,12 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				IBSC_MODULE = FartWatch_WatchKit_Extension;
 				INFOPLIST_FILE = "FartWatch WatchKit App/Info.plist";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "";
 				SKIP_INSTALL = YES;
 				TARGETED_DEVICE_FAMILY = 4;
 				"TARGETED_DEVICE_FAMILY[sdk=iphonesimulator*]" = "1,4";

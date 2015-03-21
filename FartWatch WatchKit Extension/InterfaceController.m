@@ -33,6 +33,9 @@
     
     [_myButton setBackgroundImage:initImg];
     
+    
+    
+    
     /** Listen for updates */
     [_wormHole listenForMessageWithIdentifier:@"curImg" listener:^(id messageObject) {
         UIImage* newImg = messageObject;
