@@ -70,7 +70,7 @@
 
     long cushionNum = [[NSUserDefaults standardUserDefaults] integerForKey:@"cushNum"];
     if (!cushionNum) {
-        cushionNum = 7;
+        cushionNum = 5;
     }
     
     

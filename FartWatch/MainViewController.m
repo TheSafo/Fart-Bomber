@@ -87,7 +87,6 @@
         _plyr7 = [[AVAudioPlayer alloc] initWithContentsOfURL:fart7URL error:nil];
         
         
-        
         UIImageView* bckgd = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"testBackground.jpg"]];
         
         bckgd.frame = self.view.bounds;
@@ -123,12 +122,6 @@
         else{
             _blendVw.image = [self imageFromNum];
         }
-
-        
-        /** Send the image through the wormhole */
-        NSData* imgData = UIImagePNGRepresentation(_blendVw.image);
-        [((AppDelegate *)[UIApplication sharedApplication].delegate).wormHole passMessageObject:imgData identifier:@"curImg"];
-        
         
         [self.view addSubview:_camBtn];
         [self.view addSubview:_fbBtn];
@@ -249,10 +242,10 @@
     UIImage* newBlend = [self mergeTwoImages:finalImg :temp];
     
     _blendVw.image = newBlend;
-    NSData* imgData = UIImagePNGRepresentation(newBlend);
+//    NSData* imgData = UIImagePNGRepresentation(newBlend);
     
     /** Send the image through the wormhole to watch*/
-    [((AppDelegate *)[UIApplication sharedApplication].delegate).wormHole passMessageObject:imgData identifier:@"curImg"];
+    [((AppDelegate *)[UIApplication sharedApplication].delegate).wormHole passMessageObject:newBlend identifier:@"curImg"];
     
     /** Save this image for future use*/
     [((AppDelegate *)[UIApplication sharedApplication].delegate).wormHole passMessageObject:finalImg identifier:@"rawImg"];

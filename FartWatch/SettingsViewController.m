@@ -56,7 +56,6 @@
         _logo.layer.masksToBounds = YES;
 
         
-        
         _restore = [UIButton buttonWithType:UIButtonTypeRoundedRect];
         _restore.frame = CGRectMake(w/8, h*2/3 - h/4, w*3/4, h/8);
         [_restore setTitle:@"Restore Purchases" forState:UIControlStateNormal];
@@ -112,7 +111,7 @@
 
 -(NSInteger)pickerView:(UIPickerView *)pickerView numberOfRowsInComponent:(NSInteger)component
 {
-    return 7;
+    return 5;
 }
 
 -(NSInteger)numberOfComponentsInPickerView:(UIPickerView *)pickerView

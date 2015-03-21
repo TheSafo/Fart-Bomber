@@ -19,38 +19,31 @@
 - (void)awakeWithContext:(id)context {
     [super awakeWithContext:context];
     
-//    /** Get initial image */
-//    NSString* imgPath = [[InterfaceController getSharedContainerURLPath] path];
-//    imgPath = [imgPath stringByAppendingPathComponent:@"curImg.saf"];
-//    NSData* imgData = [NSData dataWithContentsOfFile:imgPath];
-//
-//    NSLog(@"%@",imgPath);
-    
     _wormHole = [[MMWormhole alloc] initWithApplicationGroupIdentifier:@"group.com.gmail.jakesafo.fartbomber"
                                                      optionalDirectory:@"wormhole"];
-    
     /** Get initial image */
-    NSData* imgData = [_wormHole messageWithIdentifier:@"curImg"];
-    UIImage* initImg;
+    UIImage* initImg = [_wormHole messageWithIdentifier:@"curImg"];
+
     
     /** If there's no data, set a default image */
-    if(!imgData)
+    if(!initImg)
     {
         initImg = [UIImage imageNamed:@"cushion3"];
-    }
-    else
-    {
-        initImg = [UIImage imageWithData:imgData];
     }
     
     [_myButton setBackgroundImage:initImg];
     
     /** Listen for updates */
-    [_wormHole listenForMessageWithIdentifier:@"curImg"
-    listener:^(id messageObject) {
-        NSData* imgData = messageObject;
-        UIImage* img = [UIImage imageWithData:imgData];
-        [_myButton setBackgroundImage:img];
+    [_wormHole listenForMessageWithIdentifier:@"curImg" listener:^(id messageObject) {
+        UIImage* newImg = messageObject;
+        
+        if(!newImg)
+        {
+            NSLog(@"Sent nil");
+            return;
+        }
+        
+        [_myButton setBackgroundImage:newImg];
     }];
 }
 

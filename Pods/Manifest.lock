@@ -18,15 +18,26 @@ PODS:
   - BlocksKit/UIKit (2.2.5):
     - BlocksKit/Core
     - BlocksKit/DynamicDelegate
+  - Bolts (1.1.4)
+  - Facebook-iOS-SDK (3.23.1):
+    - Bolts (~> 1.0)
   - MMWormhole (1.1.1):
     - MMWormhole/Core (= 1.1.1)
   - MMWormhole/Core (1.1.1)
+  - Parse (1.6.5):
+    - Bolts (~> 1.1)
+  - ParseFacebookUtils (1.6.5):
+    - Facebook-iOS-SDK (~> 3.20)
+    - Parse (~> 1.6.5)
   - pop (1.0.7)
   - RKCardView (0.1.0)
 
 DEPENDENCIES:
   - BlocksKit (from `https://github.com/zwaldowski/BlocksKit.git`)
+  - Facebook-iOS-SDK
   - MMWormhole (~> 1.1.1)
+  - Parse
+  - ParseFacebookUtils
   - pop (~> 1.0)
   - RKCardView
 
@@ -40,9 +51,13 @@ CHECKOUT OPTIONS:
     :git: https://github.com/zwaldowski/BlocksKit.git
 
 SPEC CHECKSUMS:
-  BlocksKit: fce66219cce8030475a04eae720cdde22f8fc30b
+  BlocksKit: 918117f8a8e23b82c9ef327da82849d78dd64cc3
+  Bolts: dd9fb8433d67f5acc3b6b4d1379bbc5513d716c1
+  Facebook-iOS-SDK: 89dae50e975ebab95a01b0962d27277fc9cf08fd
   MMWormhole: 48452a7149eba409e9dffad661451fa25b9e97c4
+  Parse: a21db4037d70a68a4ec64ecc0f327ed475cc14f8
+  ParseFacebookUtils: 4d58d0f133fa1af52f3a8d5caaa55cd435118ac4
   pop: 2f14a1ea61339767af9e66741b418c831b3844df
   RKCardView: bb96e9288f1ccc34468a2d52c5f83bcf58a506ee
 
-COCOAPODS: 0.35.0
+COCOAPODS: 0.36.0

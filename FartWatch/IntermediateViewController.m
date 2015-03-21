@@ -41,7 +41,6 @@
         
  
         
-        
         /** Start an Activity Indicator while loading friends list */
         UIActivityIndicatorView* test = [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleWhiteLarge];
         test.frame = CGRectMake(self.view.frame.size.width/2 - 50, self.view.frame.size.height/2 - 50, 100, 100);
@@ -91,9 +90,19 @@
     {
         self.title = @"Login with Facebook";
         /** Show Login button */
+        
+        UIImageView* fb = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"facebook7.png"]];
+        fb.frame = CGRectMake(self.view.frame.size.width/2 - 50, self.view.frame.size.height/2 - 150, 100, 100);
+        [self.view addSubview:fb];
+        
+        
         UIButton* login = [UIButton buttonWithType:UIButtonTypeRoundedRect];
-        login.frame = CGRectMake(self.view.frame.size.width/2 - 50, self.view.frame.size.height/2 - 50, 100, 100);
-        login.backgroundColor = [UIColor redColor];
+        login.frame = CGRectMake(self.view.frame.size.width/4, fb.frame.origin.y + fb.frame.size.height + 20, self.view.frame.size.width/2, 50);
+//        login.frame = CGRectMake(self.view.frame.size.width/2 - 50, self.view.frame.size.height/2 - 50, 100, 50);
+        login.backgroundColor = [UIColor whiteColor];
+        login.layer.cornerRadius = 10;
+        [login setTitle:@"Connect to Facebook" forState:UIControlStateNormal];
+        
         [self.view addSubview:login];
         [login addTarget:self action:@selector(loginPressed) forControlEvents:UIControlEventTouchUpInside];
     }
@@ -114,8 +123,16 @@
             NSLog(@"Uh oh. The user cancelled the Facebook login.");
         } else if (user.isNew) {
             NSLog(@"User signed up and logged in through Facebook!");
+            
+            self.revengeIds = user[@"revenge"] = [NSMutableArray array];
+            self.recentIds = user[@"recent"] = [NSMutableArray array];
+            
+            
         } else {
             NSLog(@"User logged in through Facebook!");
+            
+            self.revengeIds = user[@"revenge"];
+            self.recentIds = user[@"recent"];
         }
         
         PFInstallation* instll = [PFInstallation currentInstallation];
@@ -131,8 +148,6 @@
                 user[@"lastname"] = result[@"last_name"];
                 user[@"name"] = result[@"name"];
                 user[@"gender"] = result[@"gender"];
-                self.revengeIds = user[@"revenge"] = [NSMutableArray array];
-                self.recentIds = user[@"recent"] = [NSMutableArray array];
                 [user saveInBackground];
                 
                 [FBRequestConnection startForMyFriendsWithCompletionHandler:^(FBRequestConnection *connection, id result, NSError *error) {
