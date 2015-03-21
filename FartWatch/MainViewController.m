@@ -24,9 +24,6 @@
 @property(nonatomic) int dontPlayUntil;
 
 
-
-
-
 @end
 
 @implementation MainViewController
@@ -157,6 +154,7 @@
         _camBtn.frame = CGRectMake(WIDTH*15/16 - h/8, 54 + h*14/16, h/8, h/8);
         _fbBtn.frame = CGRectMake(WIDTH*1/16, 54 + h*14/16, h/8, h/8);
         
+        [self.view addSubview:[AdSingleton sharedInstance].adBanner];
     }
     else
     {
@@ -164,6 +162,24 @@
         _camBtn.frame = CGRectMake(WIDTH*15/16 - HEIGHT/8, 54 + HEIGHT*14/16, HEIGHT/8, HEIGHT/8);
         _fbBtn.frame = CGRectMake(WIDTH*1/16, 54 + HEIGHT*14/16,  HEIGHT/8,  HEIGHT/8);
     }
+    
+    
+    
+    
+    if(self.cushNum == 4)
+    {
+        _blendVw.frame = CGRectMake(0, _blendVw.frame.origin.y, WIDTH, _blendVw.frame.size.height);
+        NSLog(@"Size: %f, %f", _blendVw.frame.size.width, _blendVw.frame.size.height);
+    }
+    
+}
+
+
+-(void)setCushNum:(long)cushNum
+{
+    _cushNum = cushNum;
+    
+    [[NSUserDefaults standardUserDefaults] setInteger:cushNum forKey:@"cushNum"];
 }
 
 -(void)removeAdsPressed

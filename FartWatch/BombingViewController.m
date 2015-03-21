@@ -142,7 +142,7 @@
     
     _cardView = [[RKCardView alloc]initWithFrame:CGRectMake(w2/16.0, h2/16.0, w2*7.0/8.0, h2*7.0/8.0)];
     
-    _cardView.coverImageView.image = [UIImage imageNamed:@"cushion3"];
+    _cardView.coverImageView.image = [UIImage imageNamed:@"cushion2"];
     _cardView.profileImageView.image = cell.imageView.image;
     _cardView.titleLabel.text = usr[@"name"];
 //    _cardView.backgroundColor = [UIColor colorWithRed:247 green:186 blue:186 alpha:1];

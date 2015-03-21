@@ -59,6 +59,7 @@
         _restore = [UIButton buttonWithType:UIButtonTypeRoundedRect];
         _restore.frame = CGRectMake(w/8, h*2/3 - h/4, w*3/4, h/8);
         [_restore setTitle:@"Restore Purchases" forState:UIControlStateNormal];
+        _restore.layer.cornerRadius = 10;
         _restore.backgroundColor = [UIColor grayColor];
         
         [_restore addTarget:self action:@selector(restorePressed:) forControlEvents:UIControlEventTouchUpInside];
