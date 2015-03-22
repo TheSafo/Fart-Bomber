@@ -14,6 +14,7 @@
 #import <UIAlertView+BlocksKit.h>
 #import <RKCardView/RKCardView.h>
 #import "UIView+Explode.h"
+#import <MMWormhole/MMWormhole.h>
 
 @interface BombingViewController ()
 
@@ -28,6 +29,7 @@
 @property (nonatomic, strong) UIButton* confirmation;
 @property (nonatomic, strong) UIBlurEffect* blurEffect;
 @property (nonatomic, strong) UITextField* message;
+@property (nonatomic, strong) MMWormhole* wormHole;
 
 @end
 
@@ -38,6 +40,9 @@
 {
     if(self = [super init])
     {
+        
+        _wormHole = [[MMWormhole alloc] initWithApplicationGroupIdentifier:@"group.com.gmail.jakesafo.fartbomber"
+                                                         optionalDirectory:@"wormhole"];
         
         self.view = [[UIView alloc] initWithFrame:[[[[UIApplication sharedApplication] windows] firstObject] frame]];
         
@@ -64,6 +69,7 @@
         _revengeIds = arr1;
         _recentIds = arr2;
         _friendIds = arr3;
+        
         
         
         NSString* fart1 = [[NSBundle mainBundle] pathForResource:@"fart1" ofType:@"caf"];

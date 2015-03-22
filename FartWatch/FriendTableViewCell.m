@@ -26,7 +26,7 @@
     self.textLabel.text = user[@"name"];
     NSData* imgData = [NSData dataWithContentsOfURL:[NSURL URLWithString:[NSString stringWithFormat:@"http://graph.facebook.com/%@/picture?type=large", user[@"fbId"]]]];
     self.imageView.image = [UIImage imageWithData:imgData];
-    self.detailTextLabel.text = @"Ready to fart again";
+//    self.detailTextLabel.text = @"Ready to fart again";
     
 }
 

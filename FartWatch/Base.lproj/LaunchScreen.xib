@@ -10,30 +10,44 @@
             <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
-                <navigationBar contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="nFY-kD-6M0">
-                    <rect key="frame" x="0.0" y="20" width="600" height="44"/>
-                    <items>
-                        <navigationItem title="Fart Bomber" id="KeQ-1G-ht9"/>
-                    </items>
-                </navigationBar>
-                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="cushion2.png" translatesAutoresizingMaskIntoConstraints="NO" id="apo-pe-Seh">
-                    <rect key="frame" x="104" y="104" width="393" height="493"/>
+                <imageView userInteractionEnabled="NO" alpha="0.59999999999999964" contentMode="redraw" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" image="cushion2.png" translatesAutoresizingMaskIntoConstraints="NO" id="apo-pe-Seh">
+                    <rect key="frame" x="131" y="99" width="339" height="431"/>
                     <constraints>
-                        <constraint firstAttribute="height" constant="493" id="Xr6-Um-78I"/>
-                        <constraint firstAttribute="width" constant="393" id="pqX-s7-p9z"/>
+                        <constraint firstAttribute="width" constant="393" id="3Rx-HH-8SK"/>
+                        <constraint firstAttribute="height" constant="400" id="GRg-hX-ocj"/>
+                        <constraint firstAttribute="height" constant="514" id="M1V-eF-chF"/>
+                        <constraint firstAttribute="width" constant="300" id="SWs-qb-Sgh"/>
+                        <constraint firstAttribute="width" constant="393" id="Zyd-cV-jSc"/>
+                        <constraint firstAttribute="height" constant="514" id="eBf-Mi-vfK"/>
                     </constraints>
+                    <variation key="default">
+                        <mask key="constraints">
+                            <exclude reference="3Rx-HH-8SK"/>
+                            <exclude reference="M1V-eF-chF"/>
+                            <exclude reference="Zyd-cV-jSc"/>
+                            <exclude reference="eBf-Mi-vfK"/>
+                        </mask>
+                    </variation>
                 </imageView>
             </subviews>
             <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
             <constraints>
-                <constraint firstItem="nFY-kD-6M0" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" id="3lw-52-WgN"/>
-                <constraint firstItem="apo-pe-Seh" firstAttribute="top" secondItem="nFY-kD-6M0" secondAttribute="bottom" constant="40" id="MCZ-4B-Fwz"/>
-                <constraint firstAttribute="centerX" secondItem="apo-pe-Seh" secondAttribute="centerX" id="eDU-ch-NCC"/>
-                <constraint firstItem="nFY-kD-6M0" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" constant="20" id="fBw-WS-25f"/>
-                <constraint firstAttribute="trailing" secondItem="nFY-kD-6M0" secondAttribute="trailing" id="kDr-gw-Led"/>
+                <constraint firstItem="apo-pe-Seh" firstAttribute="centerX" secondItem="iN0-l3-epB" secondAttribute="centerX" id="Jdq-lS-niR"/>
+                <constraint firstItem="apo-pe-Seh" firstAttribute="centerX" secondItem="iN0-l3-epB" secondAttribute="centerX" id="N6V-Wh-VZT"/>
+                <constraint firstItem="apo-pe-Seh" firstAttribute="centerY" secondItem="iN0-l3-epB" secondAttribute="centerY" id="Uas-Os-pVx"/>
+                <constraint firstAttribute="bottom" secondItem="apo-pe-Seh" secondAttribute="bottom" constant="100" id="YWa-Ru-llQ"/>
+                <constraint firstAttribute="bottom" secondItem="apo-pe-Seh" secondAttribute="bottom" constant="-27" id="fOe-1Q-ZH3"/>
             </constraints>
             <simulatedStatusBarMetrics key="simulatedStatusBarMetrics" statusBarStyle="lightContent"/>
+            <simulatedNavigationBarMetrics key="simulatedTopBarMetrics"/>
             <simulatedOrientationMetrics key="simulatedOrientationMetrics"/>
+            <variation key="default">
+                <mask key="constraints">
+                    <exclude reference="N6V-Wh-VZT"/>
+                    <exclude reference="YWa-Ru-llQ"/>
+                    <exclude reference="fOe-1Q-ZH3"/>
+                </mask>
+            </variation>
             <point key="canvasLocation" x="548" y="455"/>
         </view>
     </objects>

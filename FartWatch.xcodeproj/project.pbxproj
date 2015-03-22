@@ -69,6 +69,10 @@
 		23FA75721AA17C6C00F2E5FE /* fart2.caf in Resources */ = {isa = PBXBuildFile; fileRef = 23FA756B1AA17C6C00F2E5FE /* fart2.caf */; };
 		23FA75731AA17C6C00F2E5FE /* fart1.caf in Resources */ = {isa = PBXBuildFile; fileRef = 23FA756C1AA17C6C00F2E5FE /* fart1.caf */; };
 		23FA75751AA1982700F2E5FE /* group4.png in Resources */ = {isa = PBXBuildFile; fileRef = 23FA75741AA1982700F2E5FE /* group4.png */; };
+		4390E4EE1ABDF208003512F7 /* RecentInterfaceController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4390E4ED1ABDF208003512F7 /* RecentInterfaceController.m */; };
+		4390E4F11ABDF241003512F7 /* RevengeInterfaceController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4390E4F01ABDF241003512F7 /* RevengeInterfaceController.m */; };
+		4390E4F41ABDF771003512F7 /* SAFRowController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4390E4F31ABDF771003512F7 /* SAFRowController.m */; };
+		4390E4FB1ABDFBEB003512F7 /* SAFRowController2.m in Sources */ = {isa = PBXBuildFile; fileRef = 4390E4FA1ABDFBEB003512F7 /* SAFRowController2.m */; };
 		97ADBDE9B5AF89A6E3B512BD /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = DD9AA9A2114706CD3EA10D08 /* libPods.a */; };
 /* End PBXBuildFile section */
 
@@ -198,6 +202,14 @@
 		23FA756B1AA17C6C00F2E5FE /* fart2.caf */ = {isa = PBXFileReference; lastKnownFileType = file; name = fart2.caf; path = Sounds/fart2.caf; sourceTree = SOURCE_ROOT; };
 		23FA756C1AA17C6C00F2E5FE /* fart1.caf */ = {isa = PBXFileReference; lastKnownFileType = file; name = fart1.caf; path = Sounds/fart1.caf; sourceTree = SOURCE_ROOT; };
 		23FA75741AA1982700F2E5FE /* group4.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = group4.png; sourceTree = SOURCE_ROOT; };
+		4390E4EC1ABDF208003512F7 /* RecentInterfaceController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RecentInterfaceController.h; sourceTree = "<group>"; };
+		4390E4ED1ABDF208003512F7 /* RecentInterfaceController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RecentInterfaceController.m; sourceTree = "<group>"; };
+		4390E4EF1ABDF241003512F7 /* RevengeInterfaceController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RevengeInterfaceController.h; sourceTree = "<group>"; };
+		4390E4F01ABDF241003512F7 /* RevengeInterfaceController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RevengeInterfaceController.m; sourceTree = "<group>"; };
+		4390E4F21ABDF771003512F7 /* SAFRowController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SAFRowController.h; sourceTree = "<group>"; };
+		4390E4F31ABDF771003512F7 /* SAFRowController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SAFRowController.m; sourceTree = "<group>"; };
+		4390E4F91ABDFBEB003512F7 /* SAFRowController2.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SAFRowController2.h; sourceTree = "<group>"; };
+		4390E4FA1ABDFBEB003512F7 /* SAFRowController2.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SAFRowController2.m; sourceTree = "<group>"; };
 		43A5EB4E1ABCEA41008C04CD /* FartWatch.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = FartWatch.entitlements; sourceTree = "<group>"; };
 		43A5EB4F1ABCEA5A008C04CD /* FartWatch WatchKit Extension.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = "FartWatch WatchKit Extension.entitlements"; sourceTree = "<group>"; };
 		D1EF0082B6DB1273505D3D77 /* Pods.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.release.xcconfig; path = "Pods/Target Support Files/Pods/Pods.release.xcconfig"; sourceTree = "<group>"; };
@@ -395,6 +407,14 @@
 				43A5EB4F1ABCEA5A008C04CD /* FartWatch WatchKit Extension.entitlements */,
 				23B8270B1A7FFD3000116B02 /* InterfaceController.h */,
 				23B8270C1A7FFD3000116B02 /* InterfaceController.m */,
+				4390E4EC1ABDF208003512F7 /* RecentInterfaceController.h */,
+				4390E4ED1ABDF208003512F7 /* RecentInterfaceController.m */,
+				4390E4EF1ABDF241003512F7 /* RevengeInterfaceController.h */,
+				4390E4F01ABDF241003512F7 /* RevengeInterfaceController.m */,
+				4390E4F21ABDF771003512F7 /* SAFRowController.h */,
+				4390E4F31ABDF771003512F7 /* SAFRowController.m */,
+				4390E4F91ABDFBEB003512F7 /* SAFRowController2.h */,
+				4390E4FA1ABDFBEB003512F7 /* SAFRowController2.m */,
 				231436CE1A9D78FF00F513D6 /* MMWormhole.h */,
 				231436CF1A9D78FF00F513D6 /* MMWormhole.m */,
 				23B8270E1A7FFD3000116B02 /* NotificationController.h */,
@@ -740,9 +760,13 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				4390E4F41ABDF771003512F7 /* SAFRowController.m in Sources */,
 				23B827101A7FFD3000116B02 /* NotificationController.m in Sources */,
 				23B8272E1A800AB500116B02 /* InterfaceController.m in Sources */,
 				231436D01A9D78FF00F513D6 /* MMWormhole.m in Sources */,
+				4390E4EE1ABDF208003512F7 /* RecentInterfaceController.m in Sources */,
+				4390E4F11ABDF241003512F7 /* RevengeInterfaceController.m in Sources */,
+				4390E4FB1ABDFBEB003512F7 /* SAFRowController2.m in Sources */,
 				23B827131A7FFD3000116B02 /* GlanceController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

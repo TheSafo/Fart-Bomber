@@ -72,37 +72,6 @@
     }];
 }
 
-+(void)createDirAtSharedContainerPath
-{
-    NSString *sharedContainerPathLocation = [[self getSharedContainerURLPath] path];
-    NSString *directoryToCreate = @"currentPicDir";
-    //basically this is <shared_container_file_path>/user_abc
-    NSString *dirPath = [sharedContainerPathLocation stringByAppendingPathComponent:directoryToCreate];
-    
-    BOOL isdir;
-    NSError *error = nil;
-    
-    NSFileManager *mgr = [[NSFileManager alloc]init];
-    
-    if (![mgr fileExistsAtPath:dirPath isDirectory:&isdir]) { //create a dir only that does not exists
-        if (![mgr createDirectoryAtPath:dirPath withIntermediateDirectories:YES attributes:nil error:&error]) {
-            NSLog(@"error while creating dir: %@", error.localizedDescription);
-        } else {
-            NSLog(@"dir was created....");
-        }
-    }
-}
-
-+(NSURL*)getSharedContainerURLPath
-{
-    NSFileManager *fm = [NSFileManager defaultManager];
-    
-    NSString *appGroupName = @"group.com.gmail.jakesafo.fartbomber";
-    NSURL *groupContainerURL = [fm containerURLForSecurityApplicationGroupIdentifier:appGroupName];
-    
-    return groupContainerURL;
-}
-
 
 @end
 

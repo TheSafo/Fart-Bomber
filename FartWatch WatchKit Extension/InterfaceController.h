@@ -16,7 +16,6 @@
 +(void)createDirAtSharedContainerPath;
 
 @property (nonatomic) IBOutlet WKInterfaceButton* myButton;
-@property (weak, nonatomic) IBOutlet WKInterfaceTable *table;
 
 @property (nonatomic) MMWormhole* wormHole;
 

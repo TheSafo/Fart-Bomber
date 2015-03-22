@@ -121,10 +121,12 @@
         reply(@{@"fartResp":@"It works!"});
         [self fart];
     }
-    else if([userInfo[@"operation"] isEqualToString:@"revenge"]){
+    else if([userInfo[@"operation"] isEqualToString:@"revenge"])
+    {
         
     }
-    else {
+    else
+    {
         NSLog(@"Error handling watch request");
     }
 }
