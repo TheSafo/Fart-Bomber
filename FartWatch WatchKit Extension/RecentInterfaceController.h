@@ -13,9 +13,9 @@
 
 @interface RecentInterfaceController : WKInterfaceController
 
-@property (weak, nonatomic) IBOutlet WKInterfaceTable *table;
-
-
-@property (nonatomic) MMWormhole* wormHole;
+@property (strong, nonatomic) IBOutlet WKInterfaceTable *table;
+@property (strong, nonatomic) IBOutlet WKInterfaceLabel *backLabel;
+@property (strong, nonatomic) IBOutlet WKInterfaceTimer *timer;
+@property (strong, nonatomic) IBOutlet WKInterfaceLabel *sentLabel;
 
 @end

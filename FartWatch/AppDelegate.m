@@ -58,6 +58,19 @@
 //    NSData* imgData = [_wormHole messageWithIdentifier:@"rawImg"];
     UIImage* initImg = [_wormHole messageWithIdentifier:@"rawImg"];
     
+    
+    UIImage* watchImg = [_wormHole messageWithIdentifier:@"curImg"];
+    
+    
+    /** If there's no data, set a default image */
+    if(watchImg.size.width == 0 || watchImg.size.height ==0)
+    {
+        watchImg = [UIImage imageNamed:@"cushion3"];
+        [_wormHole passMessageObject:watchImg identifier:@"curImg"];
+    }
+    
+
+    
 //    /** If there's no data, set a default image */
 //    if(!imgData)
 //    {
@@ -121,12 +134,15 @@
         reply(@{@"fartResp":@"It works!"});
         [self fart];
     }
-    else if([userInfo[@"operation"] isEqualToString:@"revenge"])
+    else if([userInfo[@"operation"] isEqualToString:@"getUser"])
     {
-        
+        NSLog(@"Sending current user");
+
+        reply(@{@"user":[PFUser currentUser].objectId});
     }
     else
     {
+        reply(@{@"test":@"you're fucked"});
         NSLog(@"Error handling watch request");
     }
 }

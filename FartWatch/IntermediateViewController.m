@@ -126,8 +126,6 @@
             
             self.revengeIds = user[@"revenge"] = [NSMutableArray array];
             self.recentIds = user[@"recent"] = [NSMutableArray array];
-            
-            
         } else {
             NSLog(@"User logged in through Facebook!");
             

@@ -10,7 +10,9 @@
 #import <WatchKit/WatchKit.h>
 
 @interface SAFRowController : NSObject
-@property (weak, nonatomic) IBOutlet WKInterfaceLabel *name;
-@property (weak, nonatomic) IBOutlet WKInterfaceImage *profPic;
+
+@property (strong, nonatomic) IBOutlet WKInterfaceImage *profPic;
+@property (strong, nonatomic) IBOutlet WKInterfaceLabel *name;
+
 
 @end

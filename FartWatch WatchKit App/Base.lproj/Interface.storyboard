@@ -18,6 +18,7 @@
                     </items>
                     <connections>
                         <outlet property="myButton" destination="98y-WF-0mP" id="KJa-aR-BgN"/>
+                        <segue destination="hQG-cu-DEf" kind="relationship" relationship="nextPage" id="FxY-Xu-Rt4"/>
                     </connections>
                 </controller>
             </objects>
@@ -31,23 +32,31 @@
                         <label alignment="left" text="Recents" id="kjq-gw-tyr"/>
                         <table alignment="left" id="aJl-Pn-7WM">
                             <items>
-                                <tableRow identifier="Saf Row Controller" id="9AE-64-LCb" customClass="SAFRowController">
+                                <tableRow identifier="SAFRowController" id="9AE-64-LCb" customClass="SAFRowController">
                                     <group key="rootItem" width="1" alignment="left" id="kxC-3X-QGT">
                                         <items>
-                                            <label alignment="right" verticalAlignment="center" text="Label" textAlignment="right" id="bVs-QE-sF0"/>
-                                            <imageView width="40" alignment="left" id="sYj-yH-fz9"/>
+                                            <label height="1" alignment="right" verticalAlignment="center" text="Label" textAlignment="right" minimumScaleFactor="0.10000000000000001" id="bVs-QE-sF0"/>
+                                            <imageView width="40" height="1" alignment="left" id="sYj-yH-fz9"/>
                                         </items>
                                     </group>
                                     <connections>
-                                        <outlet property="name" destination="bVs-QE-sF0" id="mmX-6F-9GY"/>
-                                        <outlet property="profPic" destination="sYj-yH-fz9" id="gKF-CJ-2dO"/>
+                                        <outlet property="name" destination="bVs-QE-sF0" id="DTg-xU-zOQ"/>
+                                        <outlet property="profPic" destination="sYj-yH-fz9" id="qPK-Eq-5e1"/>
                                     </connections>
                                 </tableRow>
                             </items>
                         </table>
+                        <timer alignment="center" verticalAlignment="center" hidden="YES" textAlignment="center" format="abbreviated" previewedSeconds="15" id="rpX-b2-L1D">
+                            <calendarUnit key="units" second="YES"/>
+                        </timer>
+                        <label width="1" alignment="center" verticalAlignment="center" text="No users in recents or not logged in on phone" textAlignment="center" numberOfLines="3" minimumScaleFactor="0.50000000000000011" id="EXQ-u1-k3n"/>
+                        <label width="1" alignment="center" verticalAlignment="center" hidden="YES" text="Fart sent!" textAlignment="center" numberOfLines="3" minimumScaleFactor="0.50000000000000011" id="6vi-a1-IpY"/>
                     </items>
                     <connections>
-                        <outlet property="table" destination="aJl-Pn-7WM" id="RL9-2p-UuA"/>
+                        <outlet property="backLabel" destination="EXQ-u1-k3n" id="4Gm-1q-B9h"/>
+                        <outlet property="sentLabel" destination="6vi-a1-IpY" id="oJ3-0v-hzS"/>
+                        <outlet property="table" destination="aJl-Pn-7WM" id="Lfu-nR-R1o"/>
+                        <outlet property="timer" destination="rpX-b2-L1D" id="THZ-j0-FaP"/>
                         <segue destination="MQA-NC-Pl5" kind="relationship" relationship="nextPage" id="cYW-TI-tSg"/>
                     </connections>
                 </controller>
@@ -62,11 +71,11 @@
                         <label alignment="left" text="Revenge" id="s6V-wK-HCg"/>
                         <table alignment="left" id="haJ-AU-eU5">
                             <items>
-                                <tableRow identifier="Saf Row Controller2" id="hRJ-PV-aKa" customClass="SAFRowController2">
+                                <tableRow identifier="SAFRowController2" id="hRJ-PV-aKa" customClass="SAFRowController2">
                                     <group key="rootItem" width="1" alignment="left" id="dRs-6R-3bu">
                                         <items>
-                                            <imageView width="40" alignment="left" id="fB4-AF-IEZ"/>
-                                            <label alignment="right" verticalAlignment="center" text="Label" textAlignment="right" id="RQd-Nt-wKI"/>
+                                            <imageView width="40" height="1" alignment="left" id="fB4-AF-IEZ"/>
+                                            <label height="1" alignment="right" verticalAlignment="center" text="Label" textAlignment="right" minimumScaleFactor="0.10000000000000001" id="RQd-Nt-wKI"/>
                                         </items>
                                     </group>
                                     <connections>
@@ -76,10 +85,17 @@
                                 </tableRow>
                             </items>
                         </table>
-                        <table alignment="left" id="5vs-U3-mYh"/>
+                        <label width="1" alignment="center" verticalAlignment="center" text="No users in revenge or not logged in on phone" textAlignment="center" numberOfLines="3" minimumScaleFactor="0.50000000000000011" id="9TU-bH-czW"/>
+                        <label width="1" alignment="center" verticalAlignment="center" hidden="YES" text="Fart sent!" textAlignment="center" numberOfLines="3" minimumScaleFactor="0.50000000000000011" id="lR1-l9-f1K"/>
+                        <timer alignment="center" verticalAlignment="center" hidden="YES" textAlignment="center" format="abbreviated" previewedSeconds="15" id="DXM-TQ-Gik">
+                            <calendarUnit key="units" second="YES"/>
+                        </timer>
                     </items>
                     <connections>
+                        <outlet property="backLabel" destination="9TU-bH-czW" id="h9X-4N-Pev"/>
+                        <outlet property="sentLabel" destination="lR1-l9-f1K" id="Cnf-BN-vFB"/>
                         <outlet property="table" destination="haJ-AU-eU5" id="UEQ-ad-EkD"/>
+                        <outlet property="timer" destination="DXM-TQ-Gik" id="gl4-yl-YaR"/>
                     </connections>
                 </controller>
             </objects>
@@ -119,7 +135,7 @@
             <objects>
                 <controller id="gdX-wl-uQE" customClass="NotificationController"/>
             </objects>
-            <point key="canvasLocation" x="553" y="1001"/>
+            <point key="canvasLocation" x="651" y="1001"/>
         </scene>
     </scenes>
 </document>

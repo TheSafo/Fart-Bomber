@@ -12,5 +12,8 @@
 @interface RevengeInterfaceController : WKInterfaceController
 
 @property (weak, nonatomic) IBOutlet WKInterfaceTable *table;
+@property (strong, nonatomic) IBOutlet WKInterfaceLabel *backLabel;
+@property (strong, nonatomic) IBOutlet WKInterfaceLabel *sentLabel;
+@property (strong, nonatomic) IBOutlet WKInterfaceTimer *timer;
 
 @end

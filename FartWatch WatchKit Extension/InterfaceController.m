@@ -23,16 +23,14 @@
                                                      optionalDirectory:@"wormhole"];
     /** Get initial image */
     UIImage* initImg = [_wormHole messageWithIdentifier:@"curImg"];
-
+    
     
     /** If there's no data, set a default image */
-    if(!initImg)
+    if(initImg.size.width == 0 || initImg.size.height ==0)
     {
-        initImg = [UIImage imageNamed:@"cushion3"];
+        initImg = [UIImage imageNamed:@"cushion2.png"];
     }
-    
     [_myButton setBackgroundImage:initImg];
-    
     
     
     
@@ -40,10 +38,9 @@
     [_wormHole listenForMessageWithIdentifier:@"curImg" listener:^(id messageObject) {
         UIImage* newImg = messageObject;
         
-        if(!newImg)
+        if(newImg.size.width == 0 || newImg.size.height ==0)
         {
-            NSLog(@"Sent nil");
-            return;
+            newImg = [UIImage imageNamed:@"cushion2.png"];
         }
         
         [_myButton setBackgroundImage:newImg];

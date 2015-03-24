@@ -14,7 +14,6 @@
 #import <UIAlertView+BlocksKit.h>
 #import <RKCardView/RKCardView.h>
 #import "UIView+Explode.h"
-#import <MMWormhole/MMWormhole.h>
 
 @interface BombingViewController ()
 
@@ -29,7 +28,6 @@
 @property (nonatomic, strong) UIButton* confirmation;
 @property (nonatomic, strong) UIBlurEffect* blurEffect;
 @property (nonatomic, strong) UITextField* message;
-@property (nonatomic, strong) MMWormhole* wormHole;
 
 @end
 
@@ -40,10 +38,6 @@
 {
     if(self = [super init])
     {
-        
-        _wormHole = [[MMWormhole alloc] initWithApplicationGroupIdentifier:@"group.com.gmail.jakesafo.fartbomber"
-                                                         optionalDirectory:@"wormhole"];
-        
         self.view = [[UIView alloc] initWithFrame:[[[[UIApplication sharedApplication] windows] firstObject] frame]];
         
         self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"Back" style:UIBarButtonItemStylePlain  target:self action:@selector(backPressed)];
