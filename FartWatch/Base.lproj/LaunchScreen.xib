@@ -10,8 +10,8 @@
             <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
-                <imageView userInteractionEnabled="NO" alpha="0.59999999999999964" contentMode="redraw" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" image="cushion2.png" translatesAutoresizingMaskIntoConstraints="NO" id="apo-pe-Seh">
-                    <rect key="frame" x="131" y="99" width="339" height="431"/>
+                <imageView userInteractionEnabled="NO" alpha="0.59999999999999964" contentMode="redraw" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="cushion2.png" translatesAutoresizingMaskIntoConstraints="NO" id="apo-pe-Seh">
+                    <rect key="frame" x="150.5" y="100" width="300" height="400"/>
                     <constraints>
                         <constraint firstAttribute="width" constant="393" id="3Rx-HH-8SK"/>
                         <constraint firstAttribute="height" constant="400" id="GRg-hX-ocj"/>
