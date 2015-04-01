@@ -37,7 +37,12 @@
     _pics = [NSMutableArray array];
     _theUsers = [NSMutableArray array];
     
+    [self getUser];
+}
 
+
+-(void)getUser
+{
     /** Get the current user */
     NSMutableDictionary* msg = [NSMutableDictionary dictionary];
     msg[@"operation"] = @"getUser";
@@ -55,11 +60,12 @@
             [curUsrQuery getObjectInBackgroundWithId:curUsrID block:^(PFObject *object, NSError *error) {
                 
                 _curUser = (PFUser *)object;
-
+                
                 [self reloadData];
             }];
         }
     }];
+
 }
 
 -(void)timerDone
@@ -242,7 +248,7 @@
     {
         [self.table setHidden:NO];
         [self.backLabel setHidden:YES];
-        [self reloadData]; //Update the view
+        [self createTable]; //Not worth re-getting user recents on reload
     }
     else
     {

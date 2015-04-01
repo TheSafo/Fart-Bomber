@@ -35,6 +35,11 @@
     _theUsers = [NSMutableArray array];
     
     
+    [self getUser];
+}
+
+-(void)getUser
+{
     /** Get the current user */
     NSMutableDictionary* msg = [NSMutableDictionary dictionary];
     msg[@"operation"] = @"getUser";
@@ -266,7 +271,7 @@
     }
     [self.backLabel setHidden:YES];
     [self.table setHidden:NO];
-    [self reloadData];
+    [self getUser];
 }
 
 - (void)didDeactivate {
