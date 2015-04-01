@@ -51,13 +51,13 @@ CHECKOUT OPTIONS:
     :git: https://github.com/zwaldowski/BlocksKit.git
 
 SPEC CHECKSUMS:
-  BlocksKit: 918117f8a8e23b82c9ef327da82849d78dd64cc3
-  Bolts: dd9fb8433d67f5acc3b6b4d1379bbc5513d716c1
-  Facebook-iOS-SDK: 89dae50e975ebab95a01b0962d27277fc9cf08fd
-  MMWormhole: 48452a7149eba409e9dffad661451fa25b9e97c4
+  BlocksKit: fce66219cce8030475a04eae720cdde22f8fc30b
+  Bolts: f8e2f94edbf9fec7bb8de5ecaaa3aa6b7de6f64e
+  Facebook-iOS-SDK: d5a50d5ac6b1da948fd98c18dd8beeae854f2b3e
+  MMWormhole: 941cd168b4afd6073f883b82944d6eded4e00203
   Parse: a21db4037d70a68a4ec64ecc0f327ed475cc14f8
   ParseFacebookUtils: 4d58d0f133fa1af52f3a8d5caaa55cd435118ac4
-  pop: 2f14a1ea61339767af9e66741b418c831b3844df
-  RKCardView: bb96e9288f1ccc34468a2d52c5f83bcf58a506ee
+  pop: 628ffc631644601567ee8bfaaaea493ebd7d0923
+  RKCardView: 80c09d833031dd8506eb4dcbaa820038065c2519
 
 COCOAPODS: 0.35.0
