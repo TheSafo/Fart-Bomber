@@ -163,7 +163,7 @@
         UILocalNotification *notification = [[UILocalNotification alloc] init];
         notification.fireDate = [NSDate date];
         notification.timeZone = [NSTimeZone defaultTimeZone];
-        notification.alertBody = @"FART BOMBED";
+        notification.alertBody = @"FART BOMBED from iWatch";
         notification.soundName = sound;
         
         [[UIApplication sharedApplication] scheduleLocalNotification:notification];

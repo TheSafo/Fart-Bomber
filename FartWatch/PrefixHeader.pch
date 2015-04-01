@@ -14,9 +14,10 @@
 
 //[StoreManager sharedInstance].adsPurchased;
 //[StoreManger sharedInstance].customPurchased;
-#define ADS_ON ![StoreManager sharedInstance].adsPurchased
-#define CUSTOM_MSG_ON [StoreManager sharedInstance].customPurchased
-
+//#define ADS_ON ![StoreManager sharedInstance].adsPurchased
+//#define CUSTOM_MSG_ON [StoreManager sharedInstance].customPurchased
+#define ADS_ON 0
+#define CUSTOM_MSG_ON 1
 
 // DLog is almost a drop-in replacement for NSLog
 // DLog();

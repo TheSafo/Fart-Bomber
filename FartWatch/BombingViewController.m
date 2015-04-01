@@ -398,18 +398,18 @@
 
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    NSArray* arr;
-    switch (indexPath.section) {
-        case 0:
-            arr = _revengeIds;
-            break;
-        case 1:
-            arr = _recentIds;
-            break;
-        case 2:
-            arr = _friendIds;
-            break;
-    }
+//    NSArray* arr;
+//    switch (indexPath.section) {
+//        case 0:
+//            arr = _revengeIds;
+//            break;
+//        case 1:
+//            arr = _recentIds;
+//            break;
+//        case 2:
+//            arr = _friendIds;
+//            break;
+//    }
     
     FriendTableViewCell* tappedCell = (FriendTableViewCell *)[self.tableView cellForRowAtIndexPath:indexPath];
     
@@ -505,7 +505,15 @@
     NSString* sound = [NSString stringWithFormat:@"fart%i.caf", x]; ///Randomizes sound!!!
     
     NSDictionary *data = @{ @"alert" : realMsg,
-                            @"sound" : sound,};
+                            @"sound" : sound,
+                            @"senderID" : [PFUser currentUser].objectId,
+                            @"WatchKit Simulator Actions": @[
+                                    @{
+                                       @"title": @"Revenge",
+                                       @"identifier": @"takeRevenge"
+                                    }
+                                ],
+                            };
     
     PFPush *push = [[PFPush alloc] init];
     [push setQuery:qry];

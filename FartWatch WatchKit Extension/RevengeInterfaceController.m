@@ -80,8 +80,10 @@
     [self.table setHidden:YES];
     [self.timer setHidden:NO];
     
-    [NSTimer scheduledTimerWithTimeInterval:15 target:self selector:@selector(timerDone) userInfo:nil repeats:NO];
-    [self.timer setDate:[NSDate dateWithTimeIntervalSinceNow:15]];
+    int x = arc4random_uniform(10) + 5;
+    
+    [NSTimer scheduledTimerWithTimeInterval:x target:self selector:@selector(timerDone) userInfo:nil repeats:NO];
+    [self.timer setDate:[NSDate dateWithTimeIntervalSinceNow:x]];
     [self.timer start];
     _timerOn = YES;
 
@@ -147,13 +149,21 @@
     PFQuery *qry = [PFInstallation query];
     [qry whereKey:@"user" equalTo:toSend];
     
-    NSString* realMsg = [NSString stringWithFormat:@"%@ from %@", msg, [PFUser currentUser][@"name"]];
+    NSString* realMsg = [NSString stringWithFormat:@"%@ from %@'s watch", msg, _curUser[@"name"]];
     
     int x = arc4random_uniform(7) + 1;
     NSString* sound = [NSString stringWithFormat:@"fart%i.caf", x]; ///Randomizes sound!!!
     
     NSDictionary *data = @{ @"alert" : realMsg,
-                            @"sound" : sound,};
+                            @"sound" : sound,
+                            @"senderID" : _curUser.objectId,
+                            @"WatchKit Simulator Actions": @[
+                                    @{
+                                        @"title": @"Revenge",
+                                        @"identifier": @"takeRevenge"
+                                        }
+                                    ],
+                            };
     
     PFPush *push = [[PFPush alloc] init];
     [push setQuery:qry];
@@ -222,6 +232,12 @@
     
     NSArray* recentUserIds = [_curUser valueForKey:@"revenge"];
     
+    if(recentUserIds.count == 0)
+    {
+        [self createPlaceHolder];
+        return;
+    }
+    
     for (NSString* usrID in recentUserIds) {
         PFQuery* temp = [PFUser query];
         
@@ -248,15 +264,9 @@
     {
         return;
     }
-    
-    if(_names.count >0)
-    {
-        [self reloadData]; //Update the view
-    }
-    else
-    {
-        [self createPlaceHolder];
-    }
+    [self.backLabel setHidden:YES];
+    [self.table setHidden:NO];
+    [self reloadData];
 }
 
 - (void)didDeactivate {

@@ -28,7 +28,7 @@
 
 -(id)init
 {
-    if(self == [super init])
+    if(self = [super init])
     {
         self.view = [[UIView alloc] initWithFrame:[[[[UIApplication sharedApplication] windows] firstObject] frame]];
         self.view.backgroundColor = [UIColor lightGrayColor];
@@ -79,6 +79,8 @@
 
 -(void) viewWillAppear:(BOOL)animated
 {
+    [super viewWillAppear:animated];
+    
     long initialNum = ((MainViewController *) self.navigationController.viewControllers[0]).cushNum;
     [_changeCushion selectRow:(initialNum-1) inComponent:0 animated:YES];
     _curNum = initialNum;
